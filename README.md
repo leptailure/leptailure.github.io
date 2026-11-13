@@ -11,6 +11,6 @@ Bienvenue sur mon portfolio de projets personnels.
 - Compteur de pulsations cardiaques
 - Détection de chute sur FPGA
 
-## Contact
+## Contact 
 
 [Me contacter par e-mail](mailto:leptailure@outlook.com)
