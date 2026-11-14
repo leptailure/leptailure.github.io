@@ -13,4 +13,4 @@ Bienvenue sur mon portfolio de projets personnels.
 
 ## Contact
 
-[Me contacter par e-mail](mailto:leptailure@outlook.com)
+[Me contacter par e-mail](mailto:leptailure@gmail.com)
