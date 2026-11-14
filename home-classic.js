@@ -17,7 +17,7 @@ const gallery = document.getElementById('photo-gallery');
 photos.forEach(([file,title,caption]) => {
   const figure = document.createElement('figure');
   const link = document.createElement('a');
-  link.href = 'assets/' + file;
+  link.href = 'assets/' + file + '?v=wm2';
   link.className = 'zoom';
   link.dataset.caption = title + ' — ' + caption;
   const img = document.createElement('img');
