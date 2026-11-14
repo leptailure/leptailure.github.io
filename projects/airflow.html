@@ -8,6 +8,7 @@
   <title>Détecteur de flux d’air — Leptailure</title>
   <link rel="icon" href="../favicon.png" type="image/png">
   <link rel="stylesheet" href="../style.css?v=pages-1">
+  <link rel="stylesheet" href="academic.css?v=academic-1">
 <script src="../visit-config.js" defer></script>
 <script src="../visit-tracker.js" defer></script>
 </head>
@@ -17,21 +18,52 @@
   <a class="wordmark" href="../" aria-label="Leptailure, accueil"><img class="brand-avatar" src="../assets/serval-avatar.png" alt="" width="80" height="80">Leptailure</a>
   <nav aria-label="Navigation principale"><a href="../#projets">← Projets</a><a href="../#contact">Contact</a></nav>
 </header>
-<main id="contenu" class="wrap project-page">
+<main id="contenu" class="wrap project-page academic-case">
   <header class="project-heading">
     <p class="meta">Projet académique · MARS 2026 · L2</p>
     <h1>Détecteur de flux d’air</h1>
-    <p class="lead">Détection du sens d’un flux et extension personnelle sur microcontrôleur.</p>
+    <p class="lead">Du pont de mesure à l’affichage embarqué : détecter le sens d’un flux et exploiter le signal sur STM32.</p>
+    <p>Le projet associe des thermistances CTN en pont de Wheatstone, des comparateurs et une indication par LED. Une extension personnelle ajoute l’acquisition numérique, le traitement sur microcontrôleur et un écran OLED.</p>
+    <p class="technology-line">CTN · Pont de Wheatstone · CAN externe · STM32 · I²C / OLED</p>
   </header>
-  <section class="project-section" aria-labelledby="description-title">
-    <h2 id="description-title">Conception et réalisation</h2>
-    <ul class="work-list">
-      <li>CTN en pont de Wheatstone et convertisseur analogique-numérique externe.</li>
-      <li>Comparateurs et LED pour indiquer le sens du flux.</li>
-      <li>Extension personnelle sur STM32 : acquisition, traitement et affichage OLED via I²C.</li>
-    </ul>
-    <p class="technology-line">STM32 · Acquisition · I²C / OLED</p>
+  <dl class="case-summary" aria-label="Le projet en bref">
+    <div><dt>Cadre</dt><dd>Projet d’électronique · L2</dd></div>
+    <div><dt>Fonction</dt><dd>Détection du sens d’un flux d’air</dd></div>
+    <div><dt>Extension personnelle</dt><dd>Acquisition et affichage sur STM32</dd></div>
+  </dl>
+  <section class="project-section" aria-labelledby="principe-title">
+    <h2 id="principe-title">01 / Transformer une variation en indication</h2>
+    <p>Le pont de Wheatstone convertit les variations de résistance des CTN en une tension différentielle. Cette tension constitue le point de départ de la chaîne : elle peut être comparée pour donner une indication lumineuse ou numérisée pour être traitée et affichée.</p>
+    <figure class="signal-paths" aria-label="Le signal du pont alimente deux voies d’exploitation">
+      <div class="signal-origin"><strong>CTN · Pont de Wheatstone</strong><span>Signal analogique de mesure</span></div>
+      <div class="signal-branches">
+        <div><div class="signal-branch"><p class="meta">VOIE ANALOGIQUE</p><h3>Comparateurs → LED</h3><p>Indication directe du sens du flux.</p></div></div>
+        <div><div class="signal-branch"><p class="meta">EXTENSION PERSONNELLE</p><h3>CAN externe → STM32 → OLED</h3><p>Acquisition, traitement et affichage via I²C.</p></div></div>
+      </div>
+      <figcaption>Vue fonctionnelle des deux voies d’exploitation du signal ; ce diagramme ne représente pas le câblage du montage.</figcaption>
+    </figure>
   </section>
+  <section class="project-section" aria-labelledby="cours-title">
+    <h2 id="cours-title">02 / Le projet de cours</h2>
+    <div class="method-grid">
+      <div><h3>CTN et pont de Wheatstone</h3><p>La partie capteur repose sur des thermistances à coefficient de température négatif. Le montage en pont permet d’exploiter une différence entre les branches plutôt qu’une résistance isolée.</p></div>
+      <div><h3>Comparateurs et indication du sens</h3><p>Les comparateurs convertissent l’information analogique en états de sortie pour les LED. Cette voie donne une indication directe du sens du flux, sans passer par un affichage logiciel.</p></div>
+    </div>
+  </section>
+  <section class="project-section" aria-labelledby="extension-title">
+    <h2 id="extension-title">03 / Mon extension sur STM32</h2>
+    <p>J’ai prolongé le montage par une chaîne embarquée associant un convertisseur analogique-numérique externe, un STM32 et un écran OLED. Cette extension porte sur l’acquisition des données, leur traitement et leur présentation sur l’écran via I²C.</p>
+    <div class="method-grid">
+      <div><h3>Acquérir et traiter</h3><p>Le convertisseur fait le lien entre le signal du montage et le programme du microcontrôleur. Le STM32 assure ensuite l’exploitation des données numériques.</p></div>
+      <div><h3>Rendre l’information lisible</h3><p>L’écran OLED ajoute une interface de lecture au système. Sa commande par I²C relie la programmation embarquée à un périphérique d’affichage.</p></div>
+    </div>
+  </section>
+  <section class="project-section" aria-labelledby="bilan-title">
+    <h2 id="bilan-title">04 / Du circuit au système embarqué</h2>
+    <p>Ce projet relie capteurs résistifs, électronique analogique, conversion numérique et programmation sur STM32. L’extension personnelle conserve la chaîne de mesure comme point de départ et lui ajoute une exploitation logicielle.</p>
+    <div class="case-highlight"><h3>Détecter un sens et mesurer une vitesse</h3><p>L’indication du sens du flux est la fonction présentée ici. Une mesure quantitative de vitesse demanderait en plus une calibration reliant le signal électrique à une grandeur de référence.</p></div>
+  </section>
+  <nav class="case-navigation" aria-label="Autres projets académiques"><a href="pulse-counter.html">← Compteur de pulsations cardiaques</a><a href="fall-detection.html">Détection de chute sur FPGA →</a></nav>
 </main>
 <footer class="footer wrap"><span>© 2026 Leptailure · Projets personnels et académiques</span><a href="mailto:leptailure@gmail.com">leptailure@gmail.com</a></footer>
 </body>

@@ -8,6 +8,7 @@
   <title>Détection de chute sur FPGA — Leptailure</title>
   <link rel="icon" href="../favicon.png" type="image/png">
   <link rel="stylesheet" href="../style.css?v=pages-1">
+  <link rel="stylesheet" href="academic.css?v=academic-1">
 <script src="../visit-config.js" defer></script>
 <script src="../visit-tracker.js" defer></script>
 </head>
@@ -17,20 +18,45 @@
   <a class="wordmark" href="../" aria-label="Leptailure, accueil"><img class="brand-avatar" src="../assets/serval-avatar.png" alt="" width="80" height="80">Leptailure</a>
   <nav aria-label="Navigation principale"><a href="../#projets">← Projets</a><a href="../#contact">Contact</a></nav>
 </header>
-<main id="contenu" class="wrap project-page">
+<main id="contenu" class="wrap project-page academic-case">
   <header class="project-heading">
     <p class="meta">Projet académique · NOV. 2025 · TP L2</p>
     <h1>Détection de chute sur FPGA</h1>
-    <p class="lead">Traitement des données d’un accéléromètre par une architecture logique.</p>
+    <p class="lead">Décrire une architecture logique en VHDL pour exploiter les données d’un accéléromètre.</p>
+    <p>Ce travail pratique utilise l’accéléromètre de la carte Nexys 4 DDR comme source de données. Le projet porte sur la conception de modules arithmétiques et logiques et leur rôle dans une chaîne de détection de chute.</p>
+    <p class="technology-line">VHDL · FPGA · Nexys 4 DDR · Accéléromètre · Logique numérique</p>
   </header>
-  <section class="project-section" aria-labelledby="description-title">
-    <h2 id="description-title">Conception et réalisation</h2>
-    <ul class="work-list">
-      <li>Conception de modules arithmétiques et logiques en VHDL.</li>
-      <li>Détection de chute à partir de l’accéléromètre de la carte Nexys 4 DDR.</li>
-    </ul>
-    <p class="technology-line">VHDL · FPGA · Nexys 4 DDR</p>
+  <dl class="case-summary" aria-label="Le projet en bref">
+    <div><dt>Cadre</dt><dd>Travaux pratiques · L2</dd></div>
+    <div><dt>Plateforme</dt><dd>Carte FPGA Nexys 4 DDR</dd></div>
+    <div><dt>Conception</dt><dd>Modules arithmétiques et logiques en VHDL</dd></div>
+  </dl>
+  <section class="project-section" aria-labelledby="objectif-title">
+    <h2 id="objectif-title">01 / Des données du capteur à une décision</h2>
+    <p>L’objectif est de relier les données d’accélération à une fonction de détection. L’architecture se décompose en opérations sur les données, puis en logique de décision. Cette séparation permet de raisonner sur les fonctions élémentaires avant de considérer le système complet.</p>
+    <ol class="functional-flow" aria-label="Lecture fonctionnelle de l’architecture">
+      <li><strong>Données d’entrée</strong><span>Mesures issues de l’accéléromètre de la carte.</span></li>
+      <li><strong>Calcul</strong><span>Modules arithmétiques décrits en VHDL.</span></li>
+      <li><strong>Décision logique</strong><span>Combinaison des informations nécessaires à la détection.</span></li>
+      <li><strong>Détection</strong><span>Information logique indiquant l’événement recherché.</span></li>
+    </ol>
+    <p class="diagram-caption">Vue de principe des fonctions ; elle ne détaille pas les critères de décision ni le protocole de lecture du capteur.</p>
   </section>
+  <section class="project-section" aria-labelledby="travail-title">
+    <h2 id="travail-title">02 / Travail réalisé en VHDL</h2>
+    <div class="method-grid">
+      <div><h3>Modules arithmétiques</h3><p>Conception de blocs de calcul destinés au traitement des données. La description de leurs entrées et sorties permet de définir précisément leur place dans l’architecture.</p></div>
+      <div><h3>Modules logiques</h3><p>Conception des fonctions logiques intervenant dans la détection. Elles relient les informations calculées à une condition de sortie.</p></div>
+      <div><h3>Organisation modulaire</h3><p>Le découpage en blocs distingue le traitement numérique et la décision. Il facilite la lecture de la description matérielle et le raisonnement sur les connexions entre modules.</p></div>
+      <div><h3>Application sur carte FPGA</h3><p>La Nexys 4 DDR fournit le support matériel du TP et les données de son accéléromètre. Le projet associe ainsi un capteur physique à une architecture logique décrite en VHDL.</p></div>
+    </div>
+  </section>
+  <section class="project-section" aria-labelledby="bilan-title">
+    <h2 id="bilan-title">03 / Penser en architecture matérielle</h2>
+    <p>Ce TP mobilise la logique numérique et la description de circuits en VHDL. Il met en relation trois niveaux : les données d’un capteur, les opérations réalisées par les modules et l’information délivrée par la logique de détection.</p>
+    <div class="case-highlight"><h3>La cohérence entre les blocs</h3><p>Dans une chaîne numérique, chaque module doit recevoir des données au format attendu par ses entrées. La largeur des signaux et leurs connexions font donc partie de la conception, au même titre que les opérations décrites.</p></div>
+  </section>
+  <nav class="case-navigation" aria-label="Autres projets académiques"><a href="airflow.html">← Détecteur de flux d’air</a><a href="../#projets">Tous les projets →</a></nav>
 </main>
 <footer class="footer wrap"><span>© 2026 Leptailure · Projets personnels et académiques</span><a href="mailto:leptailure@gmail.com">leptailure@gmail.com</a></footer>
 </body>
