@@ -17,7 +17,6 @@ Bienvenue sur mon portfolio de projets personnels.
 
 ## 工具
 
-- [批量水印网页](tools/watermark.html)：图片本地预览和 ZIP 导出。
 - [访问统计后台](tools/visits.html)：密码验证、国家地区与访问页面统计、CSV 导出。部署方法见 [stats-worker/README.md](stats-worker/README.md)。
 - [隐私说明](privacy.html)。
 
