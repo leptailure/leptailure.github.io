@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS visits (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  ts TEXT NOT NULL,
+  day TEXT NOT NULL,
+  page TEXT NOT NULL,
+  country TEXT NOT NULL,
+  city TEXT NOT NULL DEFAULT '',
+  visitor_key TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_visits_day ON visits(day);
+CREATE INDEX IF NOT EXISTS idx_visits_time ON visits(ts);

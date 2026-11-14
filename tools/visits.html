@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Leptailure · 访问统计</title>
+<style>
+:root{--ink:#20352a;--muted:#687a6e;--line:#dce3dc;--bg:#f5f4ef;--accent:#a4462f}
+*{box-sizing:border-box}body{font:15px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);margin:0}
+main{width:min(1080px,calc(100% - 36px));margin:38px auto 65px}
+h1{font-weight:650;font-size:clamp(29px,4vw,44px);margin:0 0 6px}h2{font-size:18px;margin:0 0 18px}p{margin:7px 0 18px}
+small,.muted{color:var(--muted)}a{color:var(--ink)}button,select,input{border:1px solid #cbd9ce;border-radius:7px;background:white;padding:9px 12px;font:inherit;color:var(--ink)}
+button{cursor:pointer}input{max-width:210px}input[type=password]{max-width:230px}.controls{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:22px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.box{background:white;padding:22px;border:1px solid var(--line);border-radius:13px;min-width:0}
+.stat{font-size:40px;font-weight:650;margin:4px 0}.wide{grid-column:1/-1}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}th,td{padding:9px;text-align:left;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{color:var(--muted)}
+.bar-row{display:flex;gap:12px;align-items:center;font-size:12px;margin-bottom:10px}.bar-label{width:115px;flex:none;overflow-wrap:anywhere}.track{height:12px;background:#e4eee5;border-radius:20px;flex:1;overflow:hidden}.fill{height:100%;background:#4f7562}.bar-number{width:55px;text-align:right}
+.notice{border-left:3px solid var(--accent);padding:12px 14px;background:white;color:var(--muted);font-size:12px;margin-top:20px}
+@media(max-width:660px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.bar-label{width:80px}input{max-width:100%}.box{padding:15px}}
+</style></head><body><main>
+<a href="../">← Leptailure</a>
+<h1>Leptailure · 访问统计</h1>
+<p class="muted">leptailure.github.io · 后台仪表盘 · 页面浏览量和 IP 推算地区（非精确位置）</p>
+<section id="login" class="box">
+<h2>管理员登录</h2><p class="muted">在此输入独立 Cloudflare Worker 后台用户名及密码。密码只保存在当前页面内存，不会上传到 GitHub Pages。</p>
+<div class="controls"><input id="username" value="admin" autocomplete="username" aria-label="用户名"><input id="password" type="password" autocomplete="current-password" placeholder="管理密码" aria-label="管理密码"><button id="signin">连接后台</button></div>
+</section>
+<div class="controls">
+<select id="period" aria-label="统计时间范围"><option value="7">最近 7 天</option><option value="30">最近 30 天</option><option value="90">最近 90 天</option></select>
+<button id="reload">刷新</button><button id="export">导出访问记录 CSV</button><a href="https://leptailure.github.io/" target="_blank" rel="noopener noreferrer">打开网站 ↗</a>
+</div>
+<p id="status" class="muted" role="status">尚未连接统计后台。</p>
+<div class="grid">
+<section class="box"><h2>页面浏览量</h2><div id="views" class="stat">—</div><small>访客同意后才记录浏览事件</small></section>
+<section class="box"><h2>每日访客标识数合计</h2><div id="visitors" class="stat">—</div><small>按 UTC 日轮换去重；非真实独立人数</small></section>
+<section class="box"><h2>国家 / 地区</h2><div id="countries">暂无数据</div></section>
+<section class="box"><h2>访问页面</h2><div id="pages">暂无数据</div></section>
+<section class="box wide"><h2>每日浏览量</h2><div id="daily">暂无数据</div></section>
+<section class="box wide"><h2>最近访问</h2><table><thead><tr><th>时间 (UTC)</th><th>页面</th><th>国家</th><th>城市（粗略）</th><th>当日访客标识</th></tr></thead><tbody id="recent"><tr><td colspan="5">暂无数据</td></tr></tbody></table></section>
+</div>
+<p class="notice">本工具需要单独部署 Cloudflare Worker + D1 后台，详情见仓库 stats-worker/README.md。站点不保存完整 IP，仅保存每日轮换的伪匿名标识，30 天自动删除；地区由 IP 粗略推断。统计受访客同意、浏览器限制和拦截器影响。</p>
+</main>
+<script src="../visit-config.js"></script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id),fmt=n=>Number(n||0).toLocaleString('zh-CN');
+const endpoint=String(window.LEPTAILURE_STATS_URL||'').trim().replace(/\/+$/,'');
+let header='';
+function url(path){return endpoint+path}
+function auth(){const raw=new TextEncoder().encode($('username').value+':'+$('password').value);return 'Basic '+btoa(String.fromCharCode(...raw))}
+function cell(value){const x=document.createElement('td');x.textContent=String(value??'');return x}
+function bars(id,rows,label){
+ const box=$(id);box.replaceChildren();if(!rows.length){box.textContent='暂无访问记录';return}
+ const max=Math.max(1,...rows.map(r=>Number(r.n)));
+ for(const r of rows){
+  const line=document.createElement('div');line.className='bar-row';
+  const lab=document.createElement('span');lab.className='bar-label';lab.textContent=String(r[label]||'未知');
+  const track=document.createElement('div');track.className='track';const fill=document.createElement('div');fill.className='fill';
+  fill.style.width=Math.max(1,Number(r.n)/max*100)+'%';track.append(fill);
+  const num=document.createElement('span');num.className='bar-number';num.textContent=fmt(r.n);
+  line.append(lab,track,num);box.append(line);
+ }
+}
+async function api(path){
+ const result=await fetch(url(path),{headers:{Authorization:header},mode:'cors',cache:'no-store'});
+ if(result.status===401)throw new Error('用户名或密码错误');
+ if(!result.ok)throw new Error('HTTP '+result.status);
+ return result;
+}
+async function refresh(){
+ if(!/^https:\/\//i.test(endpoint)){$('status').textContent='未接入后端：需先部署 Cloudflare Worker 并在 visit-config.js 填写地址。';return}
+ if(!header){$('status').textContent='请输入管理密码并连接后台';return}
+ $('status').textContent='加载中…';
+ try{
+  const x=await(await api('/api/stats?days='+$('period').value)).json();
+  $('views').textContent=fmt(x.views);$('visitors').textContent=fmt(x.visitors);
+  bars('countries',x.countries,'country');bars('pages',x.pages,'page');bars('daily',x.daily,'day');
+  const box=$('recent');box.replaceChildren();
+  for(const r of x.recent){const row=document.createElement('tr');row.append(cell(r.ts),cell(r.page),cell(r.country),cell(r.city),cell(r.visitor_key));box.append(row)}
+  if(!x.recent.length){const row=document.createElement('tr'),td=cell('暂无访问记录');td.colSpan=5;row.append(td);box.append(row)}
+  $('login').hidden=true;
+  $('status').textContent='已更新：'+new Date().toLocaleTimeString('zh-CN')+' · 记录保留 30 天';
+ }catch(e){$('status').textContent='连接失败：'+e.message;}
+}
+$('signin').addEventListener('click',()=>{header=auth();refresh()});
+$('password').addEventListener('keydown',e=>{if(e.key==='Enter')$('signin').click()});
+$('period').addEventListener('change',refresh);$('reload').addEventListener('click',refresh);
+$('export').addEventListener('click',async()=>{
+ if(!header){$('status').textContent='请先连接后台';return}
+ try{const r=await api('/api/export?days='+$('period').value),blob=await r.blob(),href=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=href;a.download='leptailure-visits.csv';a.click();setTimeout(()=>URL.revokeObjectURL(href),60000);
+ }catch(e){$('status').textContent='导出失败：'+e.message}
+});
+refresh();
+</script></body></html>

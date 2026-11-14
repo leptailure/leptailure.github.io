@@ -1,0 +1,15 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Confidentialité · Leptailure</title>
+<style>body{background:#f5f3ed;color:#202b27;font:16px/1.7 system-ui,-apple-system,sans-serif;margin:0}main{max-width:760px;padding:50px 24px;margin:auto}h1{font-size:40px;line-height:1.2}h2{font-size:22px;margin-top:30px}a{color:#a4462f}button{padding:10px 16px;margin-right:8px;border:1px solid #202b27;background:white;color:#202b27;cursor:pointer}.hint{color:#626b64}</style></head><body><main>
+<a href="./">← Accueil</a><h1>Confidentialité</h1><p>Leptailure est un portfolio personnel hébergé sur GitHub Pages.</p>
+<h2>Mesure d’audience facultative</h2><p>Si vous acceptez, le site envoie l’adresse de la page consultée à un service de statistiques opéré séparément. L’adresse IP est utilisée temporairement côté serveur pour produire un identifiant pseudonyme valable pour une journée UTC. <strong>L’adresse IP complète n’est pas conservée dans la base de données.</strong> Le pays et, lorsqu’elle est disponible, la ville approximative sont estimés à partir de la connexion. Aucune géolocalisation GPS n’est demandée.</p>
+<p>Ces informations sont utilisées uniquement pour mesurer la fréquentation de ce site, ne sont pas revendues et sont supprimées au bout de 30 jours. L’identifiant journalier ne représente pas forcément une personne distincte. Les services techniques utilisés comprennent GitHub Pages et, une fois activé, Cloudflare Workers/D1.</p>
+<p>Le suivi est désactivé tant que vous n’avez pas accepté. Votre choix est conservé localement dans le navigateur, et peut être modifié ci-dessous.</p>
+<h2>Votre choix</h2><button id="yes">Autoriser les statistiques</button><button id="no">Refuser les statistiques</button><p id="choice" class="hint" role="status"></p>
+<h2>Contact</h2><p>Pour toute question concernant les données du site : <a href="mailto:leptailure@gmail.com">leptailure@gmail.com</a>.</p>
+<p class="hint">Dernière mise à jour : novembre 2026. Cette page concerne les statistiques propres au portfolio et ne remplace pas les politiques de confidentialité des plateformes d’hébergement.</p>
+</main><script>
+(function(){const key='leptailure.analyticsConsent',msg=document.getElementById('choice');function display(){const c=localStorage.getItem(key);msg.textContent=c==='yes'?'Choix actuel : autorisé.':c==='no'?'Choix actuel : refusé.':'Aucun choix enregistré.'}
+document.getElementById('yes').onclick=()=>{localStorage.setItem(key,'yes');display()};
+document.getElementById('no').onclick=()=>{localStorage.setItem(key,'no');display()};display()})();
+</script></body></html>
