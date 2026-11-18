@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Essais impulsionnels sur l’IGBT DG340X08T6B : oscillogrammes annotés, calcul du courant de crête et montage sur charge inductive.">
   <title>IGBT DG340 · Essais de courant impulsionnel</title>
-  <link rel="stylesheet" href="essais.css">
+  <link rel="stylesheet" href="../home-classic.css">
+  <link rel="stylesheet" href="essais.css?v=2">
 </head>
-<body>
-  <header class="bar">
-    <div class="wrap bar-inner">
-      <a href="../">Accueil du portfolio</a>
+<body class="dg340">
+  <header>
+    <div class="wrap header">
+      <a class="wordmark" href="../">Accueil du portfolio</a>
       <nav aria-label="Sur cette page">
         <a href="#mesures">Mesures</a>
         <a href="#montage">Montage</a>
@@ -19,11 +20,11 @@
     </div>
   </header>
   <main class="wrap">
-    <header class="intro">
-      <p class="kicker">Électronique de puissance</p>
-      <h1>IGBT DG340<br>Essais de courant impulsionnel</h1>
+    <header class="report-intro">
+      <p class="eyebrow">Électronique de puissance</p>
+      <h1>IGBT DG340<br><em>Essais de courant impulsionnel</em></h1>
       <p>Étude expérimentale du DG340X08T6B sur charge inductive, dans le contexte de l’électronique de puissance pour véhicules électriques. L’essai relève le courant de crête de la bobine et les tensions de grille et de collecteur pendant l’impulsion.</p>
-      <a class="pdf" href="media/DG340X08T6B.pdf">Fiche technique DG340X08T6B (PDF)</a>
+      <a class="button" href="media/DG340X08T6B.pdf">Fiche technique DG340X08T6B (PDF)</a>
     </header>
     <section id="mesures">
       <h2>Courant de crête observé</h2>
@@ -32,9 +33,10 @@
         I<sub>crête</sub> = |U<sub>shunt, crête</sub>| / R<sub>shunt</sub>, &nbsp; R<sub>shunt</sub> = 5 mΩ = 0,005 Ω
       </p>
       <div class="results">
-        <div><span>Essai 1 · Curseur Y2</span><strong>2 800 A</strong><span>|−14,00 V| / 0,005 Ω = 2 800 A</span></div>
-        <div><span>Essai 2 · Curseur Y1</span><strong>3 066 A</strong><span>|−15,33 V| / 0,005 Ω = 3 066 A</span></div>
+        <div><span>Essai 1 · Curseur Y2</span><strong>2 800 A</strong><span>|−14,00 V| / 0,005 Ω = 2 800 A</span><span class="outcome">Coupure et roue libre observées</span></div>
+        <div class="failure"><span>Essai 2 · Curseur Y1</span><strong>3 066 A</strong><span>|−15,33 V| / 0,005 Ω = 3 066 A</span><span class="outcome">IGBT endommagé · coupure et roue libre anormales</span></div>
       </div>
+      <p class="finding">Dans les conditions de ces deux essais, le seuil de défaillance est estimé <strong>entre 2 800 A et 3 066 A</strong> de courant de crête dans la bobine. À 2 800 A, la coupure et la décroissance du courant en roue libre sont visibles. À 3 066 A, l’IGBT a été endommagé et la capture ne montre ni coupure normale ni décroissance normale du courant en roue libre.</p>
       <p class="note">Ces valeurs caractérisent le courant de la bobine estimé à partir des captures et du shunt nominal. La fiche constructeur donne une limite absolue de courant collecteur impulsionnel de <strong>680 A par IGBT</strong>, avec une durée d’impulsion limitée par la température maximale de jonction.</p>
       <div class="channels" aria-label="Légende des voies de l’oscilloscope">
         <span class="yellow"><b>C1 · Jaune</b> Courant de la bobine via le shunt</span>
@@ -51,13 +53,13 @@
         <figcaption>Le curseur Y2 repère le creux de la trace jaune. Base de temps de 100 µs/div. Cliquez sur l’image pour l’agrandir.</figcaption>
       </figure>
       <figure class="scope">
-        <div><h3>Essai 2 · −15,33 V sur C1</h3><a href="media/essai-1533v.webp"><img src="media/essai-1533v.webp" width="4032" height="3024" alt="Essai 2 · −15,33 V sur C1"></a>
+        <div><h3>Essai 2 · IGBT endommagé (−15,33 V sur C1)</h3><a href="media/essai-1533v.webp"><img src="media/essai-1533v.webp" width="4032" height="3024" alt="Essai 2 · IGBT endommagé (−15,33 V sur C1)"></a>
           </div>
         <aside class="glossary" aria-label="Traduction des libellés de cette capture">
           <h3>Libellés de l’écran</h3>
           <dl><dt lang="zh">功能</dt><dd>Fonctions</dd><dt lang="zh">显示</dt><dd>Affichage</dd><dt lang="zh">采样</dt><dd>Acquisition</dd><dt lang="zh">触发</dt><dd>Déclenchement</dd><dt lang="zh">光标</dt><dd>Curseurs</dd><dt lang="zh">测量</dt><dd>Mesures</dd><dt lang="zh">分析</dt><dd>Analyse</dd><dt lang="zh">峰峰值</dt><dd>Valeur crête à crête</dd><dt lang="zh">平均值</dt><dd>Valeur moyenne</dd><dt lang="zh">周期</dt><dd>Période</dd><dt lang="zh">顶端值</dt><dd>Niveau haut</dd><dt lang="zh">标准差</dt><dd>Écart type</dd><dt lang="zh">频率</dt><dd>Fréquence</dd><dt lang="zh">底端值</dt><dd>Niveau bas</dd><dt lang="zh">下降过激</dt><dd>Dépassement au front descendant</dd><dt lang="zh">10–90%上升时间</dt><dd>Temps de montée (10–90 %)</dd><dt lang="zh">幅值</dt><dd>Amplitude</dd><dt lang="zh">上升过激</dt><dd>Dépassement au front montant</dd><dt lang="zh">90–10%下降时间</dt><dd>Temps de descente (90–10 %)</dd><dt lang="zh">时基</dt><dd>Base de temps</dd><dt lang="zh">停止</dt><dd>Arrêt</dd><dt lang="zh">边沿</dt><dd>Front</dd><dt lang="zh">下降沿</dt><dd>Front descendant</dd></dl>
         </aside>
-        <figcaption>Le curseur Y1 repère le creux de la trace jaune. Base de temps de 100 µs/div. Cliquez sur l’image pour l’agrandir.</figcaption>
+        <figcaption>Le curseur Y1 repère le creux de la trace jaune. La coupure et la décroissance du courant en roue libre ne se déroulent pas normalement. Base de temps de 100 µs/div. Cliquez sur l’image pour l’agrandir.</figcaption>
       </figure>
     </section>
     <section id="montage">
@@ -102,6 +104,6 @@
       </div>
     </section>
   </main>
-  <footer class="wrap"><a href="../#projets">Retour aux projets</a></footer>
+  <footer class="wrap footer"><a href="../#projets">Retour aux projets</a></footer>
 </body>
 </html>
