@@ -23,7 +23,6 @@ img { display: block; width: 100%; height: auto; }
 figure > a:has(img) { display: block; }
 figcaption { margin-top: .55rem; }
 .scope { margin-bottom: 2rem; }
-.scope > div > a { display: block; }
 dd { margin: 0; }
 .specs > div { display: grid; grid-template-columns: 11rem 1fr; gap: .25rem 1rem; padding: .65rem 0; border-bottom: 1px solid var(--line); }
 .specs dt { font-weight: 700; }

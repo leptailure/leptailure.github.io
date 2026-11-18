@@ -28,7 +28,7 @@
     </header>
     <section id="mesures">
       <h2>Courant de crête observé</h2>
-      <p>La voie C1 mesure la tension aux bornes du shunt. La polarité de mesure donne une tension négative au pic. La loi d’Ohm donne la valeur absolue du courant avec la résistance nominale du shunt.</p>
+      <p>La polarité du shunt donne une tension négative sur C1. Le courant de crête se calcule à partir de sa valeur absolue.</p>
       <p class="formula" aria-label="Courant de crête égal à la valeur absolue de la tension de crête sur le shunt divisée par 0,005 ohm">
         I<sub>crête</sub> = |U<sub>shunt, crête</sub>| / R<sub>shunt</sub>, &nbsp; R<sub>shunt</sub> = 5 mΩ = 0,005 Ω
       </p>
@@ -37,21 +37,17 @@
         <div class="failure"><span>Essai 2 · Curseur Y2</span><strong>2 850 A</strong><span>|−14,25 V| / 0,005 Ω = 2 850 A</span><span class="outcome">IGBT endommagé · coupure et roue libre anormales</span></div>
       </div>
       <p class="finding"><strong>Limite de fonctionnement observée sur ce banc : 2 800 A pour un temps de conduction de 400 µs.</strong> À ce point, la coupure et la décroissance du courant en roue libre sont visibles. À 2 850 A, l’IGBT a été endommagé. La capture ne montre ni coupure normale ni décroissance normale du courant en roue libre.</p>
-      <p class="note">Ces valeurs caractérisent le courant de la bobine estimé à partir des captures et du shunt nominal. La fiche constructeur donne une limite absolue de courant collecteur impulsionnel de <strong>680 A par IGBT</strong>, avec une durée d’impulsion limitée par la température maximale de jonction.</p>
+      <p class="note">La fiche constructeur donne une limite absolue de courant collecteur impulsionnel de <strong>680 A par IGBT</strong>, avec une durée d’impulsion limitée par la température maximale de jonction.</p>
       <div class="channels" aria-label="Légende des voies de l’oscilloscope">
         <span class="yellow"><b>C1 · Jaune</b> Courant de la bobine via le shunt</span>
         <span class="purple"><b>C2 · Violet</b> Tension grille-émetteur V<sub>GE</sub></span>
         <span class="blue"><b>C3 · Bleu</b> Tension collecteur-émetteur V<sub>CE</sub></span>
       </div>
       <figure class="scope">
-        <div><h3>Essai 1 · −14,00 V sur C1</h3><a href="media/essai-2800a-fr.jpg"><img src="media/essai-2800a-fr.jpg" width="2471" height="1407" alt="Essai 1 · −14,00 V sur C1"></a>
-          </div>
-        <figcaption>Le curseur Y2 repère le creux de la trace jaune. Base de temps de 100 µs/div. Cliquez sur l’image pour l’agrandir.</figcaption>
+        <h3>Essai 1 · −14,00 V sur C1</h3><a href="media/essai-2800a-fr.jpg"><img src="media/essai-2800a-fr.jpg" width="2471" height="1407" alt="Essai 1 · −14,00 V sur C1"></a>
       </figure>
       <figure class="scope">
-        <div><h3>Essai 2 · IGBT endommagé (−14,25 V sur C1)</h3><a href="media/essai-2850a-fr.jpg"><img src="media/essai-2850a-fr.jpg" width="2675" height="1553" alt="Essai 2 · IGBT endommagé (−14,25 V sur C1)"></a>
-          </div>
-        <figcaption>Le curseur Y2 repère le creux de la trace jaune. La coupure et la décroissance du courant en roue libre ne se déroulent pas normalement. Base de temps de 100 µs/div. Cliquez sur l’image pour l’agrandir.</figcaption>
+        <h3>Essai 2 · IGBT endommagé (−14,25 V sur C1)</h3><a href="media/essai-2850a-fr.jpg"><img src="media/essai-2850a-fr.jpg" width="2675" height="1553" alt="Essai 2 · IGBT endommagé (−14,25 V sur C1)"></a>
       </figure>
     </section>
     <section id="montage">
@@ -65,7 +61,6 @@
       <div class="drawings">
         <figure>
           <a href="media/schema-fr.png"><img src="media/schema-fr.png" width="1065" height="546" alt="Schéma d’essai avec bobine, shunt en constantan, masse de l’oscilloscope et groupes de six ES8J en parallèle." loading="lazy"></a>
-          <figcaption>Schéma d’essai annoté en français.</figcaption>
         </figure>
         <figure>
           <a href="media/shunt-fr.png"><img src="media/shunt-fr.png" width="582" height="571" alt="Shunt en constantan de 5 mΩ." loading="lazy"></a>
