@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compte rendu des essais préparatoires du DG340X08T6B. Relevés à l’oscilloscope et estimation du courant de crête au shunt.">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>Essais de commutation de l’IGBT DG340 — Leptailure</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="stylesheet" href="../style.css?v=pages-1">
+  <link rel="stylesheet" href="../assets/dg340/essais.css?v=rapport-1">
+  <script src="../visit-config.js" defer></script>
+  <script src="../visit-tracker.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="header wrap">
+  <a class="wordmark" href="../" aria-label="Leptailure, accueil"><img class="brand-avatar" src="../assets/serval-avatar.png" alt="" width="80" height="80">Leptailure</a>
+  <nav aria-label="Navigation principale"><a href="../#essais">← Essais</a><a href="../#contact">Contact</a></nav>
+</header>
+<main id="contenu" class="wrap project-page">
+  <header class="project-heading">
+    <p class="meta">Compte rendu expérimental</p>
+    <h1>Essais de commutation de l’IGBT DG340</h1>
+    <p class="lead">Deux acquisitions à l’oscilloscope Siglent SDS804X HD, réalisées lors des essais préparatoires d’un système d’accélération électromagnétique.</p>
+    <p>Ces essais portent sur le <strong>DG340X08T6B</strong>, un IGBT de puissance avec diode intégrée utilisé en électronique de traction électrique. StarPower indique une tension de blocage de 750&#8239;V et un courant nominal de 340&#8239;A.</p>
+  </header>
+  <section id="essais-dg340" class="project-section dg340" aria-labelledby="essais-dg340-title">
+    <h2 id="essais-dg340-title">Relevés et estimation du courant</h2>
+    <div class="dg340-layout">
+      <div>
+        <h3>Voies de l’oscilloscope</h3>
+        <ul class="dg340-channels">
+          <li class="dg340-c1"><strong>C1 · jaune</strong><span>Tension aux bornes du shunt, utilisée pour estimer le courant de la bobine</span></li>
+          <li class="dg340-c2"><strong>C2 · violet</strong><span>Tension grille-émetteur <i>V</i><sub>GE</sub> (commande de grille)</span></li>
+          <li class="dg340-c3"><strong>C3 · bleu</strong><span>Tension collecteur-émetteur <i>V</i><sub>CE</sub></span></li>
+        </ul>
+        <h3>Courant de crête estimé</h3>
+        <p class="dg340-rule"><i>I</i><sub>crête</sub> = |<i>U</i><sub>shunt</sub>| / <i>R</i><sub>shunt</sub></p>
+        <p>Le shunt en constantan a une résistance nominale de <strong>5&#8239;mΩ (0,005&#8239;Ω)</strong>. La valeur absolue de la tension lue au curseur donne l’amplitude, quelle que soit la polarité de mesure.</p>
+        <div class="dg340-results">
+          <figure>
+            <div class="dg340-cursor-photo">
+              <img src="../assets/dg340/curseur-1.png" alt="Détail de la voie C1 au curseur Y2, qui affiche −14,00 V." width="230" height="65">
+              <span aria-hidden="true">Tension au shunt · curseur Y2</span>
+            </div>
+            <figcaption>
+              <strong>Acquisition 1</strong>
+              <span class="dg340-calculation"><span>|−14,00&#8239;V| / 0,005&#8239;Ω</span> <span>= <strong>2&#8239;800&#8239;A</strong></span></span>
+            </figcaption>
+          </figure>
+          <figure>
+            <div class="dg340-cursor-photo">
+              <img src="../assets/dg340/curseur-2.png" alt="Détail de la voie C1 au curseur Y1, qui affiche −15,33 V." width="230" height="65">
+              <span aria-hidden="true">Tension au shunt · curseur Y1</span>
+            </div>
+            <figcaption>
+              <strong>Acquisition 2</strong>
+              <span class="dg340-calculation"><span>|−15,33&#8239;V| / 0,005&#8239;Ω</span> <span>= <strong>3&#8239;066&#8239;A</strong></span></span>
+            </figcaption>
+          </figure>
+        </div>
+        <p class="dg340-note">Le calcul suppose que la tension relevée traduit principalement la chute de tension résistive dans le shunt.</p>
+      </div>
+      <div class="dg340-photos">
+        <figure>
+          <div class="dg340-shunt">
+            <img src="../assets/dg340/shunt-constantan.jpg?v=fr-2" alt="Shunt de 5 mΩ en constantan. Le fil mesure 1,5 mm de diamètre et les cotes visibles sont de 10 mm et de 5 mm." width="242" height="154" loading="lazy">
+            <span class="dg340-shunt-wire" aria-hidden="true">Fil Ø 1,5&#8239;mm</span>
+          </div>
+          <figcaption>Shunt de mesure en constantan · 5&#8239;mΩ</figcaption>
+        </figure>
+        <div class="dg340-detail-photos">
+          <figure>
+            <a class="dg340-component-photo" href="../assets/dg340/igbt-dg340.jpg" target="_blank" rel="noopener" aria-label="Agrandir la photographie des IGBT DG340X08T6B"><img src="../assets/dg340/igbt-dg340.jpg" alt="Vue rapprochée des boîtiers d’IGBT DG340X08T6B." width="498" height="1500" loading="lazy"></a>
+            <figcaption>Boîtiers DG340X08T6B</figcaption>
+          </figure>
+          <figure>
+            <a class="dg340-component-photo" href="../assets/dg340/composant-plaque-essai.jpg" target="_blank" rel="noopener" aria-label="Agrandir la photographie du composant sur plaque d’essai"><img src="../assets/dg340/composant-plaque-essai.jpg" alt="Vue rapprochée d’un circuit intégré sur une plaque à pastilles." width="510" height="943" loading="lazy"></a>
+            <figcaption>Composant sur plaque d’essai</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <p class="dg340-note">Source constructeur · fiche technique <cite>DG340X08T6B</cite>, StarPower Semiconductor, rév. A05. <a href="https://starpower-japan.com/product/#:~:text=DG340X08T6B">Voir la référence au catalogue</a>.</p>
+  </section>
+</main>
+<footer class="footer wrap"><span>© 2026 Leptailure · Portfolio personnel</span><a href="../privacy.html">Confidentialité</a></footer>
+</body>
+</html>
