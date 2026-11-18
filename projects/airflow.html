@@ -8,7 +8,7 @@
   <title>Détecteur de flux d’air — Leptailure</title>
   <link rel="icon" href="../favicon.png" type="image/png">
   <link rel="stylesheet" href="../style.css?v=pages-1">
-  <link rel="stylesheet" href="academic.css?v=airflow-pcb">
+  <link rel="stylesheet" href="academic.css?v=airflow-video">
 <script src="../visit-config.js" defer></script>
 <script src="../visit-tracker.js" defer></script>
 </head>
@@ -57,6 +57,14 @@
       <div><h3>Acquérir et traiter</h3><p>Le convertisseur fait le lien entre le signal du montage et le programme du microcontrôleur. Le STM32 assure ensuite l’exploitation des données numériques.</p></div>
       <div><h3>Rendre l’information lisible</h3><p>L’écran OLED ajoute une interface de lecture au système. Sa commande par I²C relie la programmation embarquée à un périphérique d’affichage.</p></div>
     </div>
+  </section>
+  <section id="demonstration" class="project-section" aria-labelledby="demonstration-title">
+    <h2 id="demonstration-title">Démonstration du prototype</h2>
+    <video class="airflow-video" controls playsinline preload="none" width="1280" height="720"
+      poster="airflow-media/demonstration.webp" aria-labelledby="demonstration-title">
+      <source src="airflow-media/demonstration.mp4" type="video/mp4">
+      <a href="airflow-media/demonstration.mp4">Télécharger la vidéo de démonstration (MP4)</a>
+    </video>
   </section>
   <section class="project-section" aria-labelledby="carte-title">
     <h2 id="carte-title">Conception de la carte électronique</h2>
