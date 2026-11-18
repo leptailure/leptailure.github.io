@@ -32,3 +32,13 @@
  .featured-footer{flex-direction:column;align-items:stretch;gap:16px;margin-top:24px}
  .featured-footer .button{min-height:52px}
 }
+
+.projects > .featured + .featured { margin-top: 22px }
+.projects .project-action { min-height: 48px; min-width: 10rem; justify-content: center; margin-inline-start: auto }
+.project-entry-details { border-top: 1px solid var(--line); padding-top: 15px }
+.project-entry-details summary { font-size: 14px; font-weight: 550 }
+.project-entry-details summary span { color: var(--accent); font-size: 19px }
+.project-entry-details ul { padding-left: 18px; color: var(--muted); font-size: 14px }
+@media(max-width:720px) {
+  .projects .project-action { width: 100%; margin-inline-start: 0 }
+}

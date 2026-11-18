@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#f5f3ed">
   <title>Leptailure — Électronique & expérimentation</title>
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="home-classic.css?v=home-summary-1">
+  <link rel="stylesheet" href="home-classic.css?v=project-entries-2">
   <script src="home-classic.js?v=home-summary-1" defer></script>
 <script src="visit-config.js" defer></script>
 <script src="visit-tracker.js" defer></script>
@@ -31,14 +31,8 @@
   <div class="toolbelt"><div class="wrap"><span>MODÉLISER</span><span>CONCEVOIR</span><span>PROGRAMMER</span><span>MESURER</span><span>ITÉRER</span></div></div>
 
   <section id="projets" class="wrap projects section">
-    <div class="section-heading"><div><p class="eyebrow">01 / PROJETS SÉLECTIONNÉS</p><h2>Des idées mises à l’épreuve.</h2></div><p>Un projet personnel au long cours,<br>et trois projets académiques.</p></div>
-    <article class="featured" lang="fr">
-      <div class="project-intro">
-        <h3>Système électromagnétique à réluctance · Essais préparatoires</h3>
-        <p>Essais sur charge inductive de l’étage de puissance à IGBT DG340 avant son intégration au système électromagnétique à réluctance.</p>
-        <p><a href="igbt-dg340/">Consulter les essais DG340</a></p>
-      </div>
-    </article>
+    <div class="section-heading"><div><p class="eyebrow">01 / PROJETS SÉLECTIONNÉS</p><h2>Des idées mises à l’épreuve.</h2></div></div>
+
     <article id="reluctance" class="featured featured-summary">
       <div class="featured-header"><span class="badge">PROJET PERSONNEL INDÉPENDANT</span><span class="mono">2026 · PLUSIEURS VERSIONS</span></div>
       <div class="project-intro"><div><h3>Système électromagnétique<br> à réluctance</h3><p class="subtitle">Modélisation · Électronique de puissance · Instrumentation</p></div><p>Un projet personnel développé depuis février 2026, de la simulation numérique au prototype assemblé. J’assure la conception électronique, la commande embarquée et l’intégration électromécanique.</p></div>
@@ -48,15 +42,27 @@
         <li><span class="mini-index" aria-hidden="true">02</span><div><h4>Conception intégrée</h4><p>Cartes de puissance, commande STM32 et intégration électromécanique.</p></div></li>
         <li><span class="mini-index" aria-hidden="true">03</span><div><h4>Essais sur le banc</h4><p>Instrumentation, observations expérimentales et révisions successives du prototype.</p></div></li>
       </ol>
-      <div class="featured-footer"><p>Les six volets du projet, la carte 26R1 et le journal photographique.</p><a class="button" href="projects/reluctance.html">Voir le projet en détail <span aria-hidden="true">↗</span></a></div>
+      <div class="featured-footer"><p>Les six volets du projet, la carte 26R1 et le journal photographique.</p><a class="button project-action" href="projects/reluctance.html" aria-label="Voir le projet : Système électromagnétique à réluctance">Voir le projet</a></div>
     </article>
 
-    <div class="academic-heading"><h3>Projets académiques</h3><span class="mono">ÉLECTRONIQUE ANALOGIQUE / EMBARQUÉ / LOGIQUE</span></div>
-    <div class="academic-grid">
-      <article class="academic" id="cardiaque"><div class="card-top"><span class="mini-index">02</span><span class="mono">AVR. — MAI 2026 · L2</span></div><h3>Compteur de<br>pulsations cardiaques</h3><p>Une chaîne de mesure, du capteur optique à l’affichage numérique.</p><details><summary>Conception & outils <span aria-hidden="true">+</span></summary><ul><li>Capteur CNY70, filtrage et amplification ; simulation sous PSpice.</li><li>Mise en forme du signal par comparateur et monostable.</li><li>Comptage et affichage sur afficheurs à sept segments.</li></ul></details><a class="text-link" href="projects/pulse-counter.html">Voir le projet <span aria-hidden="true">↗</span></a><div class="tags"><span>Analogique</span><span>PSpice</span><span>Capteurs</span></div></article>
-      <article class="academic" id="flux-air"><div class="card-top"><span class="mini-index">03</span><span class="mono">MARS 2026 · L2</span></div><h3>Détecteur de<br>flux d’air</h3><p>Détection du sens d’un flux et extension personnelle sur microcontrôleur.</p><details><summary>Conception & outils <span aria-hidden="true">+</span></summary><ul><li>CTN en pont de Wheatstone et convertisseur analogique-numérique externe.</li><li>Comparateurs et LED pour indiquer le sens du flux.</li><li>Extension personnelle sur STM32 : acquisition, traitement et affichage OLED via I²C.</li><li>Carte de 80 × 55 mm : schéma, routage et rendu 3D.</li></ul></details><a class="text-link" href="projects/airflow.html">Voir le projet <span aria-hidden="true">↗</span></a><div class="tags"><span>STM32</span><span>Acquisition</span><span>I²C / OLED</span></div></article>
-      <article class="academic" id="fpga"><div class="card-top"><span class="mini-index">04</span><span class="mono">NOV. 2025 · TP L2</span></div><h3>Détection de chute<br>sur FPGA</h3><p>Traitement des données d’un accéléromètre par une architecture logique.</p><details><summary>Conception & outils <span aria-hidden="true">+</span></summary><ul><li>Conception de modules arithmétiques et logiques en VHDL.</li><li>Détection de chute à partir de l’accéléromètre de la carte Nexys 4 DDR.</li></ul></details><a class="text-link" href="projects/fall-detection.html">Voir le projet <span aria-hidden="true">↗</span></a><div class="tags"><span>VHDL</span><span>FPGA</span><span>Nexys 4 DDR</span></div></article>
-    </div>
+    <article id="essais-dg340" class="featured">
+      <div class="featured-header"><span class="badge">ESSAIS PRÉPARATOIRES</span></div>
+      <div class="project-intro">
+        <div><h3>Essais de l’IGBT DG340</h3></div>
+        <p>Essais sur charge inductive de l’étage de puissance avant son intégration au système électromagnétique à réluctance.</p>
+      </div>
+      <div class="featured-footer"><a class="button project-action" href="igbt-dg340/" aria-label="Voir le projet : Essais DG340">Voir le projet</a></div>
+    </article>
+    <article class="featured" id="flux-air">
+      <div class="featured-header"><span class="badge">PROJET ACADÉMIQUE</span><span class="mono">MARS 2026 · L2</span></div>
+      <div class="project-intro">
+        <div><h3>Détecteur de flux d’air</h3></div>
+        <p>Détection du sens d’un flux et extension personnelle sur microcontrôleur.</p>
+      </div>
+      <details class="project-entry-details"><summary>Conception & outils <span aria-hidden="true">+</span></summary><ul><li>CTN en pont de Wheatstone et convertisseur analogique-numérique externe.</li><li>Comparateurs et LED pour indiquer le sens du flux.</li><li>Extension personnelle sur STM32 : acquisition, traitement et affichage OLED via I²C.</li><li>Carte de 80 × 55 mm : schéma, routage et rendu 3D.</li></ul></details>
+      <div class="tags"><span>STM32</span><span>Acquisition</span><span>I²C / OLED</span></div>
+      <div class="featured-footer"><a class="button project-action" href="projects/airflow.html" aria-label="Voir le projet : Détecteur de flux d’air">Voir le projet</a></div>
+    </article>
   </section>
 
   <section id="demarche" class="approach"><div class="wrap approach-layout"><div><p class="eyebrow">02 / DÉMARCHE</p><h2>Comprendre.<br>Construire.<br><em>Confronter au réel.</em></h2></div><div class="approach-copy"><div class="profile-identity"><img src="assets/serval-avatar.png" alt="Avatar illustré de Leptailure : un serval au style anime" width="112" height="112" loading="lazy"><div><strong>Leptailure</strong><span>Électronique & expérimentation</span></div></div><p>Étudiant en électronique, je m’intéresse aux liens entre la modélisation d’un système, sa réalisation matérielle et ce que l’on observe effectivement lors des essais.</p><p>Mes projets associent électronique analogique et de puissance, programmation embarquée et conception mécanique. Les versions successives du prototype personnel reflètent ce travail d’intégration et d’apprentissage par l’expérimentation.</p><a class="text-link" href="#reluctance">Parcourir le projet personnel <span aria-hidden="true">↗</span></a></div></div></section>
