@@ -24,7 +24,7 @@
     <p class="meta">INSTRUMENTATION · CONCEPTION ÉLECTRONIQUE · 2026</p>
     <h1>Interface pour radar Doppler</h1>
     <p class="lead">Conditionnement analogique de deux signaux en quadrature (I/Q) pour l’acquisition d’un radar Doppler.</p>
-    <p>Le projet concerne la carte d’interface entre un module radar et un système d’acquisition. Deux chaînes analogiques symétriques amplifient les sorties I et Q et les recentrent autour d’une référence compatible avec une alimentation de 3,3 V. Le schéma, le PCB et le rendu 3D présentés documentent la conception.</p>
+    <p>Le projet concerne la carte d’interface entre un module radar et un système d’acquisition. Deux chaînes analogiques symétriques amplifient les sorties I et Q et les recentrent autour d’une référence compatible avec une alimentation de 3,3 V. Le schéma documente la chaîne I/Q ; les vues du circuit imprimé et de la carte en 3D montrent son implantation. Le rendu 3D présente également des éléments qui ne sont pas décrits par le schéma I/Q ci-dessous.</p>
     <p class="technology-line">Radar Doppler ~24 GHz · I/Q · OPA2365 · Filtrage RC · PCB · ADC</p>
   </header>
 
@@ -58,17 +58,17 @@
 
   <section class="project-section" aria-labelledby="schema">
     <div class="radar-section-heading"><div><p class="meta">SCHÉMA DE CONCEPTION</p><h2 id="schema">03 / Schéma électronique</h2></div><span class="radar-media-label">01 / 03</span></div>
-    <figure class="radar-figure radar-light"><a href="doppler-media/schema.png" target="_blank" rel="noopener" title="Ouvrir le schéma en pleine résolution"><img src="doppler-media/schema.png" alt="Schéma électronique des deux voies I et Q avec quatre amplificateurs OPA2365, circuits RC et sorties ADC" width="3332" height="2362" loading="lazy"></a><figcaption>Chaînes analogiques I et Q, découplage, polarisation et connecteurs. Cliquer pour agrandir.</figcaption></figure>
+    <figure class="radar-figure radar-light"><a href="doppler-media/schema.png?v=20261119-corrected" target="_blank" rel="noopener" title="Ouvrir le schéma en pleine résolution"><img src="doppler-media/schema.png?v=20261119-corrected" alt="Schéma électronique des deux voies I et Q avec quatre amplificateurs OPA2365, circuits RC et sorties ADC" width="1959" height="1232" loading="lazy"></a><figcaption>Chaînes analogiques I et Q, découplage, polarisation et connecteurs. Cliquer pour agrandir.</figcaption></figure>
   </section>
 
   <section class="project-section" aria-labelledby="pcb">
     <div class="radar-section-heading"><div><p class="meta">IMPLANTATION ET ROUTAGE</p><h2 id="pcb">04 / Circuit imprimé</h2></div><span class="radar-media-label">02 / 03</span></div>
-    <figure class="radar-figure radar-dark"><a href="doppler-media/pcb.png" target="_blank" rel="noopener" title="Ouvrir le routage en pleine résolution"><img src="doppler-media/pcb.png" alt="Vue de l’implantation des composants, des pistes et des plans de cuivre du circuit imprimé de conditionnement I/Q" width="2160" height="1389" loading="lazy"></a><figcaption>Deux groupes d’amplification disposés symétriquement et signaux routés vers les connecteurs.</figcaption></figure>
+    <figure class="radar-figure radar-dark"><a href="doppler-media/pcb.png?v=20261119-corrected" target="_blank" rel="noopener" title="Ouvrir le routage en pleine résolution"><img src="doppler-media/pcb.png?v=20261119-corrected" alt="Vue de l’implantation des composants, des pistes et des plans de cuivre du circuit imprimé de conditionnement I/Q" width="1007" height="922" loading="lazy"></a><figcaption>Deux groupes d’amplification disposés symétriquement et signaux routés vers les connecteurs.</figcaption></figure>
   </section>
 
   <section class="project-section" aria-labelledby="rendu">
     <div class="radar-section-heading"><div><p class="meta">VISUALISATION 3D</p><h2 id="rendu">05 / Rendu de la carte</h2></div><span class="radar-media-label">03 / 03</span></div>
-    <figure class="radar-figure radar-dark"><a href="doppler-media/rendu-3d.png" target="_blank" rel="noopener" title="Ouvrir le rendu en pleine résolution"><img src="doppler-media/rendu-3d.png" alt="Rendu 3D du circuit imprimé avec amplificateurs opérationnels, composants passifs et connecteurs" width="2160" height="557" loading="lazy"></a><figcaption>Visualisation 3D de l’implantation, destinée à contrôler l’agencement avant fabrication.</figcaption></figure>
+    <figure class="radar-figure radar-dark"><a href="doppler-media/rendu-3d.png?v=20261119-corrected" target="_blank" rel="noopener" title="Ouvrir le rendu en pleine résolution"><img src="doppler-media/rendu-3d.png?v=20261119-corrected" alt="Rendu 3D du circuit imprimé avec amplificateurs opérationnels, composants passifs et connecteurs" width="2132" height="1126" loading="lazy"></a><figcaption>Rendu 3D fourni : les deux voies analogiques sont visibles à gauche, aux côtés d’autres éléments d’interface.</figcaption></figure>
   </section>
 
   <section class="project-section" aria-labelledby="theorie">
@@ -80,6 +80,17 @@
       <div><span class="meta">VARIATION DE DISTANCE</span><p class="radar-math">Δx = λ Δφ / (4π)</p><p>Relation pour une mesure aller-retour, à partir d’une variation de phase déroulée.</p></div>
     </div>
     <p class="note">Les relations de cette section sont théoriques. Aucune courbe d’essai ou précision de mesure validée n’est présentée à ce stade. Le signe de la vitesse dépend notamment de la convention retenue pour les voies I et Q.</p>
+  </section>
+
+  <section class="project-section" aria-labelledby="notes">
+    <h2 id="notes">07 / Notes de calcul Doppler (PDF)</h2>
+    <p>Les deux pages de notes manuscrites documentent le principe de mesure et les hypothèses numériques utilisées. Elles sont présentées comme un travail de calcul, non comme un compte rendu de mesures expérimentales.</p>
+    <div class="method-grid">
+      <div><h3>Décalage Doppler et déplacement</h3><p>Les notes établissent |v| = λ₀ |Δf| / 2 et Δx = λ₀ Δφ / (4π) pour une réflexion aller-retour. Le déplacement est lié à la variation de phase déroulée.</p></div>
+      <div><h3>Quadrature et référence analogique</h3><p>La deuxième page écrit I = A cos(φ), Q = A sin(φ), puis les tensions recentrées à 1,65 V. La phase s’obtient après soustraction de cet offset par atan2(Q′, I′).</p></div>
+      <div><h3>Hypothèses du guide</h3><p>La première page mentionne un diamètre intérieur de 12,1 mm, une longueur d’onde libre λ₀ = 12,427 mm, une longueur d’onde de coupure λc ≈ 20,65 mm et une longueur d’onde guidée λg ≈ 15,56 mm.</p></div>
+      <div><h3>Document original</h3><p><a href="doppler-media/doppler-notes.pdf?v=20261119-corrected" target="_blank" rel="noopener" type="application/pdf">Consulter les notes Doppler · PDF manuscrit, 2 pages ↗</a></p><p>Le document est conservé dans sa forme originale, sans modification des calculs.</p></div>
+    </div>
   </section>
   <nav class="case-navigation" aria-label="Navigation entre projets"><a href="../#projets">← Tous les projets</a><a href="reluctance.html">Système électromagnétique à réluctance →</a></nav>
 </main>
