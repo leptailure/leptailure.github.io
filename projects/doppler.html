@@ -82,15 +82,96 @@
     <p class="note">Les relations de cette section sont théoriques. Aucune courbe d’essai ou précision de mesure validée n’est présentée à ce stade. Le signe de la vitesse dépend notamment de la convention retenue pour les voies I et Q.</p>
   </section>
 
-  <section class="project-section" aria-labelledby="notes">
-    <h2 id="notes">07 / Notes de calcul Doppler (PDF)</h2>
-    <p>Les deux pages de notes manuscrites documentent le principe de mesure et les hypothèses numériques utilisées. Elles sont présentées comme un travail de calcul, non comme un compte rendu de mesures expérimentales.</p>
-    <div class="method-grid">
-      <div><h3>Décalage Doppler et déplacement</h3><p>Les notes établissent |v| = λ₀ |Δf| / 2 et Δx = λ₀ Δφ / (4π) pour une réflexion aller-retour. Le déplacement est lié à la variation de phase déroulée.</p></div>
-      <div><h3>Quadrature et référence analogique</h3><p>La deuxième page écrit I = A cos(φ), Q = A sin(φ), puis les tensions recentrées à 1,65 V. La phase s’obtient après soustraction de cet offset par atan2(Q′, I′).</p></div>
-      <div><h3>Hypothèses du guide</h3><p>La première page mentionne un diamètre intérieur de 12,1 mm, une longueur d’onde libre λ₀ = 12,427 mm, une longueur d’onde de coupure λc ≈ 20,65 mm et une longueur d’onde guidée λg ≈ 15,56 mm.</p></div>
-      <div><h3>Document original</h3><p><a href="doppler-media/doppler-notes.pdf?v=20261119-corrected" target="_blank" rel="noopener" type="application/pdf">Consulter les notes Doppler · PDF manuscrit, 2 pages ↗</a></p><p>Le document est conservé dans sa forme originale, sans modification des calculs.</p></div>
-    </div>
+  <section class="project-section radar-calculations" aria-labelledby="notes">
+    <p class="meta">THÉORIE DU SIGNAL · DÉVELOPPEMENT DES ÉQUATIONS</p>
+    <h2 id="notes">07 / Calculs Doppler — transcription numérique</h2>
+    <p>Reprise en texte et en équations des deux pages de calculs : réflexion sur une cible mobile, fréquence Doppler, phase et déplacement, propagation guidée et reconstruction des composantes I/Q. Les expressions et valeurs numériques sont consultables directement dans cette page.</p>
+
+    <section class="radar-note-block" aria-labelledby="notes-doppler">
+      <h3 id="notes-doppler"><span class="radar-note-number">01</span> Décalage de fréquence par réflexion</h3>
+      <p>Une source émet à la fréquence <var>f</var><sub>0</sub> vers une cible mobile (vitesse radiale <var>v</var><sub>p</sub>). L’onde est réfléchie vers la source. Dans l’air, la longueur d’onde libre est liée à la fréquence par :</p>
+      <p class="radar-formula">c = λ<sub>0</sub> f<sub>0</sub> &emsp; et &emsp; λ<sub>0</sub> = c / f<sub>0</sub></p>
+      <p>La fréquence perçue par la cible qui s’éloigne s’écrit :</p>
+      <p class="radar-formula"><var>f</var><sub>p</sub> = (c − v<sub>p</sub>) / λ<sub>0</sub> = f<sub>0</sub> (1 − v<sub>p</sub>/c)</p>
+      <p>Pour le signal réfléchi, le calcul des périodes utilise une correction du temps de propagation (au premier ordre) :</p>
+      <p class="radar-formula">T<sub>2</sub> ≈ T<sub>p</sub> (1 + v<sub>p</sub>/c)</p>
+      <p class="radar-formula"><var>f</var><sub>2</sub> = f<sub>p</sub> / (1 + v<sub>p</sub>/c) = f<sub>0</sub> (c − v<sub>p</sub>) / (c + v<sub>p</sub>)</p>
+      <p>En retranchant la fréquence émise :</p>
+      <p class="radar-formula">Δf = f<sub>2</sub> − f<sub>0</sub> = − 2 f<sub>0</sub> v<sub>p</sub> / (c + v<sub>p</sub>)</p>
+      <p>Dans l’approximation <var>|v</var><sub>p</sub><var>| ≪ c</var>, la relation devient :</p>
+      <p class="radar-formula radar-formula-key">Δf ≈ − 2 v<sub>p</sub> / λ<sub>0</sub> &emsp; ⇒ &emsp; |v<sub>p</sub>| ≈ λ<sub>0</sub> |Δf| / 2</p>
+      <p class="radar-annotation">Le signe négatif correspond ici à la convention d’une cible qui s’éloigne ; la valeur absolue permet de calculer la vitesse radiale sans son sens.</p>
+    </section>
+
+    <section class="radar-note-block" aria-labelledby="notes-phase">
+      <h3 id="notes-phase"><span class="radar-note-number">02</span> Phase du signal et déplacement</h3>
+      <p>Le signal de mesure peut être représenté par une sinusoïde. Pour une fréquence constante, sa phase évolue linéairement :</p>
+      <p class="radar-formula">g(t) = A cos(φ(t)) &emsp; ; &emsp; φ(t) = 2π f t + φ<sub>0</sub></p>
+      <p>La fréquence instantanée liée à cette phase est <var>f</var><sub>inst</sub> = (1 / 2π) · dφ/dt. Pour un aller-retour de l’onde, une variation de position de la cible est associée à une variation de phase :</p>
+      <p class="radar-formula">dx/dt = (λ<sub>0</sub> / 4π) · dφ/dt</p>
+      <p>En intégrant entre deux instants <var>t</var><sub>1</sub> et <var>t</var><sub>2</sub> :</p>
+      <p class="radar-formula">x(t<sub>2</sub>) − x(t<sub>1</sub>) = (λ<sub>0</sub> / 4π) [φ(t<sub>2</sub>) − φ(t<sub>1</sub>)]</p>
+      <p class="radar-formula radar-formula-key">Δx = (λ<sub>0</sub> / 4π) Δφ</p>
+      <p class="radar-annotation">Il faut utiliser une différence de phase, et non une seule phase absolue. Pour suivre des déplacements dépassant un tour de phase, celle-ci doit être déroulée (<em>phase unwrapping</em>). La relation de fréquence instantanée est écrite sous sa forme différentielle cohérente.</p>
+    </section>
+
+    <section class="radar-note-block" aria-labelledby="notes-guide">
+      <h3 id="notes-guide"><span class="radar-note-number">03</span> Longueurs d’onde et hypothèses de guide</h3>
+      <p>Les valeurs de la première page décrivent un guide circulaire de diamètre intérieur <strong>12,1 mm</strong>, avec une longueur d’onde dans l’air de <strong>12,427 mm</strong>.</p>
+      <div class="radar-note-values">
+        <div><span>Diamètre intérieur</span><strong>D = 12,1 mm</strong></div>
+        <div><span>Longueur d’onde libre</span><strong>λ<sub>0</sub> ≈ 12,427 mm</strong></div>
+        <div><span>Longueur d’onde de coupure</span><strong>λ<sub>c</sub> = 1,706 D ≈ 20,65 mm</strong></div>
+        <div><span>Longueur d’onde guidée</span><strong>λ<sub>g</sub> ≈ 15,56 mm</strong></div>
+      </div>
+      <p>La longueur d’onde guidée est calculée à partir de la relation de dispersion du mode de propagation considéré :</p>
+      <p class="radar-formula radar-formula-key">λ<sub>g</sub> = λ<sub>0</sub> / √[1 − (λ<sub>0</sub> / λ<sub>c</sub>)<sup>2</sup>] ≈ 15,56 mm</p>
+      <p class="radar-annotation">Ces valeurs sont les hypothèses numériques du calcul manuscrit. La longueur d’onde guidée λ<sub>g</sub> et la longueur d’onde libre λ<sub>0</sub> désignent deux situations de propagation différentes.</p>
+    </section>
+
+    <section class="radar-note-block" aria-labelledby="notes-exemples">
+      <h3 id="notes-exemples"><span class="radar-note-number">04</span> Exemples numériques de fréquence Doppler</h3>
+      <p>Le tableau associé aux notes prend <strong>λ = 15,56 mm</strong> dans la relation |Δf| = 2|v|/λ, soit :</p>
+      <p class="radar-formula">|Δf| ≈ 2|v| / 0,01556 &emsp; (v en m/s, Δf en Hz)</p>
+      <div class="radar-table-scroll" role="region" aria-label="Tableau de fréquence Doppler" tabindex="0">
+        <table class="radar-notes-table">
+          <thead><tr><th scope="col">Vitesse</th><th scope="col">Décalage Doppler calculé</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">1 m/s</th><td>≈ 128,5 Hz</td></tr>
+            <tr><th scope="row">10 m/s</th><td>≈ 1,285 kHz</td></tr>
+            <tr><th scope="row">100 m/s</th><td>≈ 12,85 kHz</td></tr>
+            <tr><th scope="row">300 m/s</th><td>≈ 38,56 kHz</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="radar-annotation">Ces résultats reprennent le choix de λ<sub>g</sub> = 15,56 mm effectué dans le calcul. Pour un trajet radar dans l’air, la formule usuelle de vitesse radiale emploie λ<sub>0</sub> = 12,427 mm : les deux applications ne doivent pas être confondues.</p>
+    </section>
+
+    <section class="radar-note-block" aria-labelledby="notes-iq">
+      <h3 id="notes-iq"><span class="radar-note-number">05</span> Deux composantes en quadrature I/Q</h3>
+      <p>La deuxième page décrit les signaux idéalement en quadrature. Une différence de phase de 90° permet d’obtenir les deux composantes :</p>
+      <p class="radar-formula">I = A cos φ &emsp; ; &emsp; Q = A sin φ</p>
+      <p class="radar-formula">cos(φ − 90°) = sin φ</p>
+      <p>Pour l’acquisition alimentée en 3,3 V, les signaux sont recentrés sur une référence nominale de <strong>1,65 V</strong> :</p>
+      <p class="radar-formula">V<sub>I</sub> = 1,65 V + A cos φ</p>
+      <p class="radar-formula">V<sub>Q</sub> = 1,65 V + A sin φ</p>
+      <p>La référence continue est soustraite avant le calcul de phase :</p>
+      <p class="radar-formula">I′ = V<sub>I</sub> − 1,65 V &emsp; ; &emsp; Q′ = V<sub>Q</sub> − 1,65 V</p>
+      <p class="radar-formula">Q′ / I′ = tan φ &emsp; (si I′ ≠ 0)</p>
+      <p class="radar-formula radar-formula-key">φ = atan2(Q′, I′)</p>
+      <p class="radar-annotation">La fonction atan2 conserve l’information de quadrant, contrairement à un simple arctan(Q′/I′). Elle suppose des signaux correctement recentrés et des voies I/Q suffisamment équilibrées.</p>
+    </section>
+
+    <section class="radar-note-block" aria-labelledby="notes-deplacement-iq">
+      <h3 id="notes-deplacement-iq"><span class="radar-note-number">06</span> Déplacement obtenu à partir de I/Q</h3>
+      <p>La phase instantanée est reconstruite à chaque mesure à partir de I′ et Q′. La différence de phase entre la mesure et une référence permet ensuite de calculer le déplacement relatif :</p>
+      <p class="radar-formula">φ(t) = atan2(Q′(t), I′(t))</p>
+      <p class="radar-formula">Δφ = unwrap[φ(t)] − unwrap[φ(t<sub>ref</sub>)]</p>
+      <p class="radar-formula radar-formula-key">Δx = (λ<sub>0</sub> / 4π) · Δφ</p>
+      <p>Cette expression reprend le principe de la dernière formule manuscrite, avec la référence de phase explicitée. Elle fournit une variation de position selon l’axe de mesure, et non une distance absolue directement déterminée par une seule lecture I/Q.</p>
+    </section>
+
+    <p class="note">Transcription numérique des calculs Doppler et I/Q. Les grandeurs, hypothèses et exemples numériques proviennent des notes de travail ; les clarifications portent sur la dérivée de la phase, le choix entre λ<sub>0</sub> et λ<sub>g</sub>, et l’utilisation d’une différence de phase pour calculer Δx. Aucun résultat expérimental de performance n’est déduit de ces équations seules.</p>
   </section>
   <nav class="case-navigation" aria-label="Navigation entre projets"><a href="../#projets">← Tous les projets</a><a href="reluctance.html">Système électromagnétique à réluctance →</a></nav>
 </main>
