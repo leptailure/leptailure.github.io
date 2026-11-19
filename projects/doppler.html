@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conception d'une interface analogique I/Q pour radar Doppler : OPA2365, amplification, filtrage, schéma électronique et routage de PCB.">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>Interface pour radar Doppler — Leptailure</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="stylesheet" href="../style.css?v=pages-1">
+  <link rel="stylesheet" href="academic.css?v=airflow-prototypes">
+  <link rel="stylesheet" href="doppler.css?v=1">
+  <script src="../visit-config.js" defer></script>
+  <script src="../visit-tracker.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="header wrap">
+  <a class="wordmark" href="../" aria-label="Leptailure, accueil"><img class="brand-avatar" src="../assets/serval-avatar.png" alt="" width="80" height="80">Leptailure</a>
+  <nav aria-label="Navigation principale"><a href="../#projets">← Projets</a><a href="../#contact">Contact</a></nav>
+</header>
+<main id="contenu" class="wrap project-page academic-case radar-page">
+  <header class="project-heading">
+    <p class="meta">INSTRUMENTATION · CONCEPTION ÉLECTRONIQUE · 2026</p>
+    <h1>Interface pour radar Doppler</h1>
+    <p class="lead">Conditionnement analogique de deux signaux en quadrature (I/Q) pour l’acquisition d’un radar Doppler.</p>
+    <p>Le projet concerne la carte d’interface entre un module radar et un système d’acquisition. Deux chaînes analogiques symétriques amplifient les sorties I et Q et les recentrent autour d’une référence compatible avec une alimentation de 3,3 V. Le schéma, le PCB et le rendu 3D présentés documentent la conception.</p>
+    <p class="technology-line">Radar Doppler ~24 GHz · I/Q · OPA2365 · Filtrage RC · PCB · ADC</p>
+  </header>
+
+  <dl class="case-summary" aria-label="Le projet en bref">
+    <div><dt>Architecture</dt><dd>Deux voies I et Q indépendantes</dd></div>
+    <div><dt>Conditionnement</dt><dd>Quatre étages inverseurs avec OPA2365</dd></div>
+    <div><dt>Sorties</dt><dd>ADC1 et ADC2 · référence de 1,65 V</dd></div>
+  </dl>
+
+  <section class="project-section" aria-labelledby="fonctionnement">
+    <h2 id="fonctionnement">01 / Du signal radar à l’acquisition</h2>
+    <p>Un radar Doppler fournit des signaux sensibles au déplacement d’une cible. Lorsque le module délivre des composantes en quadrature, les voies I et Q permettent de suivre une phase relative, en plus de l’information de fréquence. La carte ci-dessous n’est pas l’émetteur-récepteur hyperfréquence : elle assure le conditionnement des sorties analogiques du module radar.</p>
+    <ol class="functional-flow radar-flow" aria-label="Chaîne fonctionnelle">
+      <li><strong>Radar I/Q</strong><span>Deux signaux analogiques issus du module radar</span></li>
+      <li><strong>Liaison AC</strong><span>Condensateur de 1 µF et résistance d’entrée de 33 kΩ</span></li>
+      <li><strong>Amplification</strong><span>Deux étages inverseurs par voie, autour de 1,65 V</span></li>
+      <li><strong>Acquisition</strong><span>Sorties ADC1 / ADC2 via 220 Ω</span></li>
+    </ol>
+  </section>
+
+  <section class="project-section" aria-labelledby="architecture">
+    <h2 id="architecture">02 / Architecture électronique</h2>
+    <div class="method-grid">
+      <div><h3>Deux chaînes analogiques identiques</h3><p>Chaque signal traverse deux étages à amplificateur opérationnel. Les résistances de 33 kΩ à l’entrée et de 160 kΩ en contre-réaction déterminent un gain nominal en module d’environ 4,85 par étage, soit 23,5 pour deux étages dans leur bande passante.</p></div>
+      <div><h3>Référence à mi-alimentation</h3><p>Deux résistances de 2,2 kΩ établissent un point de repos nominal de 1,65 V à partir du rail de 3,3 V. Un condensateur de 1 µF stabilise cette référence commune aux entrées non-inverseuses.</p></div>
+      <div><h3>Liaison et filtrage</h3><p>Les condensateurs de liaison de 1 µF suppriment la composante continue entre les étages. Chaque contre-réaction comporte un condensateur de 18 pF en parallèle avec 160 kΩ pour limiter la réponse aux hautes fréquences.</p></div>
+      <div><h3>Interface et découplage</h3><p>Les deux sorties passent par des résistances de 220 Ω avant ADC1 et ADC2. Des condensateurs de 100 nF sont prévus sur l’alimentation des circuits OPA2365. Le connecteur d’interface distribue également les alimentations 5 V, 3,3 V et la masse.</p></div>
+    </div>
+    <p class="note">Les gains et fréquences caractéristiques ci-dessus sont des valeurs nominales issues des composants du schéma ; ils ne remplacent pas une mesure de la bande passante réelle ni la vérification de la dynamique des amplificateurs.</p>
+  </section>
+
+  <section class="project-section" aria-labelledby="schema">
+    <div class="radar-section-heading"><div><p class="meta">SCHÉMA DE CONCEPTION</p><h2 id="schema">03 / Schéma électronique</h2></div><span class="radar-media-label">01 / 03</span></div>
+    <figure class="radar-figure radar-light"><a href="doppler-media/schema.png" target="_blank" rel="noopener" title="Ouvrir le schéma en pleine résolution"><img src="doppler-media/schema.png" alt="Schéma électronique des deux voies I et Q avec quatre amplificateurs OPA2365, circuits RC et sorties ADC" width="3332" height="2362" loading="lazy"></a><figcaption>Chaînes analogiques I et Q, découplage, polarisation et connecteurs. Cliquer pour agrandir.</figcaption></figure>
+  </section>
+
+  <section class="project-section" aria-labelledby="pcb">
+    <div class="radar-section-heading"><div><p class="meta">IMPLANTATION ET ROUTAGE</p><h2 id="pcb">04 / Circuit imprimé</h2></div><span class="radar-media-label">02 / 03</span></div>
+    <figure class="radar-figure radar-dark"><a href="doppler-media/pcb.png" target="_blank" rel="noopener" title="Ouvrir le routage en pleine résolution"><img src="doppler-media/pcb.png" alt="Vue de l’implantation des composants, des pistes et des plans de cuivre du circuit imprimé de conditionnement I/Q" width="2160" height="1389" loading="lazy"></a><figcaption>Deux groupes d’amplification disposés symétriquement et signaux routés vers les connecteurs.</figcaption></figure>
+  </section>
+
+  <section class="project-section" aria-labelledby="rendu">
+    <div class="radar-section-heading"><div><p class="meta">VISUALISATION 3D</p><h2 id="rendu">05 / Rendu de la carte</h2></div><span class="radar-media-label">03 / 03</span></div>
+    <figure class="radar-figure radar-dark"><a href="doppler-media/rendu-3d.png" target="_blank" rel="noopener" title="Ouvrir le rendu en pleine résolution"><img src="doppler-media/rendu-3d.png" alt="Rendu 3D du circuit imprimé avec amplificateurs opérationnels, composants passifs et connecteurs" width="2160" height="557" loading="lazy"></a><figcaption>Visualisation 3D de l’implantation, destinée à contrôler l’agencement avant fabrication.</figcaption></figure>
+  </section>
+
+  <section class="project-section" aria-labelledby="theorie">
+    <h2 id="theorie">06 / Principe de mesure Doppler et I/Q</h2>
+    <p>Pour une onde réfléchie par une cible mobile selon l’axe du radar, le décalage fréquentiel Doppler est relié à la vitesse radiale par la longueur d’onde. Le suivi de la phase I/Q permet en outre d’estimer de petites variations de déplacement, sous réserve de déplier correctement la phase et de calibrer les voies.</p>
+    <div class="radar-equations">
+      <div><span class="meta">VITESSE RADIALE · MODULE</span><p class="radar-math">|v| = λ |Δf| / 2</p><p>λ = c / f<sub>0</sub>, avec <em>c</em> la vitesse de propagation et Δf le décalage Doppler mesuré.</p></div>
+      <div><span class="meta">PHASE EN QUADRATURE</span><p class="radar-math">φ = atan2(Q − V<sub>ref</sub>, I − V<sub>ref</sub>)</p><p>Après retrait des offsets, la phase est reconstruite à partir des deux composantes.</p></div>
+      <div><span class="meta">VARIATION DE DISTANCE</span><p class="radar-math">Δx = λ Δφ / (4π)</p><p>Relation pour une mesure aller-retour, à partir d’une variation de phase déroulée.</p></div>
+    </div>
+    <p class="note">Les relations de cette section sont théoriques. Aucune courbe d’essai ou précision de mesure validée n’est présentée à ce stade. Le signe de la vitesse dépend notamment de la convention retenue pour les voies I et Q.</p>
+  </section>
+  <nav class="case-navigation" aria-label="Navigation entre projets"><a href="../#projets">← Tous les projets</a><a href="reluctance.html">Système électromagnétique à réluctance →</a></nav>
+</main>
+<footer class="footer wrap"><span>© 2026 Leptailure · Portfolio personnel</span><a href="../privacy.html">Confidentialité</a></footer>
+</body>
+</html>
