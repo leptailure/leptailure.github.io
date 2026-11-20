@@ -9,6 +9,8 @@
   <link rel="icon" href="../favicon.png" type="image/png">
   <link rel="stylesheet" href="../style.css?v=pages-1">
   <style>
+    .project-page .photo-grid { grid-template-columns:minmax(0,1fr); max-width:840px; margin-inline:auto; }
+    .project-page .photo-grid img { aspect-ratio:auto; height:auto; max-height:none; }
     .test-video { display:block; width:100%; max-width:430px; height:auto; margin:24px auto 0; background:#111; }
     .waveform-figure { margin:26px 0 0; }
     .waveform-figure img { display:block; width:100%; height:auto; }
@@ -107,9 +109,9 @@
   <section id="essai-50v" class="project-section" aria-labelledby="essai-50v-title">
     <h2 id="essai-50v-title">Essai préliminaire à 50 V</h2>
     <p>Cette vidéo documente un premier essai à 50 V réalisé dans le cadre des vérifications initiales de sécurité du prototype. Les essais avec mobile à énergie plus élevée sont en attente de la mise à disposition d’un lieu adapté et de l’autorisation de l’établissement.</p>
-    <video class="test-video" controls playsinline preload="none" width="1080" height="1920" poster="reluctance-media/test-50v-poster.webp" aria-labelledby="essai-50v-title">
-      <source src="reluctance-media/test-50v.mp4" type="video/mp4">
-      <a href="reluctance-media/test-50v.mp4">Télécharger la vidéo de l’essai à 50 V (MP4)</a>
+    <video class="test-video" controls playsinline preload="none" width="1080" height="1920" poster="reluctance-media/test-50v-poster.webp?v=26r1-tests-1" aria-labelledby="essai-50v-title">
+      <source src="reluctance-media/test-50v.mp4?v=26r1-tests-1" type="video/mp4">
+      <a href="reluctance-media/test-50v.mp4?v=26r1-tests-1">Télécharger la vidéo de l’essai à 50 V (MP4)</a>
     </video>
   </section>
   <section id="oscillogrammes" class="project-section" aria-labelledby="oscillogrammes-title">
@@ -121,18 +123,19 @@
       <li><strong>Bleu / cyan</strong> — tension collecteur-émetteur V<sub>CE</sub> du même IGBT.</li>
     </ul>
       <figure class="waveform-figure">
-        <a href="../projects/reluctance-media/waveforms-100v.webp" target="_blank" rel="noopener" title="Ouvrir la photographie en pleine résolution"><img src="../projects/reluctance-media/waveforms-100v.webp" alt="Essai à 100 V, sans mobile" width="2100" height="1576" loading="lazy" decoding="async"></a>
+        <a href="../projects/reluctance-media/waveforms-100v.webp?v=26r1-tests-1" target="_blank" rel="noopener" title="Ouvrir la photographie en pleine résolution"><img src="../projects/reluctance-media/waveforms-100v.webp?v=26r1-tests-1" alt="Essai à 100 V, sans mobile" width="2100" height="1576" loading="lazy" decoding="async"></a>
         <figcaption><strong>Essai à 100 V, sans mobile</strong>Relevé des trois signaux pendant la commutation.</figcaption>
       </figure>
       <figure class="waveform-figure">
-        <a href="../projects/reluctance-media/waveforms-380v.webp" target="_blank" rel="noopener" title="Ouvrir la photographie en pleine résolution"><img src="../projects/reluctance-media/waveforms-380v.webp" alt="Essai à 380 V, sans mobile" width="2100" height="1576" loading="lazy" decoding="async"></a>
+        <a href="../projects/reluctance-media/waveforms-380v.webp?v=26r1-tests-2" target="_blank" rel="noopener" title="Ouvrir la photographie en pleine résolution"><img src="../projects/reluctance-media/waveforms-380v.webp?v=26r1-tests-2" alt="Essai à 380 V, sans mobile" width="2100" height="1576" loading="lazy" decoding="async"></a>
         <figcaption><strong>Essai à 380 V, sans mobile</strong>Relevé associé à l’incident observé lors de cet essai.</figcaption>
       </figure>
   </section>
   <section id="bilan-26r1" class="project-section" aria-labelledby="bilan-26r1-title">
     <h2 id="bilan-26r1-title">Incident à 380 V et retour d’expérience</h2>
     <p>Le compte rendu de l’essai à 380 V relève une déformation du signal de commande, suivie de pointes sur la trace de courant et d’une décharge anormalement rapide des condensateurs. Des IGBT endommagés ont ensuite été identifiés, marquant un nouvel échec de l’essai.</p>
-    <p>Le diagnostic retenu après l’incident attribue ces anomalies à des perturbations de la référence de masse commune des commandes côté bas. L’étendue et la longueur de ce chemin de masse, ainsi que ses résistances et inductances parasites, sont mises en cause dans les variations de potentiel susceptibles de perturber la commande lors des commutations.</p>
+    <p>Le diagnostic retenu après l’incident relie la détérioration des IGBT à la déformation du signal de commande. Les commandes côté bas partageaient une masse commune, mais l’étendue et la longueur de ce chemin de retour, ainsi que ses résistances et inductances parasites, entraînaient des écarts de potentiel lors des commutations. Cette référence de masse variable perturbait fortement la commande de grille.</p>
+    <p>La correction retenue pour la prochaine révision consiste à donner à chaque commande d’IGBT côté bas sa propre référence de masse flottante, comme pour les commandes côté haut, avec une alimentation isolée par module B0524.</p>
   </section>
 </main>
 <footer class="footer wrap"><span>© 2026 Leptailure · Projets personnels et académiques</span><a href="mailto:leptailure@gmail.com">leptailure@gmail.com</a></footer>
