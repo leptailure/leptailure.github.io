@@ -16,11 +16,10 @@
 .airflow-figure a { display:block; background:var(--paper,#fffef9); border:1px solid var(--line); cursor:zoom-in }
 .airflow-figure img { display:block; width:100%; height:auto }
 .airflow-figure figcaption { margin-top:8px; color:var(--muted); font-size:.875rem; line-height:1.55 }
+.airflow-pcb-comparison { margin-top:20px }
 .airflow-breadboard-photos { display:grid; grid-template-columns:minmax(0,714fr) minmax(0,390fr); gap:10px }
-.airflow-report-details { margin-top:24px; padding:16px 0; border-block:1px solid var(--line) }
-.airflow-report-details summary { cursor:pointer; color:var(--ink); font-weight:600 }
-.airflow-report-details h3 { margin:24px 0 12px }
-.airflow-report-details h4 { margin:16px 0 8px }
+.airflow-reference h3 { margin:24px 0 12px }
+.airflow-reference h4 { margin:16px 0 8px }
 .airflow-table-scroll { overflow-x:auto }
 .airflow-data { width:100%; border-collapse:collapse; background:var(--paper); font-size:.9rem }
 .airflow-data th, .airflow-data td { padding:10px 12px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line) }
@@ -33,4 +32,5 @@
 .airflow-demo h3 { margin:0 0 10px }
 .airflow-video { display:block; width:100%; max-width:820px; height:auto; background:#101715; border:1px solid var(--line) }
 @media(max-width:720px) { .airflow-gallery { grid-template-columns:1fr } }
+@media(max-width:600px) { .airflow-specs thead th { width:50% } }
 @media(max-width:480px) { .airflow-breadboard-photos { grid-template-columns:1fr } .airflow-breadboard-photos a:last-child { max-width:250px } }

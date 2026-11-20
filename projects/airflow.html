@@ -8,7 +8,7 @@
   <title>Détecteur de flux d’air — Leptailure</title>
   <link rel="icon" href="../favicon.png" type="image/png">
   <link rel="stylesheet" href="../style.css?v=pages-1">
-  <link rel="stylesheet" href="academic.css?v=airflow-prototypes">
+  <link rel="stylesheet" href="academic.css?v=airflow-reference">
 <script src="../visit-config.js" defer></script>
 <script src="../visit-tracker.js" defer></script>
 </head>
@@ -20,43 +20,22 @@
 </header>
 <main id="contenu" class="wrap project-page academic-case">
   <header class="project-heading">
-    <p class="meta">Projet académique · MARS 2026 · L2</p>
+    <p class="meta">Projet d’électronique · L2 · mars 2026</p>
     <h1>Détecteur de flux d’air</h1>
-    <p class="lead">Du pont de mesure à l’affichage embarqué : détecter le sens d’un flux et exploiter le signal sur STM32.</p>
-    <p>Le projet associe des thermistances CTN en pont de Wheatstone, des comparateurs et une indication par LED. Une extension personnelle ajoute l’acquisition numérique, le traitement sur microcontrôleur et un écran OLED.</p>
-    <p class="technology-line">CTN · Pont de Wheatstone · CAN externe · STM32 · I²C / OLED</p>
+    <p class="lead">Le montage de cours indique le sens du flux par LED. Mon extension sur STM32 affiche le sens, la tension de mesure et l’écart de température entre les deux sondes sur un écran OLED.</p>
+    <p><a href="#caracteristiques">Voir les caractéristiques techniques</a></p>
   </header>
-  <dl class="case-summary" aria-label="Le projet en bref">
-    <div><dt>Cadre</dt><dd>Projet d’électronique · L2</dd></div>
-    <div><dt>Fonction</dt><dd>Détection du sens d’un flux d’air</dd></div>
-    <div><dt>Extension personnelle</dt><dd>Acquisition et affichage sur STM32</dd></div>
-  </dl>
   <section class="project-section" aria-labelledby="principe-title">
-    <h2 id="principe-title">01 / Transformer une variation en indication</h2>
-    <p>Le pont de Wheatstone convertit les variations de résistance des CTN en une tension différentielle. Cette tension constitue le point de départ de la chaîne : elle peut être comparée pour donner une indication lumineuse ou numérisée pour être traitée et affichée.</p>
-    <figure class="signal-paths" aria-label="Le signal du pont alimente deux voies d’exploitation">
+    <h2 id="principe-title">Principe de détection</h2>
+    <p>Une résistance chauffante est placée entre deux thermistances à coefficient de température négatif (CTN). Le flux d’air modifie la répartition de la chaleur entre les sondes. Un pont de Wheatstone convertit l’écart de résistance entre les CTN en tension différentielle.</p>
+    <figure class="signal-paths" aria-label="Deux voies issues du pont de Wheatstone">
       <div class="signal-origin"><strong>CTN · Pont de Wheatstone</strong><span>Signal analogique de mesure</span></div>
       <div class="signal-branches">
-        <div><div class="signal-branch"><p class="meta">VOIE ANALOGIQUE</p><h3>Comparateurs → LED</h3><p>Indication directe du sens du flux.</p></div></div>
-        <div><div class="signal-branch"><p class="meta">EXTENSION PERSONNELLE</p><h3>CAN externe → STM32 → OLED</h3><p>Acquisition, traitement et affichage via I²C.</p></div></div>
+        <div><div class="signal-branch"><p class="meta">MONTAGE DE COURS</p><h3>Comparateurs → LED</h3><p>Deux seuils déterminent quelle LED s’allume selon le sens du flux.</p></div></div>
+        <div><div class="signal-branch"><p class="meta">EXTENSION PERSONNELLE</p><h3>CAN externe → STM32 → OLED</h3><p>Le STM32 traite les données numérisées et pilote l’écran en I²C.</p></div></div>
       </div>
-      <figcaption>Vue fonctionnelle des deux voies d’exploitation du signal ; ce diagramme ne représente pas le câblage du montage.</figcaption>
     </figure>
-  </section>
-  <section class="project-section" aria-labelledby="cours-title">
-    <h2 id="cours-title">02 / Le projet de cours</h2>
-    <div class="method-grid">
-      <div><h3>CTN et pont de Wheatstone</h3><p>La partie capteur repose sur des thermistances à coefficient de température négatif. Le montage en pont permet d’exploiter une différence entre les branches plutôt qu’une résistance isolée.</p></div>
-      <div><h3>Comparateurs et indication du sens</h3><p>Les comparateurs convertissent l’information analogique en états de sortie pour les LED. Cette voie donne une indication directe du sens du flux, sans passer par un affichage logiciel.</p></div>
-    </div>
-  </section>
-  <section class="project-section" aria-labelledby="extension-title">
-    <h2 id="extension-title">03 / Mon extension sur STM32</h2>
-    <p>J’ai prolongé le montage par une chaîne embarquée associant un convertisseur analogique-numérique externe, un STM32 et un écran OLED. Cette extension porte sur l’acquisition des données, leur traitement et leur présentation sur l’écran via I²C.</p>
-    <div class="method-grid">
-      <div><h3>Acquérir et traiter</h3><p>Le convertisseur fait le lien entre le signal du montage et le programme du microcontrôleur. Le STM32 assure ensuite l’exploitation des données numériques.</p></div>
-      <div><h3>Rendre l’information lisible</h3><p>L’écran OLED ajoute une interface de lecture au système. Sa commande par I²C relie la programmation embarquée à un périphérique d’affichage.</p></div>
-    </div>
+    <p>La mesure de la vitesse de l’air demanderait un étalonnage du signal.</p>
   </section>
   <section id="plaque-essai" class="project-section" aria-labelledby="plaque-title">
     <h2 id="plaque-title">Prototype sur plaque d’essai</h2>
@@ -65,114 +44,33 @@
         <a href="airflow-media/plaque-dessai.webp?v=wm-transparent-1"><img src="airflow-media/plaque-dessai.webp?v=wm-transparent-1" width="714" height="535" alt="Implantation des composants et câblage sur la plaque d’essai" loading="lazy"></a>
         <a href="airflow-media/sondes-ctn.webp?v=wm-transparent-1"><img src="airflow-media/sondes-ctn.webp?v=wm-transparent-1" width="390" height="535" alt="Montage des deux sondes CTN autour de la résistance chauffante" loading="lazy"></a>
       </div>
-      <figcaption>Exemple d'implantation des composants sur platine d'essai</figcaption>
+      <figcaption>Implantation des composants et position des deux sondes CTN.</figcaption>
     </figure>
     <figure class="airflow-figure">
       <a href="airflow-media/schema-plaque.webp?v=wm-transparent-1"><img src="airflow-media/schema-plaque.webp?v=wm-transparent-1" width="2362" height="1672" alt="Schéma du prototype sur plaque d’essai, du pont de Wheatstone à l’affichage OLED" loading="lazy"></a>
-      <figcaption>Schéma de l’application typique sur plaque d’essai.</figcaption>
+      <figcaption>Schéma de principe du prototype.</figcaption>
     </figure>
-
-    <details class="airflow-report-details">
-      <summary>Caractéristiques, nomenclature et fonctions de transfert</summary>
-      <h3 id="caracteristiques-title">Datasheet (Caractéristiques Principales)</h3>
-      <div class="airflow-table-scroll" role="region" aria-labelledby="caracteristiques-title" tabindex="0">
-        <table class="airflow-data">
-          <thead><tr><th scope="col">Paramètre</th><th scope="col">Valeur / Description</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Température ambiante de fonctionnement</th><td>25 °C ± 5 °C</td></tr>
-            <tr><th scope="row">Puissance DC consommée</th><td>250 mW</td></tr>
-            <tr><th scope="row">Plage de ΔT mesurable (Différence thermique entre sondes <var>T</var><sub>CTN2</sub> − <var>T</var><sub>CTN1</sub>)</th><td>± 7,83 °C</td></tr>
-            <tr><th scope="row">ΔT Minimal détectable</th><td>Sur 4 bits : 0,5 °C<br>Sur 8 bits : 0,06 °C</td></tr>
-            <tr><th scope="row">Incertitude sur ΔT</th><td>Sur 4 bits : ± 0,49 °C<br>Sur 8 bits : ± 0,03 °C</td></tr>
-            <tr><th scope="row">Relation : ΔT en fonction de la sortie analogique (<var>V</var><sub>OUT</sub>)</th><td>ΔT = (2,5 − <var>V</var><sub>OUT</sub>) / 0,319 [°C]</td></tr>
-            <tr>
-              <th scope="row">Relation : ΔT en fonction de la sortie numérique (<var>D</var>, code décimal du CAN)</th>
-              <td>
-                <p><strong>Sur 4 bits :</strong><br>ΔT = (2,5 − (<var>D</var> × 0,3125)) / 0,319 [°C]<br>(Avec <var>D</var> compris entre 0 et 15)</p>
-                <p><strong>Sur 8 bits :</strong><br>ΔT = (2,5 − (<var>D</var> × 0,0195)) / 0,319 [°C]<br>(Avec <var>D</var> compris entre 0 et 255)</p>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Signal lumineux indiquant le sens du flux</th>
-              <td>
-                <p><strong>Flux Gauche → Droite :</strong> LED Verte<br>(<var>V</var><sub>OUT</sub> ≥ 3,0 V, soit ΔT ≤ −1,57 °C)</p>
-                <p><strong>Flux Droite → Gauche :</strong> LED Rouge<br>(<var>V</var><sub>OUT</sub> ≤ 2,0 V, soit ΔT ≥ +1,57 °C)</p>
-                <p><strong>Pas de flux :</strong> LED éteintes<br>(2,0 V &lt; <var>V</var><sub>OUT</sub> &lt; 3,0 V)</p>
-              </td>
-            </tr>
-            <tr><th scope="row">Taille du circuit (hors tube)</th><td>16 cm × 11 cm</td></tr>
-            <tr><th scope="row">Coût des composants</th><td>20 €</td></tr>
-            <tr><th scope="row">Délai d'approvisionnement en composants</th><td>30 jours</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="airflow-report-note">Note : L'acquisition native se fait sur 8 bits. L'application d'un masque logiciel (Bitmask) permet d'extraire les 4 MSB (Mode 4 bits sélectionnable en option) pour une synchronisation avec l'affichage LED.</p>
-      <h4>Valeurs Limites Absolues (À ne pas dépasser)</h4>
-      <ul>
-        <li>Alimentation numérique (CAN, MCU, etc.) : 5,0 V strict (Risque de destruction si &gt; 5 V).</li>
-        <li>Alimentation symétrique (AOP TL082 / TL084) : Comprise entre ±6,0 V (minimum pour la linéarité) et ±18,0 V (maximum absolu).</li>
-        <li>Alimentation résistance chauffante : ≤ 4,0 V (Pour ne pas dépasser la limite de 1 W).</li>
-      </ul>
-
-      <h3 id="nomenclature-title">Nomenclature (BOM)</h3>
-      <div class="airflow-table-scroll" role="region" aria-labelledby="nomenclature-title" tabindex="0">
-        <table class="airflow-data airflow-bom">
-          <thead><tr><th scope="col">Repère</th><th scope="col">Quantité</th><th scope="col">Description / Valeur</th><th scope="col">Fabricant</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">U1</th><td>1</td><td>STM32F103C8T6</td><td>STMicroelectronics</td></tr>
-            <tr><th scope="row">U2</th><td>1</td><td>ADC0820CCN+</td><td>Texas Instruments</td></tr>
-            <tr><th scope="row">U3</th><td>1</td><td>Écran I2C</td><td>Générique</td></tr>
-            <tr><th scope="row">U4</th><td>1</td><td>TL084IDR</td><td>Texas Instruments</td></tr>
-            <tr><th scope="row">U5</th><td>1</td><td>TL082CDR</td><td>Texas Instruments</td></tr>
-            <tr><th scope="row">LED1~LED4</th><td>4</td><td>LED Jaune</td><td>Générique</td></tr>
-            <tr><th scope="row">LED_ROUGE1</th><td>1</td><td>LED Rouge</td><td>Générique</td></tr>
-            <tr><th scope="row">LED_VERTE1</th><td>1</td><td>LED Verte</td><td>Générique</td></tr>
-            <tr><th scope="row">R8, R9</th><td>2</td><td>CTN (5 kΩ, β=3700K, Max 75 mW)</td><td>Générique</td></tr>
-            <tr><th scope="row">R_chauffante1</th><td>1</td><td>Résistance chauffante 18 Ω (1W)</td><td>Générique</td></tr>
-            <tr><th scope="row">RG1</th><td>1</td><td>3,9 kΩ</td><td>Générique</td></tr>
-            <tr><th scope="row">R4, R5</th><td>2</td><td>5 kΩ</td><td>Générique</td></tr>
-            <tr><th scope="row">R1, R6, R7, R15, R16, R18</th><td>6</td><td>10 kΩ</td><td>Générique</td></tr>
-            <tr><th scope="row">R10, R13</th><td>2</td><td>40 kΩ</td><td>Générique</td></tr>
-            <tr><th scope="row">R11, R17</th><td>2</td><td>60 kΩ</td><td>Générique</td></tr>
-            <tr><th scope="row">R12, R14</th><td>2</td><td>100 kΩ</td><td>Générique</td></tr>
-            <tr><th scope="row">R2, R3, R19~R22</th><td>6</td><td>330 Ω</td><td>Générique</td></tr>
-            <tr><th scope="row">–</th><td>1</td><td>Platine d'essai &amp; Fils de connexion</td><td>Générique</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Fonctions de Transfert et Équations</h3>
-      <h4>Tension du pont (Développement limité sur la température)</h4>
-      <p>La variation de température ΔT est définie comme la différence thermique entre les deux sondes (<var>T</var><sub>CTN2</sub> − <var>T</var><sub>CTN1</sub>), cette valeur étant proportionnelle au flux d'air traversant le dispositif. Autour de <var>T</var><sub>0</sub> = 298 [K] ≈ 25 [°C], la tension différentielle s'exprime par :</p>
-      <p class="airflow-equation"><var>V</var><sub>B</sub> − <var>V</var><sub>A</sub> ≈ (−5 × β) / (4 × <var>T</var><sub>0</sub>²) × ΔT</p>
-      <p>Où <var>V</var><sub>A</sub> et <var>V</var><sub>B</sub> sont les tensions aux bornes du pont de Wheatstone, la tension d'alimentation du pont est 5V, β est la constante de la thermistance CTN, β=3700K.</p>
-
-      <h4>Gain, Sensibilité et Numérisation</h4>
-      <p>L'amplificateur d'instrumentation possède un gain <var>G</var> :</p>
-      <p class="airflow-equation"><var>G</var> = 1 + 20 kΩ / 3,9 kΩ ≈ 6,128</p>
-      <p>Avec un décalage (offset) de 2,5 V, la tension de sortie s'écrit :</p>
-      <p class="airflow-equation"><var>V</var><sub>OUT</sub> = <var>G</var> × (<var>V</var><sub>B</sub> − <var>V</var><sub>A</sub>) + 2,5</p>
-      <p>La sensibilité globale du système <var>S</var> est définie par :</p>
-      <p class="airflow-equation"><var>S</var> = [<var>G</var> × (<var>V</var><sub>B</sub> − <var>V</var><sub>A</sub>)] / ΔT ≈ −0,319 [V/°C]</p>
-      <p>En fonction de la valeur numérique <var>D</var> lue par le MCU, la différence de température se calcule comme suit :</p>
-      <p class="airflow-equation">ΔT = [2,5 − (<var>D</var> × pas de quantification)] / 0,319 [°C] (1 °C de variation = 1 K)</p>
-      <p>Où le pas de quantification est de 0,0195V (8 bits) ou 0,3125V (4 bits).</p>
-    </details>
-
     <div class="airflow-gallery">
       <figure class="airflow-figure">
         <a href="airflow-media/courbe-reponse.webp?v=wm-transparent-1"><img src="airflow-media/courbe-reponse.webp?v=wm-transparent-1" width="1024" height="597" alt="Courbe de la tension de sortie en fonction de la différence de température" loading="lazy"></a>
-        <figcaption>Courbe de réponse <var>V</var><sub>OUT</sub> vs ΔT</figcaption>
+        <figcaption>Courbe de transfert de <var>V</var><sub>OUT</sub> en fonction de ΔT.</figcaption>
       </figure>
       <figure class="airflow-figure">
         <a href="airflow-media/ecran-oled.webp?v=wm-transparent-1"><img src="airflow-media/ecran-oled.webp?v=wm-transparent-1" width="1098" height="507" alt="Écran OLED annoté avec le sens du flux, la tension de sortie du CAN et la différence de température" loading="lazy"></a>
-        <figcaption>Exemple d'affichage des mesures en temps réel sur écran OLED</figcaption>
+        <figcaption>Sens du flux, tension et écart de température affichés en temps réel.</figcaption>
       </figure>
     </div>
   </section>
-  <section class="project-section" aria-labelledby="carte-title">
+  <section id="circuit-imprime" class="project-section" aria-labelledby="carte-title">
     <h2 id="carte-title">Circuit imprimé et carte assemblée</h2>
-    <p>Le circuit imprimé réunit la mesure différentielle, l’acquisition sur STM32 et l’affichage OLED. Le schéma détaille aussi la charge et la protection de la batterie Li‑Po, l’alimentation USB‑C et la commande du buzzer.</p>
+    <p>La carte de 80 × 55 mm peut être alimentée par l’USB‑C ou par la cellule Li‑Po prévue pour le prototype (3,7 V nominal, 850 mAh). Le TP4056 recharge la batterie via l’USB‑C. Un circuit protège la cellule et un pont diviseur permet au STM32 de mesurer sa tension.</p>
+    <p>Le convertisseur élévateur MT3608L fournit un rail nominal de 6,18 V. Un premier LDO le régule à 5 V pour le pont de Wheatstone et le conditionnement analogique, afin d’atténuer l’ondulation du convertisseur. Un second LDO reçoit le 5 V et fournit 3,3 V au STM32 et à l’écran OLED.</p>
+    <figure class="airflow-figure">
+      <a href="airflow-media/schema-pcb.png?v=pcb-schematic" aria-label="Ouvrir le schéma électrique du PCB en pleine résolution"><img src="airflow-media/schema-pcb.png?v=pcb-schematic" width="3332" height="2362" alt="Schéma électrique du PCB avec la chaîne de mesure, la charge Li‑Po, le convertisseur élévateur et les régulateurs 5 V et 3,3 V." loading="lazy"></a>
+      <figcaption>Schéma électrique du PCB. Cliquer sur l’image pour l’agrandir.</figcaption>
+    </figure>
+    <p class="airflow-pcb-comparison">Sur la plaque d’essai, le TL084 et le TL082 étaient alimentés en ±6 V. Le PCB utilise un INA333 à gain nominal de 6, référencé à 2,5 V, et deux comparateurs TLV7011 à seuils de 2 V et 3 V. Ces composants sont alimentés en 5 V. Le CAN externe de 8 bits, le STM32 et l’écran OLED sont repris de la version sur plaque d’essai.</p>
+    <p>Le STM32 pilote aussi un buzzer et module le chauffage par PWM à partir du rail de 6,18 V.</p>
     <div class="airflow-gallery">
       <figure class="airflow-figure">
         <a href="airflow-media/carte-assemblee.webp?v=wm-transparent-1"><img src="airflow-media/carte-assemblee.webp?v=wm-transparent-1" width="2707" height="2504" alt="Circuit imprimé assemblé du détecteur sur le banc, avec l’écran OLED au centre" loading="lazy"></a>
@@ -180,33 +78,16 @@
       </figure>
       <figure class="airflow-figure">
         <a href="airflow-media/carte-3d.webp?v=wm-transparent-1"><img src="airflow-media/carte-3d.webp?v=wm-transparent-1" width="2060" height="1394" alt="Rendu 3D de la carte avec l’écran OLED, le connecteur USB-C et le buzzer." loading="lazy"></a>
-        <figcaption>Rendu 3D de la carte avec l’écran OLED, le connecteur USB-C et le buzzer.</figcaption>
+        <figcaption>Rendu 3D de la carte.</figcaption>
       </figure>
       <figure class="airflow-figure">
         <a href="airflow-media/routage.webp?v=wm-transparent-1"><img src="airflow-media/routage.webp?v=wm-transparent-1" width="2160" height="1389" alt="Implantation et routage du circuit imprimé de 80 × 55 mm." loading="lazy"></a>
-        <figcaption>Implantation et routage du circuit imprimé de 80 × 55 mm.</figcaption>
-      </figure>
-      <figure class="airflow-figure">
-        <a href="airflow-media/schema-pcb.png?v=wm-transparent-1"><img src="airflow-media/schema-pcb.png?v=wm-transparent-1" width="3332" height="2362" alt="Schéma électrique du circuit imprimé avec le conditionnement du signal, le STM32, l’affichage et l’alimentation." loading="lazy"></a>
-        <figcaption>Schéma électrique du circuit imprimé avec le conditionnement du signal, le STM32, l’affichage et l’alimentation.</figcaption>
+        <figcaption>Implantation et routage du circuit imprimé.</figcaption>
       </figure>
     </div>
-  </section>
-  <section class="project-section" aria-labelledby="bilan-title">
-    <h2 id="bilan-title">04 / Du circuit au système embarqué</h2>
-    <p>Ce projet relie capteurs résistifs, électronique analogique, conversion numérique et programmation sur STM32. L’extension personnelle conserve la chaîne de mesure comme point de départ et lui ajoute une exploitation logicielle.</p>
-    <div class="case-highlight"><h3>Détecter un sens et mesurer une vitesse</h3><p>L’indication du sens du flux est la fonction présentée ici. Une mesure quantitative de vitesse demanderait en plus une calibration reliant le signal électrique à une grandeur de référence.</p></div>
   </section>
   <section id="demonstration" class="project-section" aria-labelledby="demonstrations-title">
     <h2 id="demonstrations-title">Démonstrations</h2>
-    <div class="airflow-demo">
-      <h3 id="demonstration-video-title">Carte assemblée</h3>
-      <video class="airflow-video" controls playsinline preload="none" width="1280" height="720"
-        poster="airflow-media/demonstration.webp?v=wm-transparent-1" aria-labelledby="demonstration-video-title">
-        <source src="airflow-media/demonstration.mp4?v=filigrane" type="video/mp4">
-        <a href="airflow-media/demonstration.mp4?v=filigrane">Télécharger la vidéo (MP4)</a>
-      </video>
-    </div>
     <div class="airflow-demo">
       <h3 id="demonstration-plaque-video-title">Prototype sur plaque d’essai</h3>
       <video class="airflow-video" controls playsinline preload="none" width="1920" height="1080"
@@ -215,6 +96,99 @@
         <a href="airflow-media/demonstration-plaque.mp4">Télécharger la vidéo (MP4)</a>
       </video>
     </div>
+    <div class="airflow-demo">
+      <h3 id="demonstration-video-title">Carte assemblée</h3>
+      <video class="airflow-video" controls playsinline preload="none" width="1280" height="720"
+        poster="airflow-media/demonstration.webp?v=wm-transparent-1" aria-labelledby="demonstration-video-title">
+        <source src="airflow-media/demonstration.mp4?v=filigrane" type="video/mp4">
+        <a href="airflow-media/demonstration.mp4?v=filigrane">Télécharger la vidéo (MP4)</a>
+      </video>
+    </div>
+  </section>
+  <section id="caracteristiques" class="project-section airflow-reference" aria-labelledby="caracteristiques-title">
+    <h2 id="caracteristiques-title">Caractéristiques du prototype sur plaque d’essai</h2>
+    <div class="airflow-table-scroll" role="region" aria-labelledby="caracteristiques-title" tabindex="0">
+      <table class="airflow-data airflow-specs">
+        <thead><tr><th scope="col">Paramètre</th><th scope="col">Valeur / Description</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Température ambiante de fonctionnement</th><td>25 °C ± 5 °C</td></tr>
+          <tr><th scope="row">Puissance DC consommée</th><td>250 mW</td></tr>
+          <tr><th scope="row">Plage de ΔT mesurable (Différence thermique entre sondes <var>T</var><sub>CTN2</sub> − <var>T</var><sub>CTN1</sub>)</th><td>± 7,83 °C</td></tr>
+          <tr><th scope="row">ΔT Minimal détectable</th><td>Sur 4 bits : 0,5 °C<br>Sur 8 bits : 0,06 °C</td></tr>
+          <tr><th scope="row">Incertitude sur ΔT</th><td>Sur 4 bits : ± 0,49 °C<br>Sur 8 bits : ± 0,03 °C</td></tr>
+          <tr><th scope="row">Relation : ΔT en fonction de la sortie analogique (<var>V</var><sub>OUT</sub>)</th><td>ΔT = (2,5 − <var>V</var><sub>OUT</sub>) / 0,319 [°C]</td></tr>
+          <tr>
+            <th scope="row">Relation : ΔT en fonction de la sortie numérique (<var>D</var>, code décimal du CAN)</th>
+            <td>
+              <p><strong>Sur 4 bits :</strong><br>ΔT = (2,5 − (<var>D</var> × 0,3125)) / 0,319 [°C]<br>(Avec <var>D</var> compris entre 0 et 15)</p>
+              <p><strong>Sur 8 bits :</strong><br>ΔT = (2,5 − (<var>D</var> × 0,0195)) / 0,319 [°C]<br>(Avec <var>D</var> compris entre 0 et 255)</p>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Signal lumineux indiquant le sens du flux</th>
+            <td>
+              <p><strong>Flux Gauche → Droite :</strong> LED Verte<br>(<var>V</var><sub>OUT</sub> ≥ 3,0 V, soit ΔT ≤ −1,57 °C)</p>
+              <p><strong>Flux Droite → Gauche :</strong> LED Rouge<br>(<var>V</var><sub>OUT</sub> ≤ 2,0 V, soit ΔT ≥ +1,57 °C)</p>
+              <p><strong>Pas de flux :</strong> LED éteintes<br>(2,0 V &lt; <var>V</var><sub>OUT</sub> &lt; 3,0 V)</p>
+            </td>
+          </tr>
+          <tr><th scope="row">Taille du circuit (hors tube)</th><td>16 cm × 11 cm</td></tr>
+          <tr><th scope="row">Coût des composants</th><td>20 €</td></tr>
+          <tr><th scope="row">Délai d'approvisionnement en composants</th><td>30 jours</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="airflow-report-note">Note : L'acquisition native se fait sur 8 bits. L'application d'un masque logiciel (Bitmask) permet d'extraire les 4 MSB (Mode 4 bits sélectionnable en option) pour une synchronisation avec l'affichage LED.</p>
+    <h3>Limites d’alimentation</h3>
+    <ul>
+      <li>Alimentation numérique (CAN, MCU, etc.) : 5,0 V strict (Risque de destruction si &gt; 5 V).</li>
+      <li>Alimentation symétrique (AOP TL082 / TL084) : Comprise entre ±6,0 V (minimum pour la linéarité) et ±18,0 V (maximum absolu).</li>
+      <li>Alimentation résistance chauffante : ≤ 4,0 V (Pour ne pas dépasser la limite de 1 W).</li>
+    </ul>
+
+    <h3 id="nomenclature-title">Nomenclature (BOM)</h3>
+    <div class="airflow-table-scroll" role="region" aria-labelledby="nomenclature-title" tabindex="0">
+      <table class="airflow-data airflow-bom">
+        <thead><tr><th scope="col">Repère</th><th scope="col">Quantité</th><th scope="col">Description / Valeur</th><th scope="col">Fabricant</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">U1</th><td>1</td><td>STM32F103C8T6</td><td>STMicroelectronics</td></tr>
+          <tr><th scope="row">U2</th><td>1</td><td>ADC0820CCN+</td><td>Texas Instruments</td></tr>
+          <tr><th scope="row">U3</th><td>1</td><td>Écran I2C</td><td>Générique</td></tr>
+          <tr><th scope="row">U4</th><td>1</td><td>TL084IDR</td><td>Texas Instruments</td></tr>
+          <tr><th scope="row">U5</th><td>1</td><td>TL082CDR</td><td>Texas Instruments</td></tr>
+          <tr><th scope="row">LED1~LED4</th><td>4</td><td>LED Jaune</td><td>Générique</td></tr>
+          <tr><th scope="row">LED_ROUGE1</th><td>1</td><td>LED Rouge</td><td>Générique</td></tr>
+          <tr><th scope="row">LED_VERTE1</th><td>1</td><td>LED Verte</td><td>Générique</td></tr>
+          <tr><th scope="row">R8, R9</th><td>2</td><td>CTN (5 kΩ, β=3700K, Max 75 mW)</td><td>Générique</td></tr>
+          <tr><th scope="row">R_chauffante1</th><td>1</td><td>Résistance chauffante 18 Ω (1W)</td><td>Générique</td></tr>
+          <tr><th scope="row">RG1</th><td>1</td><td>3,9 kΩ</td><td>Générique</td></tr>
+          <tr><th scope="row">R4, R5</th><td>2</td><td>5 kΩ</td><td>Générique</td></tr>
+          <tr><th scope="row">R1, R6, R7, R15, R16, R18</th><td>6</td><td>10 kΩ</td><td>Générique</td></tr>
+          <tr><th scope="row">R10, R13</th><td>2</td><td>40 kΩ</td><td>Générique</td></tr>
+          <tr><th scope="row">R11, R17</th><td>2</td><td>60 kΩ</td><td>Générique</td></tr>
+          <tr><th scope="row">R12, R14</th><td>2</td><td>100 kΩ</td><td>Générique</td></tr>
+          <tr><th scope="row">R2, R3, R19~R22</th><td>6</td><td>330 Ω</td><td>Générique</td></tr>
+          <tr><th scope="row">–</th><td>1</td><td>Platine d'essai &amp; Fils de connexion</td><td>Générique</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Fonctions de transfert</h3>
+    <h4>Tension différentielle du pont</h4>
+    <p>La variation de température ΔT est définie comme la différence thermique entre les deux sondes (<var>T</var><sub>CTN2</sub> − <var>T</var><sub>CTN1</sub>), cette valeur étant proportionnelle au flux d'air traversant le dispositif. Autour de <var>T</var><sub>0</sub> = 298 [K] ≈ 25 [°C], la tension différentielle s'exprime par :</p>
+    <p class="airflow-equation"><var>V</var><sub>B</sub> − <var>V</var><sub>A</sub> ≈ (−5 × β) / (4 × <var>T</var><sub>0</sub>²) × ΔT</p>
+    <p>Où <var>V</var><sub>A</sub> et <var>V</var><sub>B</sub> sont les tensions aux bornes du pont de Wheatstone, la tension d'alimentation du pont est 5V, β est la constante de la thermistance CTN, β=3700K.</p>
+
+    <h4>Gain, sensibilité et numérisation</h4>
+    <p>L'amplificateur d'instrumentation possède un gain <var>G</var> :</p>
+    <p class="airflow-equation"><var>G</var> = 1 + 20 kΩ / 3,9 kΩ ≈ 6,128</p>
+    <p>Avec un décalage (offset) de 2,5 V, la tension de sortie s'écrit :</p>
+    <p class="airflow-equation"><var>V</var><sub>OUT</sub> = <var>G</var> × (<var>V</var><sub>B</sub> − <var>V</var><sub>A</sub>) + 2,5</p>
+    <p>La sensibilité globale du système <var>S</var> est définie par :</p>
+    <p class="airflow-equation"><var>S</var> = [<var>G</var> × (<var>V</var><sub>B</sub> − <var>V</var><sub>A</sub>)] / ΔT ≈ −0,319 [V/°C]</p>
+    <p>En fonction de la valeur numérique <var>D</var> lue par le MCU, la différence de température se calcule comme suit :</p>
+    <p class="airflow-equation">ΔT = [2,5 − (<var>D</var> × pas de quantification)] / 0,319 [°C] (1 °C de variation = 1 K)</p>
+    <p>Où le pas de quantification est de 0,0195V (8 bits) ou 0,3125V (4 bits).</p>
   </section>
   <nav class="case-navigation" aria-label="Navigation des projets"><a href="../#projets">Tous les projets</a></nav>
 </main>
