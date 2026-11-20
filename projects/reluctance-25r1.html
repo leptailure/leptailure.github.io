@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="../style.css?v=pages-1">
   <style>
     .prototype-photo { margin: 0 0 24px; }
+    .simulation-figure { margin:24px 0 0; }
+    .simulation-video { display:block; width:100%; height:auto; background:#fff; }
+    .simulation-figure figcaption { margin-top:8px; }
     .matrix-figure { width: 100%; margin: 20px auto 24px; }
     .matrix-figure--arms { max-width: 480px; }
     .matrix-figure--circuit { max-width: 620px; }
@@ -40,6 +43,21 @@
     <h2 id="resume">Résumé</h2>
     <p>Dans l’industrie, les moteurs linéaires permettent d’accélérer, de transporter et de positionner des charges sur un axe. Ils équipent notamment des systèmes de transfert et de positionnement sur les lignes d’assemblage automatisées, ainsi que des axes de précision pour les machines de production. <a href="https://press.siemens.com/global/en/pressrelease/siemens-and-festo-integrate-multi-carrier-system-bosch-rexroth-transfer-system">Système de transfert à moteur linéaire</a> · <a href="https://www.siemens.com/en-gb/products/simotics/simotics-l/">Moteurs linéaires SIMOTICS L</a>.</p>
     <p>Le prototype de laboratoire 25R1 explore une commande mutualisée pour un ensemble de 60 étages de bobines. L’objectif est de réduire le nombre d’interrupteurs de puissance nécessaires à cet ensemble en partageant les IGBT entre plusieurs étages. Cette version utilise 22 IGBT au total. La photographie présente le prototype assemblé sur le banc.</p>
+  </section>
+  <section id="simulation-maxwell" class="project-section" aria-labelledby="simulation-maxwell-title">
+    <h2 id="simulation-maxwell-title">Simulation transitoire sous Ansys Maxwell 2D</h2>
+    <p>Le modèle permet d’étudier la répartition du champ magnétique et le déplacement du mobile. L’animation montre l’évolution du champ au cours du mouvement.</p>
+    <figure class="simulation-figure">
+      <video class="simulation-video" controls autoplay loop muted playsinline preload="metadata" width="1732" height="806" poster="reluctance-media/maxwell-25r1-poster.webp?v=simulation-1" aria-label="Animation du champ magnétique calculé sous Ansys Maxwell 2D">
+        <source src="reluctance-media/maxwell-25r1-field.mp4?v=simulation-1" type="video/mp4">
+        <a href="reluctance-media/maxwell-25r1-field.mp4?v=simulation-1">Voir l’animation de simulation (MP4)</a>
+      </video>
+      <figcaption>Champ magnétique et déplacement du mobile dans le modèle 2D.</figcaption>
+    </figure>
+    <figure class="simulation-figure">
+      <a href="reluctance-media/maxwell-25r1-results-public.png?v=simulation-1" aria-label="Agrandir les courbes de simulation"><img src="reluctance-media/maxwell-25r1-results-public.png?v=simulation-1" alt="Courants des bobines, force axiale et vitesse simulée en fonction du temps, avec les graduations numériques de vitesse masquées" width="3372" height="1383" loading="lazy" decoding="async"></a>
+      <figcaption>Résultats de simulation. Courants des bobines, force axiale et vitesse du mobile. Les graduations numériques de vitesse sont masquées dans cette version publique.</figcaption>
+    </figure>
   </section>
   <section class="project-section" aria-labelledby="topologie-matricielle">
     <h2 id="topologie-matricielle">Topologie matricielle et compromis de conception</h2>
