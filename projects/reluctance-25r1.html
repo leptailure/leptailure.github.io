@@ -45,12 +45,11 @@
   </figure>
   <section class="project-section" aria-labelledby="resume">
     <h2 id="resume">Objectif du 25R1</h2>
-    <p>Le 25R1 est un prototype de laboratoire à 60 étages de bobines, commandés par 22 IGBT. Il explore une commande mutualisée dont l’objectif est de réduire le nombre d’interrupteurs de puissance en partageant certains composants entre plusieurs étages.</p>
-    <p>La démarche associe simulation électromagnétique, étude de la commutation et de la récupération d’énergie, puis réalisation d’une commande matricielle. Le bilan de l’essai permet ensuite de comprendre les limites de cette première réalisation et le passage au 26R1.</p>
+    <p>Le 25R1 est un prototype de laboratoire à 60 étages de bobines, commandés par 22 IGBT. Sa commande matricielle réduit le nombre d’interrupteurs de puissance en partageant les bras entre plusieurs étages.</p>
   </section>
   <section id="simulation-maxwell" class="project-section" aria-labelledby="simulation-maxwell-title">
     <h2 id="simulation-maxwell-title">Simulation transitoire sous Ansys Maxwell 2D</h2>
-    <p>Le modèle permet d’étudier la répartition du champ magnétique et le déplacement du mobile. L’animation montre l’évolution du champ au cours du mouvement.</p>
+    <p>Le modèle Maxwell 2D simule le champ magnétique et le déplacement du mobile.</p>
     <figure class="simulation-figure">
       <img class="simulation-animation" src="reluctance-media/maxwell-25r1-field.webp?v=animation-2x" alt="Animation du champ magnétique et du déplacement du mobile dans le modèle Maxwell 2D" width="1732" height="805" loading="lazy" decoding="async">
       <figcaption>Champ magnétique et déplacement du mobile dans le modèle 2D. Animation accélérée ×2.</figcaption>
@@ -62,27 +61,24 @@
   </section>
   <section id="commutation-recuperation" class="project-section" aria-labelledby="commutation-recuperation-title">
     <h2 id="commutation-recuperation-title">Commutation d’une bobine et récupération d’énergie</h2>
-    <p>Avant d’aborder le partage des composants dans une matrice, les schémas suivants présentent le fonctionnement de principe d’un étage isolé.</p>
     <h3>Demi-pont asymétrique et pont en H</h3>
-    <p>Le terme retenu ici est <strong>demi-pont asymétrique</strong>, également désigné comme un pont en H asymétrique. Sa disposition rappelle un H. Il comporte un interrupteur commandé côté haut, un autre côté bas et deux diodes. Un pont en H complet possède quatre interrupteurs commandés. L’expression « demi-pont asymétrique » permet aussi de le distinguer du demi-pont classique à point milieu.</p>
+    <p>Le <strong>demi-pont asymétrique</strong>, aussi appelé pont en H asymétrique, comporte deux interrupteurs commandés — un côté haut et un côté bas — et deux diodes. Un pont en H complet comporte quatre interrupteurs commandés.</p>
     <figure class="bridge-figure">
       <a href="reluctance-media/asymmetric-bridge-modes-fr.png?v=bridge-fr-1" aria-label="Agrandir les modes de fonctionnement du pont asymétrique"><img src="reluctance-media/asymmetric-bridge-modes-fr.png?v=bridge-fr-1" alt="Modes du demi-pont asymétrique : alimentation, roue libre haute, restitution d’énergie et roue libre basse" width="935" height="655" loading="lazy" decoding="async"></a>
       <figcaption>Modes de fonctionnement du demi-pont asymétrique.</figcaption>
     </figure>
     <p><strong>Alimentation.</strong> Les deux interrupteurs conduisent et la source alimente la bobine. Une partie de l’énergie est alors stockée sous forme magnétique dans l’enroulement.</p>
-    <p><strong>Roue libre.</strong> Avec un seul interrupteur conducteur, le courant continue à circuler dans une boucle locale comprenant cet interrupteur et la diode opposée. Selon le côté concerné, il s’agit de la roue libre haute ou basse. Le courant décroît sous l’effet des pertes ; cette circulation locale se distingue du retour d’énergie vers le stockage.</p>
-    <p><strong>Restitution d’énergie.</strong> Lorsque les deux interrupteurs sont ouverts alors qu’un courant subsiste, les diodes offrent un chemin de retour vers l’alimentation. Dans une alimentation à condensateurs, l’énergie magnétique restante dans la bobine est alors partiellement restituée aux condensateurs, tandis que le courant décroît.</p>
-    <p>La récupération concerne donc l’énergie encore présente dans le champ magnétique à la fin de l’alimentation. Elle ne signifie pas que toute l’énergie initialement stockée dans les condensateurs est récupérée : une partie a été transférée au mobile et une autre dissipée dans le circuit. La commande du côté haut ajoute par ailleurs une contrainte d’alimentation et de complexité à l’électronique de commande.</p>
+    <p><strong>Roue libre.</strong> Le courant circule dans une boucle locale comprenant un interrupteur conducteur et la diode opposée. Selon le bras utilisé, il s’agit de la roue libre haute ou basse. Le courant décroît sous l’effet des pertes.</p>
+    <p><strong>Restitution d’énergie.</strong> À l’ouverture des deux interrupteurs, le courant résiduel passe par les diodes et restitue aux condensateurs une partie de l’énergie magnétique encore présente dans la bobine.</p>
     <h3>Un banc de condensateurs commun au 25R1</h3>
-    <p>Sur le 25R1, un unique banc de condensateurs commun alimente l’ensemble des bras côté haut et côté bas. Le principe de récupération renvoie l’énergie magnétique résiduelle à ce même banc, par le bus continu commun.</p>
-    <p>Le stockage est ainsi mutualisé, tout comme les interrupteurs dans la commande matricielle. Ces deux aspects se complètent ; la section suivante explique le partage des IGBT, son comptage et ses contraintes.</p>
+    <p>Un même banc de condensateurs alimente tous les bras côté haut et côté bas du 25R1. L’énergie récupérée revient à ce banc par le bus continu commun.</p>
   </section>
   <section class="project-section" aria-labelledby="topologie-matricielle">
     <h2 id="topologie-matricielle">Topologie matricielle et compromis de conception</h2>
-    <p>La topologie matricielle reprend les deux types de bras du pont asymétrique et partage les interrupteurs de puissance entre plusieurs voies inductives. Pour le 25R1, son intérêt principal est de réduire le nombre de composants de commutation nécessaires aux 60 étages.</p>
-    <p>Le partage s’accompagne d’un câblage plus complexe, limite l’activation simultanée des voies et peut augmenter les pertes de conduction. Son intérêt doit donc être évalué en tenant compte de ces contraintes, en plus du nombre d’interrupteurs économisés.</p>
+    <p>La matrice partage les bras de puissance entre les 60 étages pour réduire le nombre d’IGBT.</p>
+    <p>Par rapport à une commande indépendante par pont pour chaque bobine, la matrice impose <strong>une diode en série avec chaque bobine</strong>. Ces diodes d’isolement empêchent le courant de passer dans les bobines des autres étages par les liaisons communes de la matrice. Le gain en nombre d’IGBT s’accompagne donc de ces composants supplémentaires dans chaque voie.</p>
     <h3 id="derivation-comptage-matriciel">Dérivation du comptage matriciel</h3>
-    <p>Le comptage distingue les voies et les composants partagés : une matrice de <var>r</var> lignes et <var>c</var> colonnes contient <var>r</var> × <var>c</var> voies, tandis que les deux groupes de bras totalisent <var>r</var> + <var>c</var> interrupteurs. L’application aux deux groupes du 25R1 est détaillée ci-dessous. Ce comptage porte uniquement sur les IGBT ; les diodes ne sont pas incluses.</p>
+    <p>Le comptage distingue les voies et les composants partagés : une matrice de <var>r</var> lignes et <var>c</var> colonnes contient <var>r</var> × <var>c</var> voies, tandis que les deux groupes de bras totalisent <var>r</var> + <var>c</var> interrupteurs. Les chiffres suivants comptent les IGBT.</p>
   </section>
   <section class="project-section" aria-labelledby="extrait-topologie-matricielle">
     <h2 id="extrait-topologie-matricielle">Commande matricielle du 25R1</h2>
@@ -104,7 +100,6 @@
         <strong>Schéma de principe de la topologie matricielle</strong>
       </figcaption>
     </figure>
-    <p class="note">Les consignes pratiques de câblage et de séquencement des bobines du lanceur électromagnétique ont été omises.</p>
   </section>
   <section class="project-section" aria-labelledby="materiel-25r1">
     <h2 id="materiel-25r1">Structure des barres omnibus de la matrice et carte de commande</h2>
