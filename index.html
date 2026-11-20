@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#f5f3ed">
   <title>Leptailure — Électronique & expérimentation</title>
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="home-classic.css?v=maxwell-animation-2x">
+  <link rel="stylesheet" href="home-classic.css?v=home-media-balanced">
   <script src="home-classic.js?v=home-summary-1" defer></script>
 <script src="visit-config.js" defer></script>
 <script src="visit-tracker.js" defer></script>
@@ -101,14 +101,27 @@
       <div class="featured-header"><span class="badge">PROJET ACADÉMIQUE</span><span class="mono">MARS 2026 · L2</span></div>
       <div class="project-intro">
         <div><h3>Détecteur de flux d’air</h3></div>
-        <p>Détection du sens d’un flux et extension personnelle sur microcontrôleur.</p>
+        <p>Du prototype sur plaque d’essai à une carte STM32 avec affichage OLED, pour détecter le sens du flux d’air.</p>
       </div>
-      <figure class="feature-photo project-cover project-cover--board">
-        <a href="projects/airflow.html">
-          <img src="projects/airflow-media/carte-assemblee.webp?v=wm-transparent-1" alt="Circuit imprimé assemblé du détecteur de flux d’air, avec afficheur OLED" width="2707" height="2504" loading="lazy" decoding="async">
-        </a>
-      </figure>
-      <details class="project-entry-details"><summary>Conception & outils <span aria-hidden="true">+</span></summary><ul><li>CTN en pont de Wheatstone et convertisseur analogique-numérique externe.</li><li>Comparateurs et LED pour indiquer le sens du flux.</li><li>Extension personnelle sur STM32 : acquisition, traitement et affichage OLED via I²C.</li><li>Carte de 80 × 55 mm : schéma, routage et rendu 3D.</li></ul></details>
+      <div class="project-comparison" aria-label="Du prototype sur plaque d’essai à la carte assemblée">
+        <figure class="feature-photo">
+          <a href="projects/airflow.html#plaque-essai" aria-label="Voir le prototype sur plaque d’essai"><img src="projects/airflow-media/plaque-dessai.webp?v=wm-transparent-1" alt="Prototype du détecteur de flux d’air câblé sur une plaque d’essai, avec le STM32 et l’écran OLED" width="714" height="535" loading="lazy" decoding="async"></a>
+          <figcaption>Prototype sur plaque d’essai</figcaption>
+        </figure>
+        <figure class="feature-photo">
+          <a href="projects/airflow.html#circuit-imprime" aria-label="Voir le circuit imprimé assemblé"><img src="projects/airflow-media/carte-assemblee.webp?v=wm-transparent-1" alt="Circuit imprimé assemblé du détecteur de flux d’air, avec afficheur OLED" width="2707" height="2504" loading="lazy" decoding="async"></a>
+          <figcaption>Carte assemblée · PCB 80 × 55 mm</figcaption>
+        </figure>
+      </div>
+      <div class="project-entry-details" aria-labelledby="airflow-design-title">
+        <h4 id="airflow-design-title">Conception &amp; outils</h4>
+        <ul>
+          <li>CTN en pont de Wheatstone et convertisseur analogique-numérique externe.</li>
+          <li>Comparateurs et LED pour indiquer le sens du flux.</li>
+          <li>Extension personnelle sur STM32 : acquisition, traitement et affichage OLED via I²C.</li>
+          <li>Carte de 80 × 55 mm : schéma, routage et rendu 3D.</li>
+        </ul>
+      </div>
       <div class="tags"><span>STM32</span><span>Acquisition</span><span>I²C / OLED</span></div>
       <div class="featured-footer"><a class="button project-action" href="projects/airflow.html" aria-label="Voir le projet : Détecteur de flux d’air">Voir le projet</a></div>
     </article>

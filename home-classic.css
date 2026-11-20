@@ -36,8 +36,7 @@
 .projects > .featured + .featured { margin-top: 22px }
 .projects .project-action { min-height: 48px; min-width: 10rem; justify-content: center; margin-inline-start: auto }
 .project-entry-details { border-top: 1px solid var(--line); padding-top: 15px }
-.project-entry-details summary { font-size: 14px; font-weight: 550 }
-.project-entry-details summary span { color: var(--accent); font-size: 19px }
+.project-entry-details h4 { margin: 0 0 12px; font-size: 16px; font-weight: 550 }
 .project-entry-details ul { padding-left: 18px; color: var(--muted); font-size: 14px }
 @media(max-width:720px) {
   .projects .project-action { width: 100%; margin-inline-start: 0 }
@@ -61,27 +60,74 @@
   object-position: center 76%;
 }
 
-.project-cover--landscape img {
-  object-fit: cover;
-  object-position: center;
-}
-
-.project-cover--board {
-  max-width: 480px;
-}
-
-.project-cover--board > a {
+.project-cover--landscape > a {
   aspect-ratio: auto;
 }
 
-.project-cover--board img {
+.project-cover--landscape img {
   height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+#radar-doppler > .feature-photo {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+#radar-doppler > .feature-photo img {
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+#reluctance-25r1 .simulation-preview {
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.project-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.project-comparison .feature-photo {
+  margin: 0;
+}
+
+.project-comparison .feature-photo > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 320px;
+}
+
+.project-comparison .feature-photo img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.project-comparison figcaption {
+  text-align: center;
+  font-size: 13px;
 }
 
 @media (max-width: 720px) {
-  #reluctance-25r1 .feature-photo img {
-    aspect-ratio: 4 / 1;
-    object-fit: cover;
+  .project-comparison {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .project-comparison .feature-photo > a {
+    height: auto;
+  }
+  .project-comparison .feature-photo img {
+    height: auto;
+    max-height: 320px;
   }
 }
 
