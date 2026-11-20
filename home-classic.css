@@ -61,13 +61,9 @@
   object-position: center 76%;
 }
 
-.project-cover--portrait img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40%;
-  height: auto;
-  transform: translate(-50%, -50%) rotate(90deg);
+.project-cover--landscape img {
+  object-fit: cover;
+  object-position: center;
 }
 
 .project-cover--board {
