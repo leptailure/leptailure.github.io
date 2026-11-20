@@ -17,6 +17,11 @@
     .waveform-figure figcaption strong { display:block; color:var(--ink); }
     .trace-legend { padding-left:22px; color:var(--muted); font-size:14px; line-height:1.8; }
     .trace-legend li + li { margin-top:8px; }
+    .python-figure { margin:24px 0 28px; }
+    .python-figure a { display:block; }
+    .python-figure img { width:100%; height:auto; }
+    .python-trial { max-width:360px; margin-inline:auto; }
+    #simulation-python > h3 { margin:30px 0 12px; font-size:19px; font-weight:550; }
   </style>
 <script src="../visit-config.js" defer></script>
 <script src="../visit-tracker.js" defer></script>
@@ -35,10 +40,35 @@
     <p>La version 26R1 poursuit le travail documenté dans la <a href="reluctance-25r1.html">fiche 25R1</a>. Les <a href="../igbt-dg340/">essais du composant DG340</a> documentent la caractérisation préalable de l’étage de puissance. La <a href="doppler.html">fiche radar Doppler</a> présente l’interface de mesure I/Q.</p>
     <p class="technology-line">Ansys Maxwell · Python / Optuna · PCB · IGBT · STM32 · ESP · SolidWorks</p>
   </header>
+  <section id="simulation-python" class="project-section" aria-labelledby="simulation-python-title">
+    <h2 id="simulation-python-title">Simulateur Python et optimisation avec Optuna</h2>
+    <p>J’ai développé un simulateur en Python pour explorer rapidement les configurations du 26R1. Ce modèle est moins précis que l’étude par éléments finis sous Ansys Maxwell, mais ses calculs plus rapides permettent de comparer de nombreux essais dans une campagne d’optimisation.</p>
+    <p>Un script utilisant Optuna explore près de vingt variables, notamment le diamètre extérieur initial des bobines, son évolution suivant les étages, le diamètre du fil et la largeur de la fenêtre de conduction exprimée en position. Cette dernière décrit une plage de déplacement du mobile, plutôt qu’une durée d’impulsion.</p>
+    <figure class="python-figure">
+      <a href="reluctance-media/python-26r1-overview-public.png?v=python-mosaic-1" aria-label="Agrandir la capture du simulateur Python"><img src="reluctance-media/python-26r1-overview-public.png?v=python-mosaic-1" alt="Interface du simulateur Python avec les courants, la force, la tension des condensateurs et la vitesse ; graduations numériques de force et de vitesse et valeurs d’énergie masquées" width="3123" height="1623" decoding="async"></a>
+      <figcaption>Vue du simulateur. Toutes les courbes sont conservées. Les graduations numériques des axes de force et de vitesse, ainsi que les valeurs de vitesse et d’énergie du résumé, sont masquées dans cette version publique.</figcaption>
+    </figure>
+    <h3>Comparer les compromis entre plusieurs indicateurs</h3>
+    <p>L’outil rassemble l’énergie cinétique <var>E</var><sub>c</sub>, la vitesse, le courant maximal, la masse totale des bobines et les pertes totales dans les IGBT. Leur lecture conjointe permet de comparer les compromis entre les configurations.</p>
+    <figure class="python-figure">
+      <a href="reluctance-media/python-26r1-optimization-public.png?v=python-mosaic-1" aria-label="Agrandir le nuage de points de la campagne Optuna"><img src="reluctance-media/python-26r1-optimization-public.png?v=python-mosaic-1" alt="Nuage de points comparant la masse des bobines et l’indicateur de pertes MosUseE, avec le rendement représenté en couleur" width="3818" height="1780" loading="lazy" decoding="async"></a>
+      <figcaption>Exploration des configurations. La masse des bobines et l’indicateur de pertes sont comparés, avec le rendement en couleur. « MosUseE (API raw) » désigne la valeur brute affichée par le simulateur.</figcaption>
+    </figure>
+    <figure class="python-figure python-trial">
+      <a href="reluctance-media/python-26r1-trial-public.png?v=python-mosaic-1" aria-label="Agrandir la fiche d’un essai Optuna"><img src="reluctance-media/python-26r1-trial-public.png?v=python-mosaic-1" alt="Détail d’un essai Optuna avec ses paramètres, le courant maximal, le rendement, la masse des bobines et l’indicateur de pertes ; valeur Ec masquée" width="795" height="968" loading="lazy" decoding="async"></a>
+      <figcaption>Détail d’un essai de la campagne d’optimisation. La valeur numérique de <var>E</var><sub>c</sub> est masquée.</figcaption>
+    </figure>
+    <p>Dans la comparaison de simulation avec le 25R1, la configuration retenue pour le 26R1 présente un courant de crête d’environ 1 400 A, contre environ 2 000 A précédemment, avec des pertes IGBT plus faibles et une énergie cinétique calculée plus élevée.</p>
+    <p>Les essais ponctuels du composant IGBT ont atteint environ 2 800 A sur une impulsion de 400 µs. Cette observation expérimentale concerne le composant dans les conditions de cet essai ; les résultats d’optimisation présentés ici restent des résultats de simulation.</p>
+    <figure class="python-figure">
+      <a href="reluctance-media/python-26r1-bank-current-public.png?v=python-mosaic-1" aria-label="Agrandir le courant simulé du banc de condensateurs"><img src="reluctance-media/python-26r1-bank-current-public.png?v=python-mosaic-1" alt="Capture du courant total du banc de condensateurs en fonction du temps, dans le simulateur Python" width="3140" height="341" loading="lazy" decoding="async"></a>
+      <figcaption>Capture du courant total du banc de condensateurs en fonction du temps. Ce tracé est distinct des courants individuels des bobines présentés dans la vue d’ensemble.</figcaption>
+    </figure>
+  </section>
   <section class="project-section" aria-labelledby="work-title">
     <h2 id="work-title">Travaux réalisés</h2>
     <div class="method-grid">
-      <div><h3>Modélisation & optimisation</h3><p>Étude électromagnétique sous Ansys Maxwell, automatisation des campagnes de simulation avec Python et optimisation multicritère avec Optuna pour comparer les configurations.</p></div>
+      <div><h3>Modélisation & optimisation</h3><p>Simulateur rapide développé en Python, optimisation multicritère avec Optuna et études par éléments finis sous Ansys Maxwell pour comparer les configurations.</p></div>
       <div><h3>Électronique de puissance</h3><p>Conception des PCB et d’une architecture de commutation à IGBT. Étude des transitoires, des surtensions, de l’isolation galvanique et des perturbations électriques.</p></div>
       <div><h3>Commande embarquée</h3><p>Développement de la commande séquentielle sur STM32 et d’une interface de supervision sur ESP-01S ou ESP32 selon les versions ; intégration des capteurs.</p></div>
       <div><h3>Conception électromécanique</h3><p>Modélisation sous SolidWorks, fabrication des bobinages, prototypage, assemblage et intégration des sous-ensembles mécaniques et électroniques.</p></div>
