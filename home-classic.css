@@ -84,3 +84,10 @@
     object-fit: cover;
   }
 }
+
+#reluctance-25r1 .simulation-preview img {
+  height: auto;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+}

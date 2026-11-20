@@ -12,7 +12,7 @@
   <style>
     .prototype-photo { margin: 0 0 24px; }
     .simulation-figure { margin:24px 0 0; }
-    .simulation-video { display:block; width:100%; height:auto; background:#fff; }
+    .simulation-animation { display:block; width:100%; height:auto; background:#fff; }
     .simulation-figure figcaption { margin-top:8px; }
     .matrix-figure { width: 100%; margin: 20px auto 24px; }
     .matrix-figure--arms { max-width: 480px; }
@@ -48,11 +48,8 @@
     <h2 id="simulation-maxwell-title">Simulation transitoire sous Ansys Maxwell 2D</h2>
     <p>Le modèle permet d’étudier la répartition du champ magnétique et le déplacement du mobile. L’animation montre l’évolution du champ au cours du mouvement.</p>
     <figure class="simulation-figure">
-      <video class="simulation-video" controls autoplay loop muted playsinline preload="metadata" width="1732" height="806" poster="reluctance-media/maxwell-25r1-poster.webp?v=simulation-1" aria-label="Animation du champ magnétique calculé sous Ansys Maxwell 2D">
-        <source src="reluctance-media/maxwell-25r1-field.mp4?v=simulation-1" type="video/mp4">
-        <a href="reluctance-media/maxwell-25r1-field.mp4?v=simulation-1">Voir l’animation de simulation (MP4)</a>
-      </video>
-      <figcaption>Champ magnétique et déplacement du mobile dans le modèle 2D.</figcaption>
+      <img class="simulation-animation" src="reluctance-media/maxwell-25r1-field.webp?v=animation-2x" alt="Animation du champ magnétique et du déplacement du mobile dans le modèle Maxwell 2D" width="1732" height="805" loading="lazy" decoding="async">
+      <figcaption>Champ magnétique et déplacement du mobile dans le modèle 2D. Animation accélérée ×2.</figcaption>
     </figure>
     <figure class="simulation-figure">
       <a href="reluctance-media/maxwell-25r1-results-public.png?v=simulation-1" aria-label="Agrandir les courbes de simulation"><img src="reluctance-media/maxwell-25r1-results-public.png?v=simulation-1" alt="Courants des bobines, force axiale et vitesse simulée en fonction du temps, avec les graduations numériques de vitesse masquées" width="3372" height="1383" loading="lazy" decoding="async"></a>
