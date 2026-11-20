@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Principes de l’actionnement linéaire à réluctance : aimantation, flux, énergie magnétique et dérivation de la force par la coénergie.">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>Principes de l’actionnement linéaire à réluctance — Leptailure</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="stylesheet" href="../style.css?v=pages-1">
+  <link rel="stylesheet" href="reluctance-principles.css?v=1">
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="header wrap">
+  <a class="wordmark" href="../" aria-label="Leptailure, accueil"><img class="brand-avatar" src="../assets/serval-avatar.png" alt="" width="80" height="80">Leptailure</a>
+  <nav aria-label="Navigation principale"><a href="../#reluctance-principles">Projets</a><a href="reluctance-25r1.html">Version 25R1</a></nav>
+</header>
+<main id="contenu" class="wrap project-page theory-page">
+  <header class="project-heading">
+    <p class="meta">BASES PHYSIQUES · ACTIONNEMENT LINÉAIRE</p>
+    <h1>Comprendre la réluctance</h1>
+    <p class="lead">Du champ magnétique au mouvement de la partie mobile</p>
+    <p>Une introduction aux relations générales d’un actionneur linéaire à réluctance. Les équations sont développées avec leurs conventions et leurs hypothèses, avant la lecture de la fiche expérimentale 25R1.</p>
+  </header>
+  <nav class="theory-toc" aria-label="Sommaire des principes">
+    <a href="#vocabulaire">Stator et partie mobile</a><a href="#aimantation">Champ et aimantation</a>
+    <a href="#flux">Flux et inductance</a><a href="#energie">Énergie et coénergie</a>
+    <a href="#force">Dérivation de la force</a><a href="#hypotheses">Hypothèses et symboles</a>
+  </nav>
+
+  <section class="project-section" aria-labelledby="vocabulaire">
+    <h2 id="vocabulaire">Stator et partie mobile</h2>
+    <p>Le <strong>stator</strong> est la partie fixe, qui porte les enroulements. Le <strong>mobile ferromagnétique</strong>, ou <strong>partie mobile</strong>, est l’élément guidé en translation. Sa position modifie la distribution du champ et les propriétés du circuit magnétique.</p>
+    <p>Le courant de l’enroulement établit un champ qui aimante le matériau. L’interaction est décrite ici par la conversion d’énergie électromagnétique en travail mécanique. L’aimantation du matériau et les courants de Foucault sont des phénomènes distincts ; ces derniers peuvent aussi produire des pertes et modifier la réponse transitoire.</p>
+    <figure class="theory-figure">
+      <img src="reluctance-principles-media/stator-mobile.svg" alt="Schéma conceptuel d’un stator bobiné fixe et d’un mobile ferromagnétique guidé selon l’axe x" width="960" height="420">
+      <figcaption>Vocabulaire de l’actionnement linéaire. Schéma conceptuel, sans dimensions de réalisation.</figcaption>
+    </figure>
+  </section>
+
+  <section class="project-section" aria-labelledby="aimantation">
+    <h2 id="aimantation">Champ, aimantation et perméabilité</h2>
+    <p>La grandeur <var>H</var> décrit le champ magnétique, <var>M</var> l’aimantation du matériau et <var>B</var> l’induction magnétique. Dans le système SI, la relation macroscopique s’écrit :</p>
+    <div class="formula formula-key" id="eq-material"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="bold">B</mi><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><mi mathvariant="bold">H</mi><mo>+</mo><mi mathvariant="bold">M</mi><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathbf B=\mu_0\!\left(\mathbf H+\mathbf M\right)</annotation></semantics></math></div><span class="eq-number">(1)</span></div>
+    <p>À l’échelle microscopique, les moments magnétiques contribuent à l’aimantation. Dans un ferromagnétique, des domaines peuvent avoir des orientations différentes ; leur évolution sous un champ appliqué explique l’augmentation de l’aimantation.</p>
+    <figure class="theory-figure theory-figure--compact">
+      <img src="reluctance-principles-media/domains.svg" alt="Comparaison qualitative de domaines magnétiques : orientations diverses à gauche et aimantation préférentielle à droite" width="960" height="340" loading="lazy">
+      <figcaption>Représentation qualitative des domaines. Une aimantation rémanente et une hystérésis peuvent exister dans un matériau réel.</figcaption>
+    </figure>
+    <p>Pour un milieu isotrope supposé linéaire sur la plage étudiée, on pose <var>M</var> = χ<sub>m</sub><var>H</var>. En remplaçant cette expression dans la relation précédente :</p>
+    <div class="formula" id="eq-linear-material"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="bold">B</mi><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><msub><mi>χ</mi><mi>m</mi></msub><mo stretchy="false">)</mo><mi mathvariant="bold">H</mi><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><msub><mi>μ</mi><mi>r</mi></msub><mi mathvariant="bold">H</mi><mo separator="true">,</mo><mspace width="2em"/><msub><mi>μ</mi><mi>r</mi></msub><mo>=</mo><mn>1</mn><mo>+</mo><msub><mi>χ</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf B=\mu_0(1+\chi_m)\mathbf H=\mu_0\mu_r\mathbf H,\qquad \mu_r=1+\chi_m</annotation></semantics></math></div><span class="eq-number">(2)</span></div>
+    <p>Cette perméabilité constante est une approximation. En présence de saturation, la relation <var>B</var>(<var>H</var>) devient non linéaire. Lorsque <var>M</var> approche une valeur limite, <var>B</var> peut encore croître avec <var>H</var> : c’est surtout sa pente différentielle qui se rapproche de μ<sub>0</sub>. <a class="source-link" href="https://web.mit.edu/6.013_book/www/chapter9/9.4.html">Lois d’aimantation — MIT</a></p>
+  </section>
+
+  <section class="project-section" aria-labelledby="flux">
+    <h2 id="flux">Du champ au flux lié</h2>
+    <p>Dans l’approximation magnétostatique, la circulation de <var>H</var> est reliée au courant libre enlacé par le contour :</p>
+    <div class="formula" id="eq-ampere"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mo>∮</mo><mi mathvariant="script">C</mi></msub><mi mathvariant="bold">H</mi><mo>⋅</mo><mi mathvariant="normal">d</mi><mi mathvariant="bold">ℓ</mi><mo>=</mo><msub><mi>I</mi><mrow><mi mathvariant="normal">l</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">b</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mo separator="true">,</mo><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">c</mi><mover accent="true"><mi mathvariant="normal">e</mi><mo>ˊ</mo></mover></mrow></msub></mrow><annotation encoding="application/x-tex">\oint_{\mathcal C}\mathbf H\cdot\mathrm d\boldsymbol\ell=I_{\mathrm{libre,enlac\acute e}}</annotation></semantics></math></div><span class="eq-number">(3)</span></div>
+    <p>Le flux à travers une surface orientée et le flux lié de l’enroulement sont définis par :</p>
+    <div class="formula" id="eq-flux"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Φ</mi><mo>=</mo><msub><mo>∫</mo><mi>S</mi></msub><mi mathvariant="bold">B</mi><mo>⋅</mo><mi mathvariant="bold">n</mi><mtext> </mtext><mi mathvariant="normal">d</mi><mi>S</mi><mo separator="true">,</mo><mspace width="2em"/><mi>λ</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi mathvariant="normal">Φ</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">\Phi=\int_{S}\mathbf B\cdot\mathbf n\,\mathrm dS,\qquad \lambda=\sum_{k=1}^{N}\Phi_k</annotation></semantics></math></div><span class="eq-number">(4)</span></div>
+    <p>Si chacune des <var>N</var> spires est traversée par le même flux, cette somme devient λ = <var>N</var>Φ. Lorsque la réponse est linéaire et sans aimantation indépendante du courant :</p>
+    <div class="formula" id="eq-inductance"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>λ</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>L</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mtext> </mtext><mi>i</mi></mrow><annotation encoding="application/x-tex">\lambda(i,x)=L(x)\,i</annotation></semantics></math></div><span class="eq-number">(5)</span></div>
+    <p>L’inductance dépend donc de la position. Le terme <em>réluctance</em> désigne l’opposition d’un circuit magnétique au passage du flux. Dans un modèle unidimensionnel, linéaire et à flux de fuite négligé, on écrit :</p>
+    <div class="formula" id="eq-reluctance"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>N</mi><mi>i</mi><mo>=</mo><mi mathvariant="script">R</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mtext> </mtext><mi mathvariant="normal">Φ</mi><mo separator="true">,</mo><mspace width="2em"/><mi mathvariant="script">R</mi><mo>=</mo><msub><mo>∫</mo><mi mathvariant="normal">Γ</mi></msub><mfrac><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">ℓ</mi></mrow><mrow><mi>μ</mi><mi>A</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Ni=\mathcal R(x)\,\Phi,\qquad\mathcal R=\int_{\Gamma}\frac{\mathrm d\ell}{\mu A}</annotation></semantics></math></div><span class="eq-number">(6)</span></div>
+    <p>En substituant Φ = <var>N</var><var>i</var>/ℛ dans λ = <var>N</var>Φ, on obtient <var>L</var>(<var>x</var>) = <var>N</var><sup>2</sup>/ℛ(<var>x</var>). Cette analogie de circuit reste une approximation d’un champ distribué. <a class="source-link" href="https://web.mit.edu/6.013_book/www/chapter9/9.4.html">Champ et loi constitutive — MIT</a></p>
+  </section>
+
+  <section class="project-section" aria-labelledby="energie">
+    <h2 id="energie">Énergie magnétique et coénergie</h2>
+    <h3>Définition locale</h3>
+    <p>Pour une loi constitutive réversible, univoque et colinéaire, référencée à un état de champ nul, l’énergie et la coénergie par unité de volume sont :</p>
+    <div class="formula" id="eq-densities"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>w</mi><mi>m</mi></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi>B</mi></msubsup><mi>H</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mtext> </mtext><mi mathvariant="normal">d</mi><mi>b</mi><mo separator="true">,</mo><mspace width="2em"/><msubsup><mi>w</mi><mi>m</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi>H</mi></msubsup><mi>B</mi><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo><mtext> </mtext><mi mathvariant="normal">d</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">w_m(B)=\int_0^B H(b)\,\mathrm db,\qquad w&#x27;_m(H)=\int_0^H B(h)\,\mathrm dh</annotation></semantics></math></div><span class="eq-number">(7)</span></div>
+    <p>Une intégration par parties donne la somme des deux aires :</p>
+    <div class="formula" id="eq-density-sum"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>w</mi><mi>m</mi></msub><mo>+</mo><msubsup><mi>w</mi><mi>m</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo>=</mo><mi>B</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">w_m+w&#x27;_m=BH</annotation></semantics></math></div><span class="eq-number">(8)</span></div>
+    <p>Si <var>B</var> = μ<var>H</var> avec μ constant, la courbe est une droite. Les deux aires deviennent égales :</p>
+    <div class="formula formula-key" id="eq-linear-density"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>w</mi><mi>m</mi></msub><mo>=</mo><msubsup><mi>w</mi><mi>m</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>B</mi><mi>H</mi><mo>=</mo><mfrac><msup><mi>B</mi><mn>2</mn></msup><mrow><mn>2</mn><mi>μ</mi></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>μ</mi><msup><mi>H</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">w_m=w&#x27;_m=\frac12 BH=\frac{B^2}{2\mu}=\frac12\mu H^2</annotation></semantics></math></div><span class="eq-number">(9)</span></div>
+    <p>L’expression <var>BH</var>/2 ne se généralise donc pas telle quelle à une courbe non linéaire. <a class="source-link" href="https://web.mit.edu/6.013_book/www/chapter11/11.4.html">Stockage d’énergie — MIT</a></p>
+    <h3>Définition aux bornes d’un enroulement</h3>
+    <p>À position fixée, avec un état de référence sans flux à courant nul, on retrouve la même construction dans le plan courant–flux lié :</p>
+    <div class="formula" id="eq-terminal-energies"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>W</mi><mi>m</mi></msub><mo stretchy="false">(</mo><mi>λ</mi><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi>λ</mi></msubsup><mi>i</mi><mo stretchy="false">(</mo><mi>η</mi><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mtext> </mtext><mi mathvariant="normal">d</mi><mi>η</mi><mo separator="true">,</mo><mspace width="2em"/><msubsup><mi>W</mi><mi>m</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi>i</mi></msubsup><mi>λ</mi><mo stretchy="false">(</mo><mi>ι</mi><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mtext> </mtext><mi mathvariant="normal">d</mi><mi>ι</mi></mrow><annotation encoding="application/x-tex">W_m(\lambda,x)=\int_0^\lambda i(\eta,x)\,\mathrm d\eta,\qquad W&#x27;_m(i,x)=\int_0^i\lambda(\iota,x)\,\mathrm d\iota</annotation></semantics></math></div><span class="eq-number">(10)</span></div>
+    <div class="formula" id="eq-energy-sum"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>W</mi><mi>m</mi></msub><mo>+</mo><msubsup><mi>W</mi><mi>m</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo>=</mo><mi>i</mi><mi>λ</mi></mrow><annotation encoding="application/x-tex">W_m+W&#x27;_m=i\lambda</annotation></semantics></math></div><span class="eq-number">(11)</span></div>
+    <figure class="theory-figure">
+      <img src="reluctance-principles-media/energy-coenergy.svg" alt="Courbe qualitative du flux lié lambda en fonction du courant i ; l’aire sous la courbe représente la coénergie, l’aire complémentaire dans le rectangle représente l’énergie" width="1100" height="580" loading="lazy">
+      <figcaption>Énergie et coénergie à position fixée. Courbe qualitative, sans échelle numérique ni données de matériau.</figcaption>
+    </figure>
+  </section>
+
+  <section class="project-section" aria-labelledby="force">
+    <h2 id="force">Dériver la force par le bilan d’énergie</h2>
+    <p>Le déplacement <var>x</var> et la force <var>F</var><sub>em</sub> sont positifs dans le même sens. Pour un sous-système magnétique réversible, les pertes résistives sont séparées du stockage magnétique. L’énergie électrique reçue se répartit entre variation d’énergie magnétique et travail mécanique :</p>
+    <div class="formula" id="eq-balance"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>i</mi><mtext> </mtext><mi mathvariant="normal">d</mi><mi>λ</mi><mo>=</mo><mi mathvariant="normal">d</mi><msub><mi>W</mi><mi>m</mi></msub><mo>+</mo><msub><mi>F</mi><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi></mrow></msub><mtext> </mtext><mi mathvariant="normal">d</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">i\,\mathrm d\lambda=\mathrm dW_m+F_{\mathrm{em}}\,\mathrm dx</annotation></semantics></math></div><span class="eq-number">(12)</span></div>
+    <p>En choisissant <var>W</var><sub>m</sub>(λ, <var>x</var>) comme fonction d’état :</p>
+    <div class="formula" id="eq-energy-differential"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">d</mi><msub><mi>W</mi><mi>m</mi></msub><mo>=</mo><msub><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><msub><mi>W</mi><mi>m</mi></msub></mrow><mrow><mi mathvariant="normal">∂</mi><mi>λ</mi></mrow></mfrac><mo fence="true">∣</mo></mrow><mi>x</mi></msub><mi mathvariant="normal">d</mi><mi>λ</mi><mo>+</mo><msub><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><msub><mi>W</mi><mi>m</mi></msub></mrow><mrow><mi mathvariant="normal">∂</mi><mi>x</mi></mrow></mfrac><mo fence="true">∣</mo></mrow><mi>λ</mi></msub><mi mathvariant="normal">d</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\mathrm dW_m=\left.\frac{\partial W_m}{\partial\lambda}\right|_x\mathrm d\lambda+\left.\frac{\partial W_m}{\partial x}\right|_{\lambda}\mathrm dx</annotation></semantics></math></div><span class="eq-number">(13)</span></div>
+    <p>L’identification avec le bilan donne la force à flux lié maintenu constant :</p>
+    <div class="formula formula-key" id="eq-force-flux"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>F</mi><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi></mrow></msub><mo>=</mo><mo>−</mo><msub><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><msub><mi>W</mi><mi>m</mi></msub></mrow><mrow><mi mathvariant="normal">∂</mi><mi>x</mi></mrow></mfrac><mo fence="true">∣</mo></mrow><mi>λ</mi></msub></mrow><annotation encoding="application/x-tex">F_{\mathrm{em}}=-\left.\frac{\partial W_m}{\partial x}\right|_{\lambda}</annotation></semantics></math></div><span class="eq-number">(14)</span></div>
+    <p>Pour employer le courant comme variable indépendante, on définit la coénergie puis on différencie :</p>
+    <div class="formula" id="eq-coenergy-definition"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>W</mi><mi>m</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>i</mi><mi>λ</mi><mo>−</mo><msub><mi>W</mi><mi>m</mi></msub><mo stretchy="false">(</mo><mi>λ</mi><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W&#x27;_m(i,x)=i\lambda-W_m(\lambda,x)</annotation></semantics></math></div><span class="eq-number">(15)</span></div>
+    <div class="formula" id="eq-coenergy-differential"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">d</mi><msubsup><mi>W</mi><mi>m</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo>=</mo><mi>λ</mi><mtext> </mtext><mi mathvariant="normal">d</mi><mi>i</mi><mo>+</mo><mi>i</mi><mtext> </mtext><mi mathvariant="normal">d</mi><mi>λ</mi><mo>−</mo><mi mathvariant="normal">d</mi><msub><mi>W</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">\mathrm dW&#x27;_m=\lambda\,\mathrm di+i\,\mathrm d\lambda-\mathrm dW_m</annotation></semantics></math></div><span class="eq-number">(16)</span></div>
+    <p>Après remplacement de d<var>W</var><sub>m</sub> par le bilan, il reste :</p>
+    <div class="formula" id="eq-coenergy-balance"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">d</mi><msubsup><mi>W</mi><mi>m</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo>=</mo><mi>λ</mi><mtext> </mtext><mi mathvariant="normal">d</mi><mi>i</mi><mo>+</mo><msub><mi>F</mi><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi></mrow></msub><mtext> </mtext><mi mathvariant="normal">d</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\mathrm dW&#x27;_m=\lambda\,\mathrm di+F_{\mathrm{em}}\,\mathrm dx</annotation></semantics></math></div><span class="eq-number">(17)</span></div>
+    <div class="formula formula-key" id="eq-force-current"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>F</mi><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi></mrow></msub><mo>=</mo><msub><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><msubsup><mi>W</mi><mi>m</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup></mrow><mrow><mi mathvariant="normal">∂</mi><mi>x</mi></mrow></mfrac><mo fence="true">∣</mo></mrow><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">F_{\mathrm{em}}=\left.\frac{\partial W&#x27;_m}{\partial x}\right|_i</annotation></semantics></math></div><span class="eq-number">(18)</span></div>
+    <p>Les deux expressions décrivent la même force. Leur signe diffère parce que les variables maintenues constantes ne sont pas les mêmes. <a class="source-link" href="https://web.mit.edu/6.013_book/www/chapter11/11.7.html">Forces magnétiques macroscopiques — MIT</a></p>
+    <h3>Cas linéaire : λ = L(x)i</h3>
+    <p>En intégrant la relation flux–courant à position fixée :</p>
+    <div class="formula" id="eq-linear-coenergy"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>W</mi><mi>m</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi>i</mi></msubsup><mi>L</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mtext> </mtext><mi>ι</mi><mtext> </mtext><mi mathvariant="normal">d</mi><mi>ι</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>L</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mtext> </mtext><msup><mi>i</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">W&#x27;_m(i,x)=\int_0^i L(x)\,\iota\,\mathrm d\iota=\frac12 L(x)\,i^2</annotation></semantics></math></div><span class="eq-number">(19)</span></div>
+    <p>Puis en prenant la dérivée partielle à courant fixé :</p>
+    <div class="formula formula-key" id="eq-linear-force"><div class="formula-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>F</mi><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>i</mi><mn>2</mn></msup><mfrac><mrow><mi mathvariant="normal">d</mi><mi>L</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mi mathvariant="normal">d</mi><mi>x</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">F_{\mathrm{em}}=\frac12 i^2\frac{\mathrm dL(x)}{\mathrm dx}</annotation></semantics></math></div><span class="eq-number">(20)</span></div>
+    <p>Dans ce modèle, le sens de la force dépend du gradient d’inductance. Si la loi λ(<var>i</var>, <var>x</var>) est non linéaire, la définition intégrale de la coénergie reste le point de départ, sous les hypothèses de réversibilité retenues. <a class="source-link" href="https://doc.comsol.com/6.3/doc/com.comsol.help.acdc/acdc_ug_theory.05.78.html">Énergie, coénergie et travail virtuel — COMSOL</a></p>
+  </section>
+
+  <section class="project-section" aria-labelledby="hypotheses">
+    <h2 id="hypotheses">Hypothèses et notation</h2>
+    <p>Les développements énergétiques ci-dessus considèrent un seul enroulement et un degré de liberté mécanique. L’hystérésis, les pertes par courants de Foucault et les effets thermiques sont exclus du sous-système réversible. Une loi linéaire est utilisée uniquement dans les expressions qui le précisent.</p>
+    <div class="theory-table-scroll"><table class="theory-table">
+      <caption>Grandeurs et unités SI</caption>
+      <thead><tr><th scope="col">Symbole</th><th scope="col">Grandeur</th><th scope="col">Unité</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">x</th><td>Position de la partie mobile</td><td>m</td></tr>
+        <tr><th scope="row">i ; N</th><td>Courant ; nombre de spires</td><td>A ; sans dimension</td></tr>
+        <tr><th scope="row">H ; M</th><td>Champ magnétique ; aimantation</td><td>A/m</td></tr>
+        <tr><th scope="row">B</th><td>Induction magnétique</td><td>T</td></tr>
+        <tr><th scope="row">μ₀ ; μ ; μᵣ</th><td>Perméabilité du vide ; perméabilité ; perméabilité relative</td><td>H/m ; H/m ; sans dimension</td></tr>
+        <tr><th scope="row">Φ ; λ</th><td>Flux ; flux lié de l’enroulement</td><td>Wb ; Wb·tour</td></tr>
+        <tr><th scope="row">L ; ℛ</th><td>Inductance ; réluctance</td><td>H ; A/Wb</td></tr>
+        <tr><th scope="row">wₘ ; w′ₘ</th><td>Densités d’énergie et de coénergie</td><td>J/m³</td></tr>
+        <tr><th scope="row">Wₘ ; W′ₘ ; Fₑₘ</th><td>Énergie ; coénergie ; force électromagnétique</td><td>J ; J ; N</td></tr>
+      </tbody>
+    </table></div>
+    <p>Pour les expressions usuelles, μ<sub>0</sub> ≈ 4π × 10<sup>−7</sup> H/m. Le signe ≈ est intentionnel : dans le SI actuel, cette constante n’a plus une valeur définie exactement. <a class="source-link" href="https://www.nist.gov/publications/units-magnetic-quantities">Unités magnétiques — NIST</a></p>
+    <p class="theory-next"><a href="reluctance-25r1.html">Poursuivre avec la fiche expérimentale 25R1</a></p>
+  </section>
+</main>
+<footer class="footer wrap"><span>© 2026 Leptailure · Notes de physique et d’électromécanique</span><a href="../#reluctance-principles">Retour à l’aperçu des principes</a></footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+<title id="title">Stator et partie mobile</title><desc id="desc">Schéma conceptuel d’un mobile rectangulaire guidé dans un stator bobiné fixe ; axe x orienté vers la droite.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#39483e"/></marker></defs>
+<rect width="960" height="420" fill="#fffef9"/>
+<g font-family="Arial,sans-serif" font-size="24" fill="#202b27">
+<text x="38" y="45" font-size="27" font-weight="600">Stator fixe · partie mobile guidée</text>
+<rect x="355" y="105" width="370" height="45" rx="5" fill="#a4462f" fill-opacity=".14" stroke="#a4462f" stroke-width="2"/>
+<rect x="355" y="232" width="370" height="45" rx="5" fill="#a4462f" fill-opacity=".14" stroke="#a4462f" stroke-width="2"/>
+<path d="M370 107v41 M370 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M396 107v41 M396 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M422 107v41 M422 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M448 107v41 M448 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M474 107v41 M474 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M500 107v41 M500 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M526 107v41 M526 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M552 107v41 M552 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M578 107v41 M578 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M604 107v41 M604 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M630 107v41 M630 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M656 107v41 M656 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M682 107v41 M682 234v41" stroke="#a4462f" stroke-width="7"/>
+<path d="M708 107v41 M708 234v41" stroke="#a4462f" stroke-width="7"/>
+<rect x="140" y="166" width="430" height="50" rx="3" fill="#a9b7ab" stroke="#39483e" stroke-width="2"/>
+<rect x="172" y="218" width="90" height="50" fill="#dce1d8" stroke="#626b64" stroke-width="2"/>
+<path d="M100 285H850 M100 293H850" stroke="#626b64" stroke-width="3"/>
+<text x="397" y="88" font-size="24">Enroulement du stator</text>
+<text x="40" y="140">Mobile ferromagnétique</text>
+<path d="M270 146l35 18" stroke="#626b64" fill="none"/>
+<text x="702" y="328" font-size="22">Guidage</text>
+<path d="M750 308v-13" stroke="#626b64"/>
+<path d="M140 357H855" stroke="#39483e" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="870" y="364" font-style="italic">x</text>
+<text x="38" y="400" font-size="18" fill="#626b64">Schéma conceptuel · translation de la partie mobile</text>
+</g>
+<g aria-hidden="true" opacity=".26" font-family="Arial,sans-serif" font-weight="600" text-anchor="middle" fill="white" stroke="#000" stroke-opacity=".76" paint-order="stroke" stroke-width="1.7"><text transform="translate(192.00,134.40) rotate(-14)" font-size="21.12">LEPTAILURE · leptailure.github.io</text><text transform="translate(480.00,210.00) rotate(-14)" font-size="21.12">LEPTAILURE · leptailure.github.io</text><text transform="translate(768.00,285.60) rotate(-14)" font-size="21.12">LEPTAILURE · leptailure.github.io</text></g>
+</svg>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" role="img" aria-labelledby="title desc">
+<title id="title">Domaines et aimantation</title><desc id="desc">Domaines orientés dans plusieurs directions à gauche et orientation préférentielle sous un champ appliqué à droite. Illustration qualitative.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#39483e"/></marker></defs>
+<rect width="960" height="340" fill="#fffef9"/>
+<g font-family="Arial,sans-serif" font-size="24" fill="#202b27">
+<text x="40" y="43" font-size="25" font-weight="600">Orientations diverses</text>
+<text x="520" y="43" font-size="25" font-weight="600">Orientation préférentielle</text>
+<rect x="40" y="77" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M59.00 110.00L99.00 110.00" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="118" y="77" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M147.00 127.32L167.00 92.68" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="196" y="77" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M218.62 98.53L251.38 121.47" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="274" y="77" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M319.84 128.79L306.16 91.21" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="352" y="77" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M387.53 90.30L394.47 129.70" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="40" y="143" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M59.00 176.00L99.00 176.00" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="118" y="143" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M153.53 156.30L160.47 195.70" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="196" y="143" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M218.62 164.53L251.38 187.47" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="274" y="143" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M323.00 158.68L303.00 193.32" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="352" y="143" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M387.53 156.30L394.47 195.70" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="40" y="209" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M75.53 222.30L82.47 261.70" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="118" y="209" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M137.00 242.00L177.00 242.00" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="196" y="209" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M215.00 242.00L255.00 242.00" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="274" y="209" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M309.53 222.30L316.47 261.70" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="352" y="209" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M401.00 224.68L381.00 259.32" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="40" y="77" width="390" height="198" fill="none" stroke="#626b64" stroke-width="2"/>
+<rect x="520" y="77" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M539.19 107.22L578.81 112.78" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="598" y="77" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M617.19 107.22L656.81 112.78" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="676" y="77" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M695.00 110.00L735.00 110.00" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="754" y="77" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M773.19 107.22L812.81 112.78" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="832" y="77" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M851.00 110.00L891.00 110.00" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="520" y="143" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M539.19 178.78L578.81 173.22" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="598" y="143" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M617.19 173.22L656.81 178.78" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="676" y="143" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M695.19 178.78L734.81 173.22" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="754" y="143" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M773.19 178.78L812.81 173.22" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="832" y="143" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M851.19 178.78L890.81 173.22" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="520" y="209" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M539.00 242.00L579.00 242.00" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="598" y="209" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M617.00 242.00L657.00 242.00" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="676" y="209" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M695.19 244.78L734.81 239.22" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="754" y="209" width="78" height="66" fill="#e8ede2" stroke="#bbc4b6"/>
+<path d="M773.19 244.78L812.81 239.22" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="832" y="209" width="78" height="66" fill="#f1f3ec" stroke="#bbc4b6"/>
+<path d="M851.00 242.00L891.00 242.00" stroke="#39483e" stroke-width="2.2" marker-end="url(#arrow)"/>
+<rect x="520" y="77" width="390" height="198" fill="none" stroke="#626b64" stroke-width="2"/>
+<text x="40" y="315" font-size="20" fill="#626b64">Représentation qualitative des domaines</text>
+<path d="M690 305h110" stroke="#39483e" stroke-width="2" marker-end="url(#arrow)"/><text x="820" y="313" font-style="italic">H</text>
+</g>
+<g aria-hidden="true" opacity=".26" font-family="Arial,sans-serif" font-weight="600" text-anchor="middle" fill="white" stroke="#000" stroke-opacity=".76" paint-order="stroke" stroke-width="1.7"><text transform="translate(192.00,108.80) rotate(-14)" font-size="21.12">LEPTAILURE · leptailure.github.io</text><text transform="translate(480.00,170.00) rotate(-14)" font-size="21.12">LEPTAILURE · leptailure.github.io</text><text transform="translate(768.00,231.20) rotate(-14)" font-size="21.12">LEPTAILURE · leptailure.github.io</text></g>
+</svg>
