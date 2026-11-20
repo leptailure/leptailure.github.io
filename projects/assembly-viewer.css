@@ -1,0 +1,19 @@
+.assembly-figure{margin:24px 0 0}
+.assembly-frame{position:relative;height:520px;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#e7eae7;isolation:isolate}
+.assembly-frame model-viewer{display:block;width:100%;height:100%;--progress-bar-color:var(--accent)}
+.assembly-poster{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#e7eae7}
+.assembly-poster img{width:100%;height:100%;object-fit:contain}
+.assembly-poster[hidden],.assembly-toolbar[hidden]{display:none}
+.assembly-load{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:white;border:0;border-radius:6px;padding:13px 20px;font:600 16px/1.4 Arial,sans-serif;cursor:pointer;box-shadow:0 3px 16px #0002}
+.assembly-load:disabled{cursor:wait;opacity:.75}
+.assembly-watermark{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;visibility:hidden}
+.assembly-frame[data-ready] .assembly-watermark{visibility:visible}
+.assembly-toolbar{position:absolute;left:14px;right:14px;bottom:14px;z-index:3;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;pointer-events:none}
+.assembly-toolbar button{pointer-events:auto;border:1px solid #c8cec7;border-radius:5px;background:#fffef9f2;color:var(--ink);padding:9px 13px;font:500 14px/1.4 Arial,sans-serif;cursor:pointer;min-width:40px;box-shadow:0 1px 5px #0001}
+.assembly-toolbar button:hover{background:#fff}
+.assembly-toolbar button:focus-visible,.assembly-load:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.assembly-status{position:absolute;left:16px;right:16px;top:16px;margin:0;text-align:center;font:14px/1.5 Arial,sans-serif;color:#26362c;pointer-events:none}
+.assembly-status:not(:empty){background:#fffef9ed;padding:9px 12px;border-radius:5px}
+.assembly-frame:fullscreen{width:100%;height:100%;border:0;border-radius:0}
+.assembly-figure figcaption{font-size:14px}
+@media(max-width:720px){.assembly-frame{height:390px}.assembly-load{font-size:14px;padding:12px 14px;bottom:25px}.assembly-toolbar{left:8px;right:8px;bottom:10px;gap:5px}.assembly-toolbar button{font-size:14px;padding:8px;min-width:36px}}

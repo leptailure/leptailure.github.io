@@ -8,6 +8,8 @@
   <title>Système électromagnétique à réluctance 26R2 — Leptailure</title>
   <link rel="icon" href="../favicon.png" type="image/png">
   <link rel="stylesheet" href="../style.css?v=pages-1">
+  <link rel="stylesheet" href="assembly-viewer.css?v=26r2-1">
+  <script type="module" src="assembly-viewer.js?v=26r2-1"></script>
   <style>
     .project-section > p, .project-section li { font-size:16px; }
     .board-figure { margin:24px 0 0; }
@@ -28,6 +30,7 @@
     <p class="meta">Révision de l’électronique · 26R2</p>
     <h1>Système électromagnétique à réluctance 26R2</h1>
     <p class="lead">Nouvelle commande STM32 et architecture à deux cartes démontables</p>
+    <p><a href="#assemblage-26r2">Explorer l’assemblage en 3D</a></p>
   </header>
   <section class="project-section" aria-labelledby="objectif-26r2">
     <h2 id="objectif-26r2">Objectif de la révision</h2>
@@ -59,6 +62,34 @@
     <figure class="board-figure">
       <a href="reluctance-media/igbt-3d-26r2.png?v=wm-transparent-1" aria-label="Agrandir : Rendu 3D de la carte IGBT 26R2"><img src="reluctance-media/igbt-3d-26r2.png?v=wm-transparent-1" alt="Rendu 3D de la carte IGBT 26R2" width="2683" height="1183" loading="lazy" decoding="async"></a>
       <figcaption>Carte IGBT 26R2 · Rendu 3D.</figcaption>
+    </figure>
+  </section>
+  <section class="project-section" aria-labelledby="assemblage-26r2">
+    <h2 id="assemblage-26r2">Assemblage 3D interactif</h2>
+    <p>Explorer l’assemblage complet et observer les cartes, les connexions et l’implantation des composants sous différents angles.</p>
+    <figure class="assembly-figure" data-assembly-viewer>
+      <div class="assembly-frame">
+        <model-viewer id="assembly-26r2" alt="Assemblage électronique complet du système 26R2 : cartes de commande et IGBT, connexions et condensateurs"
+          camera-controls touch-action="pan-y" camera-orbit="25deg 70deg 70%"
+          min-camera-orbit="auto 0deg 10%" max-camera-orbit="auto 180deg 400%"
+          shadow-intensity="0.7" exposure="0.8" environment-image="neutral"
+          interaction-prompt="none" loading="eager" aria-describedby="assembly-help"
+          data-src="reluctance-media/assembly-26r2.glb?v=1"></model-viewer>
+        <div class="assembly-poster">
+          <img src="reluctance-media/assembly-26r2-poster.webp" alt="Vue d’ensemble de l’assemblage 26R2" width="2775" height="1208" loading="lazy" decoding="async">
+          <button class="assembly-load" type="button" disabled>Charger le modèle 3D · 11,8 Mo</button>
+        </div>
+        <canvas class="assembly-watermark" aria-hidden="true"></canvas>
+        <div class="assembly-toolbar" role="group" aria-label="Commandes du modèle 3D" hidden>
+          <button type="button" data-action="zoom-in" aria-label="Zoom avant">+</button>
+          <button type="button" data-action="zoom-out" aria-label="Zoom arrière">−</button>
+          <button type="button" data-action="reset">Réinitialiser</button>
+          <button type="button" data-action="fullscreen">Plein écran</button>
+        </div>
+        <p class="assembly-status" role="status" aria-live="polite"></p>
+      </div>
+      <figcaption id="assembly-help">Assemblage 26R2 · Glisser pour tourner, utiliser la molette pour zoomer et le bouton droit pour déplacer la vue. Sur mobile : un doigt pour tourner, deux doigts pour zoomer ou déplacer la vue.</figcaption>
+      <noscript><p>Activer JavaScript pour utiliser la vue 3D interactive.</p></noscript>
     </figure>
   </section>
 </main>
