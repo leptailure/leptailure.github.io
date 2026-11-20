@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="26R2 : nouvelle carte de commande STM32, décodeurs 74LVC138APW et carte IGBT démontable.">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>Système électromagnétique à réluctance 26R2 — Leptailure</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="stylesheet" href="../style.css?v=pages-1">
+  <style>
+    .project-section > p, .project-section li { font-size:16px; }
+    .board-figure { margin:24px 0 0; }
+    .board-figure a { display:block; background:#000; border-radius:8px; overflow:hidden; }
+    .board-figure img { width:100%; height:auto; }
+    .decoder-groups { padding-left:22px; color:var(--muted); }
+    .decoder-groups li { margin:8px 0; }
+  </style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="header wrap">
+  <a class="wordmark" href="../" aria-label="Leptailure, accueil"><img class="brand-avatar" src="../assets/serval-avatar.png" alt="" width="80" height="80">Leptailure</a>
+  <nav aria-label="Navigation principale"><a href="../#reluctance-26r2">Projets</a><a href="reluctance.html">Version 26R1</a></nav>
+</header>
+<main id="contenu" class="wrap project-page">
+  <header class="project-heading">
+    <p class="meta">Révision de l’électronique · 26R2</p>
+    <h1>Système électromagnétique à réluctance 26R2</h1>
+    <p class="lead">Nouvelle commande STM32 et architecture à deux cartes démontables</p>
+  </header>
+  <section class="project-section" aria-labelledby="objectif-26r2">
+    <h2 id="objectif-26r2">Objectif de la révision</h2>
+    <p>Le 26R2 fait suite au <a href="reluctance.html#bilan-26r1">retour d’expérience du 26R1</a>. Son objectif est de supprimer les perturbations de masse commune dans la commande des IGBT côté bas. Cette révision comprend une nouvelle carte de commande et une nouvelle carte IGBT.</p>
+  </section>
+  <section class="project-section" aria-labelledby="commande-26r2">
+    <h2 id="commande-26r2">STM32, décodeurs et optocoupleurs</h2>
+    <p>Le STM32 commande quatre décodeurs <strong>74LVC138APW</strong>, dont les sorties pilotent les optocoupleurs. Cette interface est retenue pour sa capacité de courant de sortie plus élevée et pour réduire le nombre de GPIO mobilisés par la commande.</p>
+    <p>Les quatre décodeurs correspondent aux quatre groupes suivants :</p>
+    <ul class="decoder-groups">
+      <li>côté haut de la matrice des étages impairs ;</li>
+      <li>côté haut de la matrice des étages pairs ;</li>
+      <li>côté bas de la matrice des étages impairs ;</li>
+      <li>côté bas de la matrice des étages pairs.</li>
+    </ul>
+    <p>Chaque décodeur utilise trois GPIO d’adressage : <strong>4 × 3 = 12 GPIO</strong>, contre 22 GPIO avec la commande directe précédente.</p>
+    <figure class="board-figure">
+      <a href="reluctance-media/control-3d-26r2.png?v=wm-transparent-1" aria-label="Agrandir : Rendu 3D de la carte de commande 26R2"><img src="reluctance-media/control-3d-26r2.png?v=wm-transparent-1" alt="Rendu 3D de la carte de commande 26R2" width="2900" height="919" loading="lazy" decoding="async"></a>
+      <figcaption>Carte de commande 26R2 · Rendu 3D.</figcaption>
+    </figure>
+    <figure class="board-figure">
+      <a href="reluctance-media/control-routing-26r2.png?v=wm-transparent-1" aria-label="Agrandir : Routage de la carte de commande 26R2"><img src="reluctance-media/control-routing-26r2.png?v=wm-transparent-1" alt="Routage de la carte de commande 26R2" width="2160" height="631" loading="lazy" decoding="async"></a>
+      <figcaption>Carte de commande 26R2 · Vue du routage.</figcaption>
+    </figure>
+  </section>
+  <section class="project-section" aria-labelledby="cartes-26r2">
+    <h2 id="cartes-26r2">Deux cartes séparables pour les mesures</h2>
+    <p>La carte de commande et la carte IGBT ont été redessinées. Leur liaison utilise plusieurs connecteurs femelles à deux contacts, au pas de <strong>2,0 mm</strong>, afin de faciliter le démontage et l’accès aux points de mesure.</p>
+    <figure class="board-figure">
+      <a href="reluctance-media/igbt-3d-26r2.png?v=wm-transparent-1" aria-label="Agrandir : Rendu 3D de la carte IGBT 26R2"><img src="reluctance-media/igbt-3d-26r2.png?v=wm-transparent-1" alt="Rendu 3D de la carte IGBT 26R2" width="2683" height="1183" loading="lazy" decoding="async"></a>
+      <figcaption>Carte IGBT 26R2 · Rendu 3D.</figcaption>
+    </figure>
+  </section>
+</main>
+<footer class="footer wrap"><span>© 2026 Leptailure · Projets personnels et académiques</span><a href="../#reluctance-26r2">Retour à l’aperçu 26R2</a></footer>
+</body>
+</html>
