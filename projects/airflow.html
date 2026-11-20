@@ -69,10 +69,10 @@
       <a href="airflow-media/schema-pcb.png?v=pcb-schematic" aria-label="Ouvrir le schéma électrique du PCB en pleine résolution"><img src="airflow-media/schema-pcb.png?v=pcb-schematic" width="3332" height="2362" alt="Schéma électrique du PCB avec la chaîne de mesure, la charge Li‑Po, le convertisseur élévateur et les régulateurs 5 V et 3,3 V." loading="lazy"></a>
       <figcaption>Schéma électrique du PCB. Cliquer sur l’image pour l’agrandir.</figcaption>
     </figure>
-    <p class="airflow-pcb-comparison">Le DW01 commande le double MOSFET SC8205A pour protéger la cellule contre la surcharge et la décharge profonde. Si la tension descend sous le seuil de protection, le circuit coupe la décharge. Le STM32 mesure la tension de la batterie via un pont diviseur.</p>
+    <p class="airflow-pcb-comparison">Le DW01 commande le double MOSFET SC8205A pour protéger la cellule contre la surcharge et la décharge profonde. Si la tension descend sous le seuil de protection, le circuit coupe la décharge. Le STM32 mesure la tension de la batterie via un pont diviseur et déclenche le buzzer si cette tension est inférieure à 3,5 V.</p>
     <p>L’interrupteur SW1 commande le MOSFET à canal P Q4 (AO3401A), qui commute l’alimentation principale du détecteur. Le chargeur reste relié à l’USB‑C en amont de cet interrupteur, ce qui permet de recharger la batterie lorsque le détecteur est éteint.</p>
     <p>Sur la plaque d’essai, le TL084 et le TL082 étaient alimentés en ±6 V. Le PCB utilise un INA333 à gain nominal de 6, référencé à 2,5 V, et deux comparateurs TLV7011 à seuils de 2 V et 3 V. Ces composants sont alimentés en 5 V. Le CAN externe de 8 bits, le STM32 et l’écran OLED sont repris de la version sur plaque d’essai.</p>
-    <p>Le STM32 pilote aussi un buzzer et module le chauffage par PWM à partir du rail de 6,18 V.</p>
+    <p>Le STM32 module le chauffage par PWM à partir du rail de 6,18 V.</p>
     <div class="airflow-gallery">
       <figure class="airflow-figure">
         <a href="airflow-media/carte-assemblee.webp?v=wm-transparent-1"><img src="airflow-media/carte-assemblee.webp?v=wm-transparent-1" width="2707" height="2504" alt="Circuit imprimé assemblé du détecteur sur le banc, avec l’écran OLED au centre" loading="lazy"></a>
