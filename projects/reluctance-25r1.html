@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Note de laboratoire sur le système électromagnétique à réluctance 25R1 et les applications de la motorisation linéaire.">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>Système électromagnétique à réluctance 25R1 — Leptailure</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="stylesheet" href="../style.css?v=pages-1">
+  <style>
+    .prototype-photo { margin: 0 0 24px; }
+    .matrix-figure { width: 100%; margin: 20px auto 24px; }
+    .matrix-figure--arms { max-width: 480px; }
+    .matrix-figure--circuit { max-width: 620px; }
+    .matrix-diagram { overflow: hidden; aspect-ratio: var(--diagram-ratio); }
+    .matrix-diagram img { display: block; width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="header wrap">
+  <a class="wordmark" href="../" aria-label="Leptailure, accueil"><img class="brand-avatar" src="../assets/serval-avatar.png" alt="" width="80" height="80">Leptailure</a>
+  <nav aria-label="Navigation principale"><a href="../#projets">← Projets</a><a href="reluctance.html">Version 26R1 →</a></nav>
+</header>
+<main id="contenu" class="wrap project-page">
+  <header class="project-heading">
+    <p class="meta">Note de laboratoire · Version antérieure</p>
+    <h1>Système électromagnétique à réluctance 25R1</h1>
+    <p class="lead">Prototype à 60 étages de bobines</p>
+  </header>
+  <figure class="prototype-photo">
+    <img src="../assets/reluctance-25r1.webp" alt="Vue panoramique du prototype 25R1, avec ses bobines en cuivre alignées" width="1170" height="150" decoding="async">
+    <figcaption>Figure 1 — Vue d’ensemble du prototype 25R1 sur le banc.</figcaption>
+  </figure>
+  <section class="project-section" aria-labelledby="resume">
+    <h2 id="resume">Résumé</h2>
+    <p>Dans l’industrie, les moteurs linéaires permettent d’accélérer, de transporter et de positionner des charges sur un axe. Ils équipent notamment des systèmes de transfert et de positionnement sur les lignes d’assemblage automatisées, ainsi que des axes de précision pour les machines de production. <a href="https://press.siemens.com/global/en/pressrelease/siemens-and-festo-integrate-multi-carrier-system-bosch-rexroth-transfer-system">Système de transfert à moteur linéaire</a> · <a href="https://www.siemens.com/en-gb/products/simotics/simotics-l/">Moteurs linéaires SIMOTICS L</a>.</p>
+    <p>Le prototype de laboratoire 25R1 explore une commande mutualisée pour un ensemble de 60 étages de bobines. L’objectif est de réduire le nombre d’interrupteurs de puissance nécessaires à cet ensemble en partageant les IGBT entre plusieurs étages. Cette version utilise 22 IGBT au total. La photographie présente le prototype assemblé sur le banc.</p>
+  </section>
+  <section class="project-section" aria-labelledby="topologie-matricielle">
+    <h2 id="topologie-matricielle">Topologie matricielle et compromis de conception</h2>
+    <p>La topologie matricielle reprend le principe des demi-ponts et mutualise les interrupteurs de puissance entre plusieurs voies inductives. L’intérêt de ce choix pour le 25R1 est de limiter le nombre de composants de commutation pour ses 60 étages. Cette réduction constitue l’avantage principal de la solution et peut contribuer à diminuer le coût des composants.</p>
+    <p>En contrepartie, le câblage devient plus complexe, l’activation simultanée des voies est limitée et les pertes en conduction peuvent augmenter. Pour un système de petite taille, ces contraintes peuvent réduire l’intérêt du partage. Pour comparer le principe retenu pour le 25R1 à une commande dédiée à chaque étage, il faut donc considérer le nombre d’interrupteurs, la complexité d’assemblage et les pertes électriques.</p>
+    <h3 id="derivation-comptage-matriciel">Dérivation du comptage matriciel</h3>
+    <p>Une grille de <var>r</var> lignes et <var>c</var> colonnes comporte <var>c</var> cases sur chaque ligne. Elle contient donc <var>r</var> × <var>c</var> cases. Chaque case correspond à un couple distinct (ligne, colonne). En comptant une fois chaque repère de ligne et chaque repère de colonne, on obtient <var>r</var> + <var>c</var> repères.</p>
+  </section>
+  <section class="project-section" aria-labelledby="extrait-topologie-matricielle">
+    <h2 id="extrait-topologie-matricielle">Commande matricielle du 25R1</h2>
+    <p>Sur le prototype 25R1, les 60 étages de bobines sont commandés par 22 IGBT. Dans la configuration matricielle retenue, deux bobines consécutives ne peuvent pas être activées simultanément au sein d’une même matrice. Les étages impairs et les étages pairs sont donc répartis en deux groupes de 30 bobines, constituant deux matrices distinctes de 5 × 6. Chaque matrice utilise 5 IGBT côté haut et 6 IGBT côté bas.</p>
+    <p>Le comptage donne ainsi 5 + 6 = 11 IGBT par matrice, soit 2 × 11 = 22 IGBT pour les 60 étages. À titre de comparaison, une commande dédiée utilisant deux transistors de puissance par étage, un côté haut et un côté bas, demanderait 2 × 60 = 120 transistors. Ce total représente environ 5,45 fois les 22 IGBT du 25R1. La mutualisation réduit donc le nombre de transistors de 98, soit environ 81,7 % dans cette comparaison.</p>
+    <p>La figure 4.41 présente séparément les deux bras du demi-pont, repérés A à gauche et B à droite.</p>
+    <figure class="matrix-figure matrix-figure--arms">
+      <div class="matrix-diagram" style="--diagram-ratio: 760 / 374">
+        <img src="./codex-clipboard-c9f3b6b1-19d3-4b35-8894-77fe9b799223.png" alt="Bras A à gauche et bras B à droite" width="760" height="434" decoding="async">
+      </div>
+      <figcaption><strong>Figure 4.41 — Bras supérieur et inférieur du commutateur matriciel</strong></figcaption>
+    </figure>
+    <p>La figure 4.42 illustre le principe général de la topologie matricielle.</p>
+    <figure class="matrix-figure matrix-figure--circuit">
+      <div class="matrix-diagram" style="--diagram-ratio: 993 / 721">
+        <img src="./codex-clipboard-3cbeaaf1-6ba3-4453-ba5f-85c3793e6e8d.png" alt="Schéma de la matrice avec les blocs A en lignes et les blocs B en colonnes" width="993" height="767" decoding="async">
+      </div>
+      <figcaption>
+        <strong>Figure 4.42 — Schéma de principe de la topologie matricielle</strong>
+      </figcaption>
+    </figure>
+    <p class="note">Les consignes pratiques de câblage et de séquencement des bobines du lanceur électromagnétique ont été omises.</p>
+  </section>
+  <section class="project-section" aria-labelledby="suite">
+    <h2 id="suite">Version suivante</h2>
+    <p>La <a href="reluctance.html">fiche 26R1</a> présente la modélisation, l’intégration du prototype assemblé et le journal photographique des essais.</p>
+  </section>
+</main>
+<footer class="footer wrap"><span>Leptailure · Notes personnelles et académiques</span><a href="../#reluctance-25r1">Retour à l’aperçu 25R1</a></footer>
+</body>
+</html>

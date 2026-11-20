@@ -23,7 +23,8 @@
   <header class="project-heading">
     <p class="meta">INSTRUMENTATION · CONCEPTION ÉLECTRONIQUE · 2026</p>
     <h1>Interface pour radar Doppler</h1>
-    <p class="lead">Conditionnement analogique de deux signaux en quadrature (I/Q) pour l’acquisition d’un radar Doppler.</p>
+    <p class="lead">Acquisition I/Q pour l’estimation de la vitesse radiale et du déplacement relatif.</p>
+    <p>Cette carte d’instrumentation est associée au <a href="reluctance.html">système à réluctance 26R1</a>. En mode Doppler à onde continue non modulée, la vitesse radiale et les variations de position sont accessibles en principe. Une mesure de distance absolue requiert une autre méthode, par exemple un radar à modulation FMCW.</p>
     <p>Le projet concerne la carte d’interface entre un module radar et un système d’acquisition. Deux chaînes analogiques symétriques amplifient les sorties I et Q et les recentrent autour d’une référence compatible avec une alimentation de 3,3 V. Le schéma documente la chaîne I/Q ; les vues du circuit imprimé et de la carte en 3D montrent son implantation. Le rendu 3D présente également des éléments qui ne sont pas décrits par le schéma I/Q ci-dessous.</p>
     <p class="technology-line">Radar Doppler ~24 GHz · I/Q · OPA2365 · Filtrage RC · PCB · ADC</p>
   </header>
@@ -77,7 +78,7 @@
     <div class="radar-equations">
       <div><span class="meta">VITESSE RADIALE · MODULE</span><p class="radar-math">|v| = λ |Δf| / 2</p><p>λ = c / f<sub>0</sub>, avec <em>c</em> la vitesse de propagation et Δf le décalage Doppler mesuré.</p></div>
       <div><span class="meta">PHASE EN QUADRATURE</span><p class="radar-math">φ = atan2(Q − V<sub>ref</sub>, I − V<sub>ref</sub>)</p><p>Après retrait des offsets, la phase est reconstruite à partir des deux composantes.</p></div>
-      <div><span class="meta">VARIATION DE DISTANCE</span><p class="radar-math">Δx = λ Δφ / (4π)</p><p>Relation pour une mesure aller-retour, à partir d’une variation de phase déroulée.</p></div>
+      <div><span class="meta">DÉPLACEMENT RELATIF</span><p class="radar-math">Δx = λ Δφ / (4π)</p><p>Relation pour une mesure aller-retour, à partir d’une variation de phase déroulée.</p></div>
     </div>
     <p class="note">Les relations de cette section sont théoriques. Aucune courbe d’essai ou précision de mesure validée n’est présentée à ce stade. Le signe de la vitesse dépend notamment de la convention retenue pour les voies I et Q.</p>
   </section>
@@ -173,7 +174,7 @@
 
     <p class="note">Transcription numérique des calculs Doppler et I/Q. Les grandeurs, hypothèses et exemples numériques proviennent des notes de travail ; les clarifications portent sur la dérivée de la phase, le choix entre λ<sub>0</sub> et λ<sub>g</sub>, et l’utilisation d’une différence de phase pour calculer Δx. Aucun résultat expérimental de performance n’est déduit de ces équations seules.</p>
   </section>
-  <nav class="case-navigation" aria-label="Navigation entre projets"><a href="../#projets">← Tous les projets</a><a href="reluctance.html">Système électromagnétique à réluctance →</a></nav>
+  <nav class="case-navigation" aria-label="Navigation entre projets"><a href="../#projets">← Tous les projets</a><a href="reluctance.html">Système électromagnétique à réluctance 26R1 →</a></nav>
 </main>
 <footer class="footer wrap"><span>© 2026 Leptailure · Portfolio personnel</span><a href="../privacy.html">Confidentialité</a></footer>
 </body>
