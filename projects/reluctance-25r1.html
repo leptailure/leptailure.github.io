@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="../style.css?v=pages-1">
   <style>
     .prototype-photo { margin: 0 0 24px; }
+    .bridge-figure { max-width:900px; margin:24px auto; }
+    .bridge-figure a { display:block; }
+    .bridge-figure img { width:100%; height:auto; }
+    #commutation-recuperation > h3 { font-size:19px; margin:26px 0 14px; }
     .simulation-figure { margin:24px 0 0; }
     .simulation-animation { display:block; width:100%; height:auto; background:#fff; }
     .simulation-figure figcaption { margin-top:8px; }
@@ -37,12 +41,12 @@
   </header>
   <figure class="prototype-photo">
     <img src="../assets/reluctance-25r1.webp?v=wm-transparent-1" alt="Vue panoramique du prototype 25R1, avec ses bobines en cuivre alignées" width="1170" height="150" decoding="async">
-    <figcaption>Figure 1 — Vue d’ensemble du prototype 25R1 sur le banc.</figcaption>
+    <figcaption>Vue d’ensemble du prototype 25R1 sur le banc.</figcaption>
   </figure>
   <section class="project-section" aria-labelledby="resume">
-    <h2 id="resume">Résumé</h2>
-    <p>Dans l’industrie, les moteurs linéaires permettent d’accélérer, de transporter et de positionner des charges sur un axe. Ils équipent notamment des systèmes de transfert et de positionnement sur les lignes d’assemblage automatisées, ainsi que des axes de précision pour les machines de production. <a href="https://press.siemens.com/global/en/pressrelease/siemens-and-festo-integrate-multi-carrier-system-bosch-rexroth-transfer-system">Système de transfert à moteur linéaire</a> · <a href="https://www.siemens.com/en-gb/products/simotics/simotics-l/">Moteurs linéaires SIMOTICS L</a>.</p>
-    <p>Le prototype de laboratoire 25R1 explore une commande mutualisée pour un ensemble de 60 étages de bobines. L’objectif est de réduire le nombre d’interrupteurs de puissance nécessaires à cet ensemble en partageant les IGBT entre plusieurs étages. Cette version utilise 22 IGBT au total. La photographie présente le prototype assemblé sur le banc.</p>
+    <h2 id="resume">Objectif du 25R1</h2>
+    <p>Le 25R1 est un prototype de laboratoire à 60 étages de bobines, commandés par 22 IGBT. Il explore une commande mutualisée dont l’objectif est de réduire le nombre d’interrupteurs de puissance en partageant certains composants entre plusieurs étages.</p>
+    <p>La démarche associe simulation électromagnétique, étude de la commutation et de la récupération d’énergie, puis réalisation d’une commande matricielle. Le bilan de l’essai permet ensuite de comprendre les limites de cette première réalisation et le passage au 26R1.</p>
   </section>
   <section id="simulation-maxwell" class="project-section" aria-labelledby="simulation-maxwell-title">
     <h2 id="simulation-maxwell-title">Simulation transitoire sous Ansys Maxwell 2D</h2>
@@ -56,31 +60,48 @@
       <figcaption>Résultats de simulation. Courants des bobines, force axiale et vitesse du mobile. Les graduations numériques de vitesse sont masquées dans cette version publique.</figcaption>
     </figure>
   </section>
+  <section id="commutation-recuperation" class="project-section" aria-labelledby="commutation-recuperation-title">
+    <h2 id="commutation-recuperation-title">Commutation d’une bobine et récupération d’énergie</h2>
+    <p>Avant d’aborder le partage des composants dans une matrice, les schémas suivants présentent le fonctionnement de principe d’un étage isolé.</p>
+    <h3>Demi-pont asymétrique et pont en H</h3>
+    <p>Le terme retenu ici est <strong>demi-pont asymétrique</strong>, également désigné comme un pont en H asymétrique. Sa disposition rappelle un H. Il comporte un interrupteur commandé côté haut, un autre côté bas et deux diodes. Un pont en H complet possède quatre interrupteurs commandés. L’expression « demi-pont asymétrique » permet aussi de le distinguer du demi-pont classique à point milieu. <a href="https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/38/7288.bpra058.pdf">Documentation TI sur le demi-pont asymétrique</a>.</p>
+    <figure class="bridge-figure">
+      <a href="reluctance-media/asymmetric-bridge-modes-fr.png?v=bridge-fr-1" aria-label="Agrandir les modes de fonctionnement du pont asymétrique"><img src="reluctance-media/asymmetric-bridge-modes-fr.png?v=bridge-fr-1" alt="Les quatre schémas fournis, avec légendes françaises : alimentation, roue libre haute, restitution d’énergie et roue libre basse" width="935" height="655" loading="lazy" decoding="async"></a>
+      <figcaption>Modes de fonctionnement du demi-pont asymétrique. Les repères des composants sont conservés et les légendes sont traduites en français.</figcaption>
+    </figure>
+    <p><strong>Alimentation.</strong> Les deux interrupteurs conduisent et la source alimente la bobine. Une partie de l’énergie est alors stockée sous forme magnétique dans l’enroulement.</p>
+    <p><strong>Roue libre.</strong> Avec un seul interrupteur conducteur, le courant continue à circuler dans une boucle locale comprenant cet interrupteur et la diode opposée. Selon le côté concerné, il s’agit de la roue libre haute ou basse. Le courant décroît sous l’effet des pertes ; cette circulation locale se distingue du retour d’énergie vers le stockage.</p>
+    <p><strong>Restitution d’énergie.</strong> Lorsque les deux interrupteurs sont ouverts alors qu’un courant subsiste, les diodes offrent un chemin de retour vers l’alimentation. Dans une alimentation à condensateurs, l’énergie magnétique restante dans la bobine est alors partiellement restituée aux condensateurs, tandis que le courant décroît.</p>
+    <p>La récupération concerne donc l’énergie encore présente dans le champ magnétique à la fin de l’alimentation. Elle ne signifie pas que toute l’énergie initialement stockée dans les condensateurs est récupérée : une partie a été transférée au mobile et une autre dissipée dans le circuit. La commande du côté haut ajoute par ailleurs une contrainte d’alimentation et de complexité à l’électronique de commande.</p>
+    <h3>Un banc de condensateurs commun au 25R1</h3>
+    <p>Sur le 25R1, un unique banc de condensateurs commun alimente l’ensemble des bras côté haut et côté bas. Le principe de récupération renvoie l’énergie magnétique résiduelle à ce même banc, par le bus continu commun.</p>
+    <p>Le stockage est ainsi mutualisé, tout comme les interrupteurs dans la commande matricielle. Ces deux aspects se complètent ; la section suivante explique le partage des IGBT, son comptage et ses contraintes.</p>
+  </section>
   <section class="project-section" aria-labelledby="topologie-matricielle">
     <h2 id="topologie-matricielle">Topologie matricielle et compromis de conception</h2>
-    <p>La topologie matricielle reprend le principe des demi-ponts et mutualise les interrupteurs de puissance entre plusieurs voies inductives. L’intérêt de ce choix pour le 25R1 est de limiter le nombre de composants de commutation pour ses 60 étages. Cette réduction constitue l’avantage principal de la solution et peut contribuer à diminuer le coût des composants.</p>
-    <p>En contrepartie, le câblage devient plus complexe, l’activation simultanée des voies est limitée et les pertes en conduction peuvent augmenter. Pour un système de petite taille, ces contraintes peuvent réduire l’intérêt du partage. Pour comparer le principe retenu pour le 25R1 à une commande dédiée à chaque étage, il faut donc considérer le nombre d’interrupteurs, la complexité d’assemblage et les pertes électriques.</p>
+    <p>La topologie matricielle reprend les deux types de bras du pont asymétrique et partage les interrupteurs de puissance entre plusieurs voies inductives. Pour le 25R1, son intérêt principal est de réduire le nombre de composants de commutation nécessaires aux 60 étages.</p>
+    <p>Le partage s’accompagne d’un câblage plus complexe, limite l’activation simultanée des voies et peut augmenter les pertes de conduction. Son intérêt doit donc être évalué en tenant compte de ces contraintes, en plus du nombre d’interrupteurs économisés.</p>
     <h3 id="derivation-comptage-matriciel">Dérivation du comptage matriciel</h3>
-    <p>Une grille de <var>r</var> lignes et <var>c</var> colonnes comporte <var>c</var> cases sur chaque ligne. Elle contient donc <var>r</var> × <var>c</var> cases. Chaque case correspond à un couple distinct (ligne, colonne). En comptant une fois chaque repère de ligne et chaque repère de colonne, on obtient <var>r</var> + <var>c</var> repères.</p>
+    <p>Le comptage distingue les voies et les composants partagés : une matrice de <var>r</var> lignes et <var>c</var> colonnes contient <var>r</var> × <var>c</var> voies, tandis que les deux groupes de bras totalisent <var>r</var> + <var>c</var> interrupteurs. L’application aux deux groupes du 25R1 est détaillée ci-dessous. Ce comptage porte uniquement sur les IGBT ; les diodes ne sont pas incluses.</p>
   </section>
   <section class="project-section" aria-labelledby="extrait-topologie-matricielle">
     <h2 id="extrait-topologie-matricielle">Commande matricielle du 25R1</h2>
     <p>Sur le prototype 25R1, les 60 étages de bobines sont commandés par 22 IGBT. Dans la configuration matricielle retenue, deux bobines consécutives ne peuvent pas être activées simultanément au sein d’une même matrice. Les étages impairs et les étages pairs sont donc répartis en deux groupes de 30 bobines, constituant deux matrices distinctes de 5 × 6. Chaque matrice utilise 5 IGBT côté haut et 6 IGBT côté bas.</p>
-    <p>Le comptage donne ainsi 5 + 6 = 11 IGBT par matrice, soit 2 × 11 = 22 IGBT pour les 60 étages. À titre de comparaison, une commande dédiée utilisant deux transistors de puissance par étage, un côté haut et un côté bas, demanderait 2 × 60 = 120 transistors. Ce total représente environ 5,45 fois les 22 IGBT du 25R1. La mutualisation réduit donc le nombre de transistors de 98, soit environ 81,7 % dans cette comparaison.</p>
-    <p>La figure 4.41 présente séparément les deux bras du demi-pont, repérés A à gauche et B à droite.</p>
+    <p>Le comptage donne ainsi 5 + 6 = 11 IGBT par matrice, soit 2 × 11 = 22 IGBT pour les 60 étages. À titre de comparaison, une commande dédiée par demi-pont asymétrique, avec deux transistors de puissance par étage, demanderait 2 × 60 = 120 transistors. Ce total représente environ 5,45 fois les 22 IGBT du 25R1. La mutualisation réduit donc le nombre de transistors de 98, soit environ 81,7 % dans cette comparaison.</p>
+    <p>Le premier schéma présente séparément les deux types de bras du pont asymétrique, repérés A à gauche et B à droite.</p>
     <figure class="matrix-figure matrix-figure--arms">
       <div class="matrix-diagram" style="--diagram-ratio: 760 / 374">
-        <img src="./codex-clipboard-c9f3b6b1-19d3-4b35-8894-77fe9b799223.png?v=wm-transparent-1" alt="Bras A à gauche et bras B à droite" width="760" height="434" decoding="async">
+        <img src="reluctance-media/matrix-arms-fr.png?v=bridge-fr-1" alt="Bras A à gauche et bras B à droite" width="760" height="374" decoding="async">
       </div>
-      <figcaption><strong>Figure 4.41 — Bras supérieur et inférieur du commutateur matriciel</strong></figcaption>
+      <figcaption><strong>Bras A et B du commutateur matriciel</strong></figcaption>
     </figure>
-    <p>La figure 4.42 illustre le principe général de la topologie matricielle.</p>
+    <p>Le second schéma montre leur organisation en matrice.</p>
     <figure class="matrix-figure matrix-figure--circuit">
       <div class="matrix-diagram" style="--diagram-ratio: 993 / 721">
-        <img src="./codex-clipboard-3cbeaaf1-6ba3-4453-ba5f-85c3793e6e8d.png?v=wm-transparent-1" alt="Schéma de la matrice avec les blocs A en lignes et les blocs B en colonnes" width="993" height="767" decoding="async">
+        <img src="reluctance-media/matrix-structure-fr.png?v=bridge-fr-1" alt="Schéma de la matrice avec les blocs A en lignes et les blocs B en colonnes" width="993" height="721" decoding="async">
       </div>
       <figcaption>
-        <strong>Figure 4.42 — Schéma de principe de la topologie matricielle</strong>
+        <strong>Schéma de principe de la topologie matricielle</strong>
       </figcaption>
     </figure>
     <p class="note">Les consignes pratiques de câblage et de séquencement des bobines du lanceur électromagnétique ont été omises.</p>
@@ -104,11 +125,10 @@
       <a href="../assets/reluctance-25r1-test-failure.webp?v=wm-transparent-1" aria-label="Agrandir la photographie de l’incident pendant l’essai du 25R1"><img src="../assets/reluctance-25r1-test-failure.webp?v=wm-transparent-1" alt="Éclats lumineux et projections d’étincelles pendant l’incident électrique sur le banc du 25R1" width="2081" height="1179" loading="lazy" decoding="async"></a>
       <figcaption>Incident électrique survenu pendant l’essai du 25R1.</figcaption>
     </figure>
-    <p>Le montage a ensuite été revu, redessiné et reconstruit. Cette évolution est présentée dans la <a href="reluctance.html">version 26R1</a>.</p>
   </section>
   <section class="project-section" aria-labelledby="suite">
-    <h2 id="suite">Version suivante</h2>
-    <p>La <a href="reluctance.html">fiche 26R1</a> présente la modélisation, l’intégration du prototype assemblé et le journal photographique des essais.</p>
+    <h2 id="suite">Évolution vers le 26R1</h2>
+    <p>Après cet incident, le montage a été revu, redessiné et reconstruit. La <a href="reluctance.html">fiche 26R1</a> présente cette évolution, avec la modélisation, l’intégration du prototype et le journal des essais.</p>
   </section>
 </main>
 <footer class="footer wrap"><span>Leptailure · Notes personnelles et académiques</span><a href="../#reluctance-25r1">Retour à l’aperçu 25R1</a></footer>
