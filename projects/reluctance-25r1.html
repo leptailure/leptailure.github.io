@@ -51,6 +51,12 @@
     <img src="../assets/reluctance-25r1.webp?v=wm-transparent-1" alt="Vue panoramique du prototype 25R1, avec ses bobines en cuivre alignées" width="1170" height="150" decoding="async">
     <figcaption>Vue d’ensemble du prototype 25R1 sur le banc.</figcaption>
   </figure>
+  <section id="modelisation-temporelle" class="project-section" aria-labelledby="modelisation-temporelle-title">
+    <h2 id="modelisation-temporelle-title">Modélisation dans le domaine temporel</h2>
+    <p>Lorsque deux bobines sont parcourues simultanément par un courant, leurs champs magnétiques interagissent. La loi des mailles de Kirchhoff permet de décrire l’évolution des courants en tenant compte des résistances, des inductances propres, de l’inductance mutuelle et de la force contre-électromotrice induite par le déplacement du mobile.</p>
+    <p>Le circuit peut être en phase d’alimentation, de roue libre ou de restitution d’énergie. Dans ce dernier cas, une partie de l’énergie magnétique revient au banc de condensateurs.</p>
+    <p>Les courants modifient la force exercée sur le mobile ; en retour, le déplacement du mobile modifie la tension induite dans les bobines. Ce couplage électromécanique explique pourquoi les courbes de courant, de force et de vitesse sont à lire conjointement dans la simulation ci-dessous.</p>
+  </section>
   <section id="simulation-maxwell" class="project-section" aria-labelledby="simulation-maxwell-title">
     <h2 id="simulation-maxwell-title">Simulation transitoire sous Ansys Maxwell 2D</h2>
     <p>Le modèle Maxwell 2D simule le champ magnétique et le déplacement du mobile.</p>
