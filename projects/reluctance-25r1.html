@@ -25,22 +25,7 @@
     .matrix-diagram img { display: block; width: 100%; height: auto; }
     .hardware-photo { width: 100%; max-width: 680px; margin: 0 auto; }
     .hardware-photo + .hardware-photo { margin-top: 24px; }
-    #modelisation-temporelle > h3 { font-size:1.2rem; line-height:1.4; margin:28px 0 14px; }
-    #modelisation-temporelle > p { font-size:1rem; }
-    .time-equation { max-width:100%; overflow-x:auto; overscroll-behavior-x:contain; margin:20px 0 24px; padding:18px 20px; border:1px solid var(--line); border-radius:8px; background:var(--paper); color:var(--ink); }
-    .time-equation:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
-    .time-equation mjx-container[display="true"] { margin:.4em 0 !important; text-align:left !important; }
-    #modelisation-temporelle > .source-convention { font-size:.875rem; padding-left:14px; border-left:2px solid var(--line); }
-    @media (max-width:720px) { .time-equation { padding:14px 12px; } }
   </style>
-  <script>
-    window.MathJax = {
-      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
-      svg: { fontCache: 'global' },
-      options: { renderActions: { addMenu: [] } }
-    };
-  </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -67,79 +52,10 @@
     <figcaption>Vue d’ensemble du prototype 25R1 sur le banc.</figcaption>
   </figure>
   <section id="modelisation-temporelle" class="project-section" aria-labelledby="modelisation-temporelle-title">
-    <h2 id="modelisation-temporelle-title">Établissement des équations dans le domaine temporel</h2>
-    <p>Dans le cas de deux bobines parcourues simultanément par un courant et d’un mobile, le schéma électrique présenté précédemment permet d’établir le système d’équations suivant à partir de la loi des mailles de Kirchhoff.</p>
-    <h3>Équations électriques des deux bobines</h3>
-    <div class="time-equation" role="region" tabindex="0" aria-label="Équations électriques des deux bobines">
-      \[
-      \begin{aligned}
-      &-L_1\frac{di_1}{dt}-M_{12}\frac{di_2}{dt}
-      -i_1\left(R_{coil1}+2R_{Mos}\right)\\
-      &\qquad +Switch_1\cdot V_{pow}+(Switch_1-1)\cdot V_{dio}-V_{b1}=0\\[1.2em]
-      &-L_2\frac{di_2}{dt}-M_{12}\frac{di_1}{dt}
-      -i_2\left(R_{coil2}+2R_{Mos}\right)\\
-      &\qquad +Switch_2\cdot V_{pow}+(Switch_2-1)\cdot V_{dio}-V_{b2}=0
-      \end{aligned}
-      \]
-    </div>
-    <p>\(Switch\) représente l’état de commutation : \(1\) correspond à l’alimentation dans le sens direct, \(0\) à la roue libre et \(-1\) à la récupération d’énergie avec une tension de polarité inverse. \(V_{pow}\) est la tension d’alimentation et \(V_b\) la force contre-électromotrice induite par le déplacement du mobile. Cette dernière s’écrit :</p>
-    <div class="time-equation" role="region" tabindex="0" aria-label="Force contre-électromotrice induite">
-      \[
-      V_b=N\cdot v_b F_{bs}\left(\vec r-\vec r_{coil}\right)
-      \]
-    </div>
-    <p>\(N\) est le nombre de spires de la bobine, \(v_b\) la vitesse du mobile et \(F_{bs}(\vec r)\) la force exercée sur le mobile, à la position considérée, par unité de courant dans une bobine à une seule spire.</p>
-    <h3>Passage d’une spire à une bobine à plusieurs spires</h3>
-    <p>Les calculs précédents ont fourni l’inductance propre, l’inductance mutuelle et la résistance de bobines à une seule spire. Les relations avec les paramètres de bobines à plusieurs spires sont les suivantes :</p>
-    <div class="time-equation" role="region" tabindex="0" aria-label="Relations entre les paramètres d’une spire et ceux d’une bobine à plusieurs spires">
-      \[
-      \begin{aligned}
-      L&=L_s\cdot N^2\\[0.7em]
-      M_{12}&=M_{12s}\cdot N_1\cdot N_2\\[0.7em]
-      R&=R_s\cdot N^2
-      \end{aligned}
-      \]
-    </div>
-    <p>\(L_s\), \(M_{12s}\) et \(R_s\) désignent respectivement l’inductance propre, l’inductance mutuelle et la résistance pour des bobines à une seule spire. En substituant ces relations dans les équations précédentes, on obtient :</p>
-    <div class="time-equation" role="region" tabindex="0" aria-label="Équations électriques en fonction du nombre de spires">
-      \[
-      \begin{aligned}
-      &-N_1^2L_s\frac{di_1}{dt}-N_1N_2M_{12s}\frac{di_2}{dt}
-      -i_1\left(N_1^2R_s+2R_{Mos}\right)\\
-      &\qquad +Switch_1\cdot V_{pow}+(Switch_1-1)\cdot V_{dio}-V_{b1}=0\\[1.2em]
-      &-N_2^2L_s\frac{di_2}{dt}-N_1N_2M_{12s}\frac{di_1}{dt}
-      -i_2\left(N_2^2R_s+2R_{Mos}\right)\\
-      &\qquad +Switch_2\cdot V_{pow}+(Switch_2-1)\cdot V_{dio}-V_{b2}=0
-      \end{aligned}
-      \]
-    </div>
-    <h3>Équation de l’alimentation</h3>
-    <p>Une équation peut également être établie pour l’alimentation :</p>
-    <div class="time-equation" role="region" tabindex="0" aria-label="Équation de la tension d’alimentation">
-      \[
-      V_{pow}-U+\left(Switch_1\cdot i_1+Switch_2\cdot i_2\right)\cdot R_{pow}=0
-      \]
-    </div>
-    <p>\(V_{pow}\) est la tension de sortie de l’alimentation, \(U\) sa force électromotrice et \(R_{pow}\) sa résistance interne.</p>
-    <p>Si l’alimentation est assurée par un condensateur, il faut ajouter son équation de décharge :</p>
-    <div class="time-equation" role="region" tabindex="0" aria-label="Équation de décharge du condensateur">
-      \[
-      C\frac{dU}{dt}+\left(Switch_1\cdot i_1+Switch_2\cdot i_2\right)=0
-      \]
-    </div>
-    <h3>Équations du mouvement du mobile</h3>
-    <p>Enfin, les équations du mouvement du mobile sont :</p>
-    <div class="time-equation" role="region" tabindex="0" aria-label="Équations de la dynamique et de la cinématique du mobile">
-      \[
-      \begin{aligned}
-      m\frac{dv}{dt}
-      &-N_1i_1\cdot F_{bs}\left(\vec r-\vec r_{coil_1}\right)\\
-      &-N_2i_2\cdot F_{bs}\left(\vec r-\vec r_{coil_2}\right)=0\\[1em]
-      \frac{dr}{dt}&-v=0
-      \end{aligned}
-      \]
-    </div>
-    <p class="source-convention">Les notations, les conventions de signe et les relations de changement d’échelle sont conservées telles qu’elles figurent dans le document source.</p>
+    <h2 id="modelisation-temporelle-title">Modélisation dans le domaine temporel</h2>
+    <p>Lorsque deux bobines sont parcourues simultanément par un courant, leurs champs magnétiques interagissent. La loi des mailles de Kirchhoff permet de décrire l’évolution des courants en tenant compte des résistances, des inductances propres, de l’inductance mutuelle et de la force contre-électromotrice induite par le déplacement du mobile.</p>
+    <p>Le circuit peut être en phase d’alimentation, de roue libre ou de restitution d’énergie. Dans ce dernier cas, une partie de l’énergie magnétique revient au banc de condensateurs.</p>
+    <p>Les courants modifient la force exercée sur le mobile ; en retour, le déplacement du mobile modifie la tension induite dans les bobines. Ce couplage électromécanique explique pourquoi les courbes de courant, de force et de vitesse sont à lire conjointement dans la simulation ci-dessous.</p>
   </section>
   <section id="simulation-maxwell" class="project-section" aria-labelledby="simulation-maxwell-title">
     <h2 id="simulation-maxwell-title">Simulation transitoire sous Ansys Maxwell 2D</h2>
